@@ -17,6 +17,22 @@
                             <page string="About">
                                 Write instructions for this exercise.
                             </page>
+                            <page string="Allocations">
+                                <field name="allocation_ids">
+                                    <tree string="Allocations">
+                                        <field name="partner_id"/>
+                                        <field name="suitability"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Assignments">
+                                <field name="assignment_ids">
+                                    <tree string="Assignments">
+                                    	<field name="partner_id"/>
+                                        <field name="rating"/>
+                                    </tree>
+                                </field>
+                            </page>
                         </notebook>
                     </sheet>
                 </form>

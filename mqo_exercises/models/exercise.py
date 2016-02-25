@@ -6,5 +6,5 @@ class Exercise(models.Model):
     
     name = fields.Char(string="Title", required=True)
     instructions = fields.Text(string="Instructions")
-    allocation_id = fields.One2many('mqo.allocation', 'exercise_id', string="Allocated Exercises")
-    assignment_id = fields.One2many('mqo.assignment', 'exercise_id', string="Assigned exercises")
+    allocation_ids = fields.One2many('mqo.allocation', 'exercise_id', string="Allocated Exercises")
+    assignment_ids = fields.One2many('mqo.assignment', 'exercise_id', string="Assigned exercises")
