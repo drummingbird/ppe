@@ -24,7 +24,7 @@
     'data': [
         # 'security/ir.model.access.csv',
         'templates/templates.xml',
-        # 'views/openacademy.xml',
+        'views/exercises.xml',
         #'views/partner.xml',
         #'views/session_workflow.xml',
     ],

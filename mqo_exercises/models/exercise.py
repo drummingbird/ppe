@@ -4,5 +4,5 @@ from openerp import models, fields, api
 class Exercise(models.Model):
     _name = 'mqo.exercise'
     
-    name = fields.Char(string="Name", required=True)
+    name = fields.Char(string="Title", required=True)
     instructions = fields.Text()
