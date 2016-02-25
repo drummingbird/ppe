@@ -2,7 +2,7 @@
 from openerp import models, fields, api
 
 class Assignment(models.Model):
-    _name = 'mqo.assigment'
+    _name = 'mqo.assignment'
     
     partner_id = fields.Many2one('res.partner', string="Partner", required=True)
     exercise_id = fields.Many2one('mqo.exercise',
