@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
+        <record model="ir.ui.view" id="exercise_form_view">
+            <field name="name">exercise.form</field>
+            <field name="model">mqo.exercise</field>
+            <field name="arch" type="xml">
+                <form string="Exercise Form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <notebook>
+                            <page string="Instructions">
+                                <field name="instructions"/>
+                            </page>
+                            <page string="About">
+                                Write instructions for this exercise.
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+        <record model="ir.ui.view" id="exercise_search_view">
+            <field name="name">exercise.search</field>
+            <field name="model">mqo.exercise</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="instructions"/>
+                </search>
+            </field>
+        </record>
+    
         <!-- window action -->
         <!--
             The following tag is an action definition for a "window action",
@@ -18,15 +51,15 @@
         </record>
 
         <!-- top level menu: no parent -->
-        <menuitem id="main_MQO_menu" name="MQO"/>
+        <menuitem id="main_learn_menu" name=Learn/>
         <!-- A first level in the left side menu is needed
              before using action= attribute -->
-        <menuitem id="MQO_menu" name="MQO"
-                  parent="main_MQO_menu"/>
+        <menuitem id="learn_menu" name="Learn"
+                  parent="main_learn_menu"/>
         <!-- the following menuitem should appear *after*
              its parent exercises_menu and *after* its
              action exercise_list_action -->
-        <menuitem id="exercises_menu" name="Exercises" parent="MQO_menu"
+        <menuitem id="exercises_menu" name="Exercises" parent="learn_menu"
                   action="exercise_list_action"/>
         <!-- Full id location:
              action="mqo_exercises.course_list_action"
