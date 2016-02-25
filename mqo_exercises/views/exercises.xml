@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="exercise_list_action">
+            <field name="name">Exercises</field>
+            <field name="res_model">mqo.exercise</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first exercise
+                </p>
+            </field>
+        </record>
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_MQO_menu" name="MQO"/>
+        <!-- A first level in the left side menu is needed
+             before using action= attribute -->
+        <menuitem id="MQO_menu" name="MQO"
+                  parent="main_MQO_menu"/>
+        <!-- the following menuitem should appear *after*
+             its parent exercises_menu and *after* its
+             action exercise_list_action -->
+        <menuitem id="exercises_menu" name="Exercises" parent="MQO_menu"
+                  action="exercise_list_action"/>
+        <!-- Full id location:
+             action="mqo_exercises.course_list_action"
+             It is not required when it is the same module -->
+    </data>
+</openerp>
