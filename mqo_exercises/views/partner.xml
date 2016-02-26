@@ -9,10 +9,9 @@
             <field name="arch" type="xml">
                 <notebook position="inside">
 	                <page string="Next Exercise">
-	                    <field name="allocation_ids">
-	                        <tree string="Next allocated exercise">
-	                            <field name="exercise_id"/>
-	                            <field name="suitability"/>
+	                    <field name="next_exercise_id">
+	                        <tree string="Next Exercise">
+	                            <field name="name"/>
 	                        </tree>
 	                    </field>
 	                </page>
