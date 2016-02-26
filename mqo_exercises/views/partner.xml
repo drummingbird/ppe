@@ -2,8 +2,8 @@
  <openerp>
     <data>
         <!-- Add instructor field to existing view -->
-        <record model="ir.ui.view" id="partner_instructor_form_view">
-            <field name="name">partner.instructor</field>
+        <record model="ir.ui.view" id="partner_exercises_form_view">
+            <field name="name">partner.exercises</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
