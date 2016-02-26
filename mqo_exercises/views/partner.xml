@@ -13,13 +13,13 @@
                             <field name="next_exercise_id"/>
                             <field name="allocation_ids"/>
                             	<tree string="Allocations">
-                            		<field name="partner_id"/>
+                            		<field name="exercise_id"/>
 									<field name="suitability"/>
                                 </tree>
                             <field name="assignment_ids"/>
                             	<tree string="Assignments">
-                            		<field name="partner_id"/>
-									<field name="suitability"/>
+                            		<field name="exercise_id"/>
+									<field name="rating"/>
                                 </tree>
                         </group>
                     </page>
