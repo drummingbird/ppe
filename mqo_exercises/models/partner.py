@@ -14,5 +14,5 @@ class Partner(models.Model):
         for r in self:
             next_exercise_collection = []
             if r.allocation_ids:
-                next_exercise_collection.append(r.allocation_ids[0].exercise_id)
+                next_exercise_collection = r.allocation_ids[0].exercise_id
             r.next_exercise_id = next_exercise_collection
