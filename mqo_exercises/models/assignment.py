@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from openerp import models, fields, api
+from datetime import datetime, timedelta
 
 class Assignment(models.Model):
     _name = 'mqo.assignment'
