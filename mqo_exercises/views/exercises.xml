@@ -18,14 +18,16 @@
                                 Write instructions for this exercise.
                             </page>
                             <page string="Parameters">
-                                <field name="sig_m"/>
-                                <field name="sig_c"/>
-                                <field name="sig_r"/>
-                                <field name="sig_e"/>
-                                <field name="exp_m"/>
-                                <field name="exp_c"/>
-                                <field name="exp_r"/>
-                                <field name="exp_e"/>
+                            	<group>
+                                	<field name="sig_m"/>
+                                	<field name="sig_c"/>
+                                	<field name="sig_r"/>
+                                	<field name="sig_e"/>
+                                	<field name="exp_m"/>
+                                	<field name="exp_c"/>
+                                	<field name="exp_r"/>
+                                	<field name="exp_e"/>
+                                </group>
                             </page>
                             <page string="Allocations">
                                 <field name="allocation_ids">
