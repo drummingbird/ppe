@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="allocation_form_view">
+            <field name="name">allocation.form</field>
+            <field name="model">mqo.allocation</field>
+            <field name="arch" type="xml">
+                <form string="Allocation Form">
+                    <sheet>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="exercise_id"/>
+                            <field name="suitability"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+        <record model="ir.ui.view" id="allocation_search_view">
+            <field name="name">allocation.search</field>
+            <field name="model">mqo.allocation</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="partner_id"/>
+                    <field name="exercise_id"/>
+                </search>
+            </field>
+        </record>
+    
+        <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="allocation_list_action">
+            <field name="name">Allocations</field>
+            <field name="res_model">mqo.allocation</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first allocation
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem id="allocations_menu" name="Allocations" parent="learn_menu"
+                  action="allocation_list_action"/>
+        <!-- Full id location:
+             action="mqo_exercises.allocation_list_action"
+             It is not required when it is the same module -->
+    </data>
+</openerp>
