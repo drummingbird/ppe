@@ -44,15 +44,6 @@
             </field>
         </record>
 
-        <!-- top level menu: no parent -->
-        <menuitem id="main_learn_menu" name="Learn"/>
-        <!-- A first level in the left side menu is needed
-             before using action= attribute -->
-        <menuitem id="learn_menu" name="Learn"
-                  parent="main_learn_menu"/>
-        <!-- the following menuitem should appear *after*
-             its parent exercises_menu and *after* its
-             action exercise_list_action -->
         <menuitem id="allocations_menu" name="Allocations" parent="learn_menu"
                   action="allocation_list_action"/>
         <!-- Full id location:
