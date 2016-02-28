@@ -39,6 +39,19 @@
             </field>
         </record>
     
+        <!-- override the automatically generated list view for exercise -->
+        <record model="ir.ui.view" id="exercise_tree_view">
+            <field name="name">exercise.tree</field>
+            <field name="model">mqo.exercise</field>
+            <field name="arch" type="xml">
+                <tree string="Exercise Tree">
+                    <field name="name"/>
+                    <field name="instructions"/>
+                </tree>
+            </field>
+        </record>
+
+    
         <record model="ir.ui.view" id="exercise_search_view">
             <field name="name">exercise.search</field>
             <field name="model">mqo.exercise</field>

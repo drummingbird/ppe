@@ -27,6 +27,7 @@
         'views/exercises.xml',
         'views/partner.xml',
         'views/allocations.xml',
+        'views/assignments.xml',
         #'views/session_workflow.xml',
     ],
     # only loaded in demonstration mode

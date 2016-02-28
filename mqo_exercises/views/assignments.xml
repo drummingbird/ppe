@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <record model="ir.ui.view" id="allocation_form_view">
-            <field name="name">allocation.form</field>
-            <field name="model">mqo.allocation</field>
+        <record model="ir.ui.view" id="assignment_form_view">
+            <field name="name">assignment.form</field>
+            <field name="model">mqo.assignment</field>
             <field name="arch" type="xml">
-                <form string="Allocation Form">
+                <form string="Assignment Form">
                     <sheet>
                         <group>
                             <field name="partner_id"/>
@@ -17,12 +17,12 @@
             </field>
         </record>
 
-        <!-- override the automatically generated list view for allocation -->
-        <record model="ir.ui.view" id="allocation_tree_view">
-            <field name="name">allocation.tree</field>
-            <field name="model">mqo.allocation</field>
+        <!-- override the automatically generated list view for assignment -->
+        <record model="ir.ui.view" id="assignment_tree_view">
+            <field name="name">assignment.tree</field>
+            <field name="model">mqo.assignment</field>
             <field name="arch" type="xml">
-                <tree string="Allocation Tree">
+                <tree string="Assignment Tree">
                     <field name="partner_id"/>
                     <field name="exercise_id"/>
                     <field name="suitability"/>
@@ -30,9 +30,9 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="allocation_search_view">
-            <field name="name">allocation.search</field>
-            <field name="model">mqo.allocation</field>
+        <record model="ir.ui.view" id="assignment_search_view">
+            <field name="name">assignment.search</field>
+            <field name="model">mqo.assignment</field>
             <field name="arch" type="xml">
                 <search>
                     <field name="partner_id"/>
@@ -46,21 +46,21 @@
             The following tag is an action definition for a "window action",
             that is an action opening a view or a set of views
         -->
-        <record model="ir.actions.act_window" id="allocation_list_action">
-            <field name="name">Allocations</field>
-            <field name="res_model">mqo.allocation</field>
+        <record model="ir.actions.act_window" id="assignment_list_action">
+            <field name="name">Assignments</field>
+            <field name="res_model">mqo.assignment</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
-                <p class="oe_view_nocontent_create">Create the first allocation
+                <p class="oe_view_nocontent_create">Create the first assignment
                 </p>
             </field>
         </record>
 
-        <menuitem id="allocations_menu" name="Allocations" parent="learn_menu"
-                  action="allocation_list_action"/>
+        <menuitem id="assignments_menu" name="assignments" parent="learn_menu"
+                  action="assignment_list_action"/>
         <!-- Full id location:
-             action="mqo_exercises.allocation_list_action"
+             action="mqo_exercises.assignment_list_action"
              It is not required when it is the same module -->
     </data>
 </openerp>
