@@ -9,4 +9,4 @@ class Assignment(models.Model):
     exercise_id = fields.Many2one('mqo.exercise',
         ondelete='cascade', string="Exercise", required=True)
     rating = fields.Float(string="Rating")
-    datetime_allocated = fields.DateTime(string="Date Time Stamp", required=True)
+    datetime_allocated = fields.DateTime(string="Date Time Stamp")
