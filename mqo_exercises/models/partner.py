@@ -2,8 +2,11 @@
 from openerp import fields, models, api
 from datetime import datetime, timedelta
 
-def sigmoid(time, basetime, rate, down):
-    return 1*down + (1 - 2*down)/(1+math.exp(-(time-basetime)/rate))
+def sigmoid(t, c, r, e, down):
+    return 1*down + (1 - 2*down)/(1 + e^(-(t-c)/r))
+
+def expdec(t, c, r, e):
+    return 1 - e^(-(t+c)/r)
 
 class Mqo_exArr():
     exercise_id = 0
@@ -14,16 +17,15 @@ class Mqo_exArr():
         self.exercise_id = exercise_id
         self.suitability = suitability
         self.score = score
-# 
-    # def mod_Score(self, assignment):
+ 
+    def mod_Score(self, assignment):
         # modify score based on an recent assignment
-    #    elapsed_timedelta = datetime.datetime.now() - assignment.datetime_allocated
+        elapsed_timedelta = datetime.datetime.now() - assignment.datetime_allocated
         # elapsed_timedelta_datum = datetime.datetime.now() # - some date
-    #    t = elapsed_timedelta.days
-    #    a = assignment.exercise_id
-    #    dWait = a.waitmag*sigmoid(t, a.waittime, a.waitrate, False)
-        # dBurst, dBoost, dCyclic
-    #    self.score = self.score - dWait
+        t = elapsed_timedelta.days
+        a = assignment.exercise_id
+        delta = a.sig_m*sigmoid(t, a.sig_c, a.sig_r, a.sig_e, True) + a.exp_m*expdec(t, a.exp_c, a.exp_r, a.exp_e)
+        self.score = self.score - delta
 
 
 class Partner(models.Model):
@@ -49,12 +51,16 @@ class Partner(models.Model):
                 # for i, allocation in enumerate(r.allocation_ids):
                 #    mqo_exArr = Mqo_exArr(allocation.exercise_id.id, allocation.suitability, allocation.suitability)
                 #    exArr.append(mqo_exArr)
-                #    suitabilities.append(allocation.suitability)
                 #    exDic[allocation.exercise_id.id] = i
                 #maxSuitability = max(suitabilities)
                 # now adjust score
                 #for assignment in r.assignment_ids:
                 #    exArr[exDic[allocation.exercise_id.id]].mod_Score(assignment)
+                # for s in exArr:
+                #    # s.score = math.max(s.score, 0)
+                #    suitabilities.append(s.score)
+                # exId = exArr[suitabilities.index(max(suitabilities))].exercise_id
             # set r.next_exercise_id
+            # r.next_exercise_id = r.allocation_ids[exDic[exID]].exercise_id
             r.next_exercise_id = next_exercise_collection
             
