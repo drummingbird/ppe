@@ -10,7 +10,8 @@
                         <group>
                             <field name="partner_id"/>
                             <field name="exercise_id"/>
-                            <field name="suitability"/>
+                            <field name="rating"/>
+                            <field name="datetime_allocated"/>
                         </group>
                     </sheet>
                 </form>
@@ -25,7 +26,8 @@
                 <tree string="Assignment Tree">
                     <field name="partner_id"/>
                     <field name="exercise_id"/>
-                    <field name="suitability"/>
+                    <field name="rating"/>
+                    <field name="datetime_allocated"/>
                 </tree>
             </field>
         </record>
