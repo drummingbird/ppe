@@ -24,10 +24,10 @@ class Mqo_exArr():
         elapsed_timedelta = datetime.datetime.now() - fields.Datetime.from_string(assignment.datetime_allocated)
         # elapsed_timedelta_datum = datetime.datetime.now() # - some date
         t = elapsed_timedelta.days
-        print(t)
         a = assignment.exercise_id
         d_sig = a.sig_m*sigmoid(t, a.sig_c, a.sig_r, a.sig_e, False)
         d_exp = a.exp_m*expdec(t, a.exp_c, a.exp_r, a.exp_e)
+        print("d_sig:" + str(d_sig) + ", d_exp" + str(d_exp))
         self.score = self.score * d_sig * d_exp
 
 
@@ -71,6 +71,7 @@ class Partner(models.Model):
                 for s in exArr:
                     # s.score = math.max(s.score, 0)
                     suitabilities.append(s.score)
+                print(suitabilities)
                 exID = exArr[suitabilities.index(max(suitabilities))].exercise_id
                 print("exID is" + str(exID))
                 print("Next calculated exercise is" + str(r.allocation_ids[exDic[exID]].exercise_id.name))
