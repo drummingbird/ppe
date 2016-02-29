@@ -24,8 +24,9 @@ class Mqo_exArr():
         # elapsed_timedelta_datum = datetime.datetime.now() # - some date
         t = elapsed_timedelta.days
         a = assignment.exercise_id
-        delta = a.sig_m*sigmoid(t, a.sig_c, a.sig_r, a.sig_e, True) + a.exp_m*expdec(t, a.exp_c, a.exp_r, a.exp_e)
-        self.score = self.score - delta
+        d_sig = a.sig_m*sigmoid(t, a.sig_c, a.sig_r, a.sig_e, True)
+        d_exp = a.exp_m*expdec(t, a.exp_c, a.exp_r, a.exp_e)
+        self.score = self.score * d_sig * d_exp
 
 
 class Partner(models.Model):
@@ -44,6 +45,7 @@ class Partner(models.Model):
             if r.allocation_ids:
                 # set to first allocated exercise by default in case no exercise assigned 
                 next_exercise_collection = r.allocation_ids[0].exercise_id
+                print("Next exercise for " , r.name, " is ", next_exercise_collection.name, ".")
                 # set up exArr, which contains a list of all the allocated exercises and their allocation scores.
                 # exArr = []
                 # suitabilities = []

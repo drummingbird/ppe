@@ -10,13 +10,13 @@ class Exercise(models.Model):
     assignment_ids = fields.One2many('mqo.assignment', 'exercise_id', string="Assigned exercises")
     
     # Exercise params
-    sig_m = fields.Float(string="sig_m")
-    sig_c = fields.Float(string="sig_c")
-    sig_r = fields.Float(string="sig_r")
-    sig_e = fields.Float(string="sig_e")
-    exp_m = fields.Float(string="exp_m")
-    exp_c = fields.Float(string="exp_c")
-    exp_r = fields.Float(string="exp_r")
-    exp_e = fields.Float(string="exp_e")
+    sig_m = fields.Float(string="sig_m", default=0.0)
+    sig_c = fields.Float(string="sig_c", default=0.0)
+    sig_r = fields.Float(string="sig_r", default=1.0)
+    sig_e = fields.Float(string="sig_e", default=0.0)
+    exp_m = fields.Float(string="exp_m", default=0.0)
+    exp_c = fields.Float(string="exp_c", default=0.0)
+    exp_r = fields.Float(string="exp_r", default=1.0)
+    exp_e = fields.Float(string="exp_e", default=0.0)
     
     
