@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from openerp import fields, models, api
 import datetime
+import math
 
 def sigmoid(t, c, r, e, down):
     return 1*down + (1 - 2*down)/(1 + math.pow(e, -(t-c)/r))
