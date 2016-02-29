@@ -20,7 +20,7 @@ class Mqo_exArr():
  
     def mod_Score(self, assignment):
         # modify score based on an recent assignment
-        elapsed_timedelta = datetime.datetime.now() - assignment.datetime_allocated
+        elapsed_timedelta = datetime.datetime.now() - fields.Datetime.from_string(assignment.datetime_allocated)
         # elapsed_timedelta_datum = datetime.datetime.now() # - some date
         t = elapsed_timedelta.days
         a = assignment.exercise_id
