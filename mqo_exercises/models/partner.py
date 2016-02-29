@@ -45,24 +45,30 @@ class Partner(models.Model):
             if r.allocation_ids:
                 # set to first allocated exercise by default in case no exercise assigned 
                 next_exercise_collection = r.allocation_ids[0].exercise_id
-                print("Next exercise for " , r.name, " is ", next_exercise_collection.name, ".")
-                # set up exArr, which contains a list of all the allocated exercises and their allocation scores.
-                # exArr = []
-                # suitabilities = []
-                # exDic = dict()
-                # for i, allocation in enumerate(r.allocation_ids):
-                #    mqo_exArr = Mqo_exArr(allocation.exercise_id.id, allocation.suitability, allocation.suitability)
-                #    exArr.append(mqo_exArr)
-                #    exDic[allocation.exercise_id.id] = i
-                #maxSuitability = max(suitabilities)
-                # now adjust score
-                #for assignment in r.assignment_ids:
-                #    exArr[exDic[allocation.exercise_id.id]].mod_Score(assignment)
-                # for s in exArr:
-                #    # s.score = math.max(s.score, 0)
-                #    suitabilities.append(s.score)
-                # exId = exArr[suitabilities.index(max(suitabilities))].exercise_id
+                print("Next exercise for " + str(r.name) + " is " + str(next_exercise_collection.name) + ".")
+                if r.assignment_ids:
+                    # set up exArr, which contains a list of all the allocated exercises and their allocation scores.
+                    exArr = []
+                    suitabilities = []
+                    exDic = dict()
+                    for i, allocation in enumerate(r.allocation_ids):
+                        mqo_exArr = Mqo_exArr(allocation.exercise_id.id, allocation.suitability, allocation.suitability)
+                        exArr.append(mqo_exArr)
+                        exDic[allocation.exercise_id.id] = i
+                    print("exDic:")
+                    print(exDic)
+                    # now adjust score
+                    for assignment in r.assignment_ids:
+                        exArr[exDic[allocation.exercise_id.id]].mod_Score(assignment)
+                    print("exArr:")
+                    print(exArr)
+                    for s in exArr:
+                        # s.score = math.max(s.score, 0)
+                        suitabilities.append(s.score)
+                    exId = exArr[suitabilities.index(max(suitabilities))].exercise_id
+                    print("exID is" + str(exID))
             # set r.next_exercise_id
             # r.next_exercise_id = r.allocation_ids[exDic[exID]].exercise_id
+            print("exID is" + str(exID))
             r.next_exercise_id = next_exercise_collection
             
