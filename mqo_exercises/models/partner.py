@@ -25,8 +25,8 @@ class Mqo_exArr():
         # elapsed_timedelta_datum = datetime.datetime.now() # - some date
         t = elapsed_timedelta.days
         a = assignment.exercise_id
-        d_sig = a.sig_m*sigmoid(t, a.sig_c, a.sig_r, a.sig_e, False)
-        d_exp = a.exp_m*expdec(t, a.exp_c, a.exp_r, a.exp_e)
+        d_sig = 1 - a.sig_m*sigmoid(t, a.sig_c, a.sig_r, a.sig_e, True)
+        d_exp = math.max(1 - a.exp_m*(1 - expdec(t, a.exp_c, a.exp_r, a.exp_e)), 0)
         print("d_sig:" + str(d_sig) + ", d_exp" + str(d_exp))
         self.score = self.score * d_sig * d_exp
 
