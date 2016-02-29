@@ -61,13 +61,20 @@ class Partner(models.Model):
                     exDic[allocation.exercise_id.id] = i
                 print("exDic:")
                 print(exDic)
+                print("exArr preMod:")
+                for temp in exArr:
+                    print(temp)
+                
                 
                 # now adjust score if there are assignments
                 if r.assignment_ids:
                     for assignment in r.assignment_ids:
+                        print("assignment exercise id:" + str(assignment.exercise_id.id))
+                        print("exArr index:" + str(exDic[allocation.exercise_id.id]))
                         exArr[exDic[allocation.exercise_id.id]].mod_Score(assignment)
-                print("exArr:")
-                print(exArr)
+                print("exArr postMod:")
+                for temp in exArr:
+                    print(temp)
                 for s in exArr:
                     # s.score = math.max(s.score, 0)
                     suitabilities.append(s.score)
