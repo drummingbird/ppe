@@ -7,11 +7,11 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-            	<header position="inside">
-                    <button name="assignEx" string="Assign Exercise" type="object" class="oe_highlight"/>
-                </header>
                 <notebook position="inside">
 	                <page string="Next Exercise">
+	                	<div class="oe_right oe_button_box" name="buttons">
+	                		<button name="assignEx" string="Assign Exercise" type="object" class="oe_highlight"/>
+                        </div>
 	                    <field name="next_exercise_id">
 	                        <tree string="Next Exercise">
 	                            <field name="name"/>
