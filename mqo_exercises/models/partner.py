@@ -67,10 +67,11 @@ class Partner(models.Model):
             r.next_exercise_id = r.allocation_ids[exDic[exID]].exercise_id
     
     
-    @api.one        
-    def assignEx(self):
+    @api.multi
+    def assignEx(self, cr, uid, ids, context=None):
         print("The button worked!")
         # Create assignment id
         assignment_obj = self.pool.get('mqo.assignment')
-        assignment_id = assignment_obj.create({'partner_id': self, 'exercise_id': self.next_exercise_id, 'datetime_allocated': fields.Datetime.to_string(datetime.datetime.now())})
+        for id in ids:
+            assignment_id = assignment_obj.create(cr, uid, {'partner_id': id, 'exercise_id': id.next_exercise_id, 'datetime_allocated': fields.Datetime.to_string(datetime.datetime.now())})
         
