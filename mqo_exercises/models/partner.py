@@ -37,7 +37,7 @@ class Partner(models.Model):
     
     next_exercise_id = fields.Many2one(comodel_name='mqo.exercise', store=True, readonly=True, compute='_compute_next_exercise', string="Next Exercise")
     
-    @api.depends('allocation_ids')
+    @api.depends('allocation_ids', 'assignment_ids')
     def _compute_next_exercise(self):
         for r in self:
             # set no exercise by default in case no exercises are allocated
