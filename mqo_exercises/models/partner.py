@@ -27,7 +27,6 @@ class Mqo_exArr():
         a = assignment.exercise_id
         d_sig = 1 - a.sig_m*sigmoid(t, a.sig_c, a.sig_r, a.sig_e, True)
         d_exp = max(1 - a.exp_m*(1 - expdec(t, a.exp_c, a.exp_r, a.exp_e)), 0)
-        print("d_sig:" + str(d_sig) + ", d_exp" + str(d_exp))
         self.score = self.score * d_sig * d_exp
 
 
@@ -61,11 +60,9 @@ class Partner(models.Model):
                     for assignment in r.assignment_ids:
                         exArr[exDic[assignment.exercise_id.id]].mod_Score(assignment)
                 for s in exArr:
-                    # s.score = math.max(s.score, 0)
                     suitabilities.append(s.score)
-                print(suitabilities)
                 exID = exArr[suitabilities.index(max(suitabilities))].exercise_id
-                print("Next calculated exercise for " + str(r.name) + " is " + str(r.allocation_ids[exDic[exID]].exercise_id.name))
+                # print("Next calculated exercise for " + str(r.name) + " is " + str(r.allocation_ids[exDic[exID]].exercise_id.name))
             # set r.next_exercise_id
             r.next_exercise_id = r.allocation_ids[exDic[exID]].exercise_id
             
