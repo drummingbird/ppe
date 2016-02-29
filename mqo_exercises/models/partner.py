@@ -3,10 +3,10 @@ from openerp import fields, models, api
 import datetime
 
 def sigmoid(t, c, r, e, down):
-    return 1*down + (1 - 2*down)/(1 + e^(-(t-c)/r))
+    return 1*down + (1 - 2*down)/(1 + math.pow(e, -(t-c)/r))
 
 def expdec(t, c, r, e):
-    return 1 - e^(-(t+c)/r)
+    return 1 - math.pow(e, -(t+c)/r)
 
 class Mqo_exArr():
     exercise_id = 0
