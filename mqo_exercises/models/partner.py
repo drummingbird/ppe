@@ -62,15 +62,15 @@ class Partner(models.Model):
                 for s in exArr:
                     suitabilities.append(s.score)
                 exID = exArr[suitabilities.index(max(suitabilities))].exercise_id
-                # print("Next calculated exercise for " + str(r.name) + " is " + str(r.allocation_ids[exDic[exID]].exercise_id.name))
+                print("Next calculated exercise for " + str(r.name) + " is " + str(r.allocation_ids[exDic[exID]].exercise_id.name))
             # set r.next_exercise_id
             r.next_exercise_id = r.allocation_ids[exDic[exID]].exercise_id
     
     
     @api.multi
     def assignEx(self):
-        print("The button worked!")
         # Create assignment id
+        self._compute_next_exercise()
         assignment_obj = self.env['mqo.assignment']
         for r in self:
             assignment_id = assignment_obj.create({'partner_id': r.id, 'exercise_id': r.next_exercise_id.id, 'datetime_allocated': fields.Datetime.now()})
