@@ -69,8 +69,8 @@ class Partner(models.Model):
                 if r.assignment_ids:
                     for assignment in r.assignment_ids:
                         print("assignment exercise id:" + str(assignment.exercise_id.id))
-                        print("exArr index:" + str(exDic[allocation.exercise_id.id]))
-                        exArr[exDic[allocation.exercise_id.id]].mod_Score(assignment)
+                        print("exArr index:" + str(exDic[assignment.exercise_id.id]))
+                        exArr[exDic[assignment.exercise_id.id]].mod_Score(assignment)
                 print("exArr postMod:")
                 for temp in exArr:
                     print("exercise_id=" + str(temp.exercise_id) + ": score=" + str(temp.score))
