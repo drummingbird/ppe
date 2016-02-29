@@ -65,10 +65,10 @@ class Partner(models.Model):
                     for s in exArr:
                         # s.score = math.max(s.score, 0)
                         suitabilities.append(s.score)
-                    exId = exArr[suitabilities.index(max(suitabilities))].exercise_id
+                    exID = exArr[suitabilities.index(max(suitabilities))].exercise_id
                     print("exID is" + str(exID))
             # set r.next_exercise_id
             # r.next_exercise_id = r.allocation_ids[exDic[exID]].exercise_id
-            print("exID is" + str(exID))
+            print("Next calculated exercise is" + str(r.allocation_ids[exDic[exID]].exercise_id.name))
             r.next_exercise_id = next_exercise_collection
             
