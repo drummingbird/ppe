@@ -68,10 +68,9 @@ class Partner(models.Model):
     
     
     @api.multi
-    def assignEx(self, cr, uid, ids, context=None):
+    def assignEx(self):
         print("The button worked!")
         # Create assignment id
         assignment_obj = self.pool.get('mqo.assignment')
-        for id in ids:
-            assignment_id = assignment_obj.create(cr, uid, {'partner_id': self, 'exercise_id': self.next_exercise_id, 'datetime_allocated': fields.Datetime.to_string(datetime.datetime.now())})
+        assignment_id = assignment_obj.create({'partner_id': self, 'exercise_id': self.next_exercise_id, 'datetime_allocated': fields.Datetime.to_string(datetime.datetime.now())})
         
