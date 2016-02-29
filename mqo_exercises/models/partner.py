@@ -73,5 +73,5 @@ class Partner(models.Model):
         # Create assignment id
         assignment_obj = self.env['mqo.assignment']
         for r in self:
-            assignment_id = assignment_obj.create({'partner_id': r, 'exercise_id': r.next_exercise_id, 'datetime_allocated': fields.Datetime.now()})
+            assignment_id = assignment_obj.create({'partner_id': r.id, 'exercise_id': r.next_exercise_id.id, 'datetime_allocated': fields.Datetime.now()})
         
