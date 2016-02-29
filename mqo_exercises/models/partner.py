@@ -71,6 +71,7 @@ class Partner(models.Model):
     def assignEx(self):
         print("The button worked!")
         # Create assignment id
-        assignment_obj = self.pool.get('mqo.assignment')
-        assignment_id = assignment_obj.create({'partner_id': self, 'exercise_id': self.next_exercise_id, 'datetime_allocated': fields.Datetime.to_string(datetime.datetime.now())})
+        assignment_obj = self.env['mqo.assignment']
+        for r in self:
+            assignment_id = assignment_obj.create({'partner_id': r, 'exercise_id': r.next_exercise_id, 'datetime_allocated': fields.Datetime.now()})
         
