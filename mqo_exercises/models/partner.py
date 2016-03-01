@@ -35,6 +35,7 @@ class Mqo_exArr():
         self.discount = self.discount * d_sig * d_exp
         
         # need to do oldest to newest for this
+        print("t=" + str(t) + "; a.bur_c=" + str(a.bur_c) + "; a.bur_e=" + str(a.bur_e) + "; a.bur_c2=" + str(a.bur_c2) + "; a.bur_e=" + str(a.bur_e)  + "; a.bur_r=" + str(a.bur_r))
         self.bur = 1 - a.bur_m*(sigmoid(t, a.bur_c, a.bur_r, a.bur_e, True) - sigmoid(t, a.bur_c2, a.bur_r, a.bur_e, True))
 
     def mod_bst(self, bstex, assignment):
