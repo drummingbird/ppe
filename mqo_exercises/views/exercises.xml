@@ -184,7 +184,7 @@
 	                <field name="exercise_id"/>
 	                <field name="boost_exercise_id"/>
 	                <field name="mag"/>
-	                <field name="period"/>
+	                <field name="duration"/>
                 </tree>
             </field>
         </record>
@@ -198,7 +198,7 @@
                     <field name="exercise_id"/>
                     <field name="boost_exercise_id"/>
                     <field name="mag"/>
-                    <field name="period"/>
+                    <field name="duration"/>
                 </search>
             </field>
         </record>
