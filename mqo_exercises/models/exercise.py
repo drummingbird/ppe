@@ -24,6 +24,19 @@ class ExBoosted(models.Model):
     sig_r = fields.Float(string="sig_r", default=1.0)
     sig_e = fields.Float(string="sig_e", default=1.0)
 
+class ExPre(models.Model):
+    _name = 'mqo.expre'
+    
+    exercise_id = fields.Many2one('mqo.exercise',
+        ondelete='cascade', string="Exercise", required=True)
+    pre_exercise_id = fields.Many2one('mqo.exercise',
+        ondelete='cascade', string="Exercise", required=True)
+    pow_m = fields.Float(string="pow_m", default=10.0)
+    pow_c = fields.Float(string="pow_c", default=0.0)
+    pow_r = fields.Float(string="pow_r", default=1.0)
+    pow_e = fields.Float(string="pow_e", default=1.0)
+
+
 class Exercise(models.Model):
     _name = 'mqo.exercise'
     
@@ -50,3 +63,4 @@ class Exercise(models.Model):
     dur = fields.Float(string="dur", default=1.0)
     tper_ids = fields.One2many('mqo.extimeperiod', 'exercise_id', string="Time periods")
     bstex_ids = fields.One2many('mqo.exboosted', 'exercise_id', string="Boosted exercises")
+    pre_ids = fields.One2many('mqo.expre', 'pre_exercise_id', string="Prerequisite for")

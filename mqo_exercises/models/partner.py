@@ -29,6 +29,7 @@ class Mqo_exArr():
         self.bur = 0
         self.tper = 0
         self.pre = 0
+        self.preactived = False
  
     def mod_Score(self, assignment):
         # modify score based on an recent assignment
@@ -70,12 +71,14 @@ class Mqo_exArr():
         
     def mod_pre(self, pre, assignment):
         # modify score based on an recent assignment
+        if self.preactivated == False:
+            self.pre = -10
+            self.preactivated = True
         elapsed_timedelta = datetime.datetime.now() - fields.Datetime.from_string(assignment.datetime_allocated)
         # elapsed_timedelta_datum = datetime.datetime.now() # - some date
         t = elapsed_timedelta.days
         premag = pre.pow_m*powinc(t, pre.pow_c, pre.pow_r, pre.pow_e, True)
         self.pre = self.pre + premag
-
 
 
 class Partner(models.Model):
@@ -106,9 +109,6 @@ class Partner(models.Model):
                     exDic[ex.id] = i
                     if ex.tper_ids:
                         exArr[exDic[ex.id]].mod_tper(ex)
-                    if allocation.exercise_id.pre_ids:
-                        exArr[exDic[ex.id]].pre = -10
-                    # maybe build record of prerequisite exercises, and set initial pre values. Then if find a prerequisite ex, modify the pre values accordingly.
                 # now adjust score if there are assignments
                 if r.assignment_ids:
                     for assignment in r.assignment_ids.sorted(key=lambda rec: rec.create_date):
@@ -118,6 +118,10 @@ class Partner(models.Model):
                             for bstex in ex.bstex_ids:
                                 if bstex.boost_exercise_id.id in exDic:
                                     exArr[exDic[bstex.boost_exercise_id.id]].mod_bst(bstex, assignment)
+                        if ex.pre_ids:
+                            for preex in ex.pre_ids:
+                                if preex.exercise_id.id in exDic:
+                                    exArr[exDic[preex.exercise_id.id]].mod_pre(preex, assignment)
                 for s in exArr:
                     s.score = s.discount + s.bur + s.bst
                     suitabilities.append(s.score)
