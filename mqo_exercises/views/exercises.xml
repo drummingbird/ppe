@@ -40,6 +40,7 @@
 	                   			<field name="tper_ids">
 	                        		<tree string="Time periods">
 	                        			<field name="note"/>
+	                            		<field name="start_date"/>
 	                            		<field name="end_date"/>
 	                            		<field name="mag"/>
 	                        		</tree>
@@ -49,7 +50,6 @@
                                	<field name="bstex_ids">
                                     <tree string="Boosted exercises">
                                         <field name="boost_exercise_id"/>
-                                        <field name="start_date"/>
                                         <field name="mag"/>
                                         <field name="duration"/>
                                     </tree>
