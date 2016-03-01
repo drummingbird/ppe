@@ -100,19 +100,22 @@ class Partner(models.Model):
                 suitabilities = []
                 exDic = dict()
                 for i, allocation in enumerate(r.allocation_ids):
-                    mqo_exArr = Mqo_exArr(allocation.exercise_id.id, allocation.suitability, allocation.suitability)
+                    ex = allocation.exercise_id
+                    mqo_exArr = Mqo_exArr(ex.id, allocation.suitability, allocation.suitability)
                     exArr.append(mqo_exArr)
-                    exDic[allocation.exercise_id.id] = i
-                    if allocation.exercise_id.tper_ids:
-                        exArr[exDic[allocation.exercise_id.id]].mod_tper(allocation.exercise_id)
-                    # if allocation.exercise_id.pre:
+                    exDic[ex.id] = i
+                    if ex.tper_ids:
+                        exArr[exDic[ex.id]].mod_tper(ex)
+                    if allocation.exercise_id.pre_ids:
+                        exArr[exDic[ex.id]].pre = -10
                     # maybe build record of prerequisite exercises, and set initial pre values. Then if find a prerequisite ex, modify the pre values accordingly.
                 # now adjust score if there are assignments
                 if r.assignment_ids:
                     for assignment in r.assignment_ids.sorted(key=lambda rec: rec.create_date):
-                        exArr[exDic[assignment.exercise_id.id]].mod_Score(assignment)
-                        if assignment.exercise_id.bstex_ids:
-                            for bstex in assignment.exercise_id.bstex_ids:
+                        ex = assignment.exercise_id
+                        exArr[exDic[ex.id]].mod_Score(assignment)
+                        if ex.bstex_ids:
+                            for bstex in ex.bstex_ids:
                                 if bstex.boost_exercise_id.id in exDic:
                                     exArr[exDic[bstex.boost_exercise_id.id]].mod_bst(bstex, assignment)
                 for s in exArr:
