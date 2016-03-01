@@ -46,4 +46,4 @@ class Exercise(models.Model):
     bst_m = fields.Float(string="bst_m", default=0.0)
     dur = fields.Float(string="dur", default=1.0)
     tper = fields.One2many('mqo.extimeperiod', 'exercise_id', string="Time periods")
-    bstEx = fields.One2many('mqo.exboosted', 'exercise_id', string="Boosted exercises")
+    bstex = fields.One2many('mqo.exboosted', 'exercise_id', string="Boosted exercises")

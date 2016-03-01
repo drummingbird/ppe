@@ -35,21 +35,6 @@
                                 	<field name="bst_m"/>
                                 	<field name="dur"/>
                                 </group>
-                               	<field name="tper">
-                                    <tree string="Time Periods">
-                                        <field name="start_date"/>
-                                        <field name="end_date"/>
-                                        <field name="mag"/>
-                                    </tree>
-                                </field>
-                               	<field name="bstEx">
-                                    <tree string="Boosted exercises">
-                                        <field name="boost_exercise_id"/>
-                                        <field name="start_date"/>
-                                        <field name="mag"/>
-                                        <field name="duration"/>
-                                    </tree>
-                                </field>
                             </page>
                             <page string="Allocations">
                                 <field name="allocation_ids">
