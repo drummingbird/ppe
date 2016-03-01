@@ -52,7 +52,6 @@ class Mqo_exArr():
         bstmag = bstex.sig_m*sigmoid(t, bstex.sig_c, bstex.sig_r, bstex.sig_e, True)
         self.bst = self.bst + bstmag
 
-
     def mod_tper(self, ex):
         # modify score based on datetime
         for per in ex.tper_ids:
@@ -66,9 +65,7 @@ class Mqo_exArr():
                     tper_end.replace(year=currenttime.year+1)
             if currenttime >= tper_start and currenttime < tper_end: 
                 self.tper = self.tper + per.mag
-
-
-        
+    
     def mod_pre(self, pre, assignment):
         # modify score based on an recent assignment
         if self.preactivated == False:
@@ -81,6 +78,39 @@ class Mqo_exArr():
         self.pre = self.pre + premag
 
 
+def getExArr(allocation_ids):
+    exArr = []
+    exDic = dict()
+    for i, allocation in enumerate(allocation_ids):
+        ex = allocation.exercise_id
+        mqo_exArr = Mqo_exArr(ex.id, allocation.suitability, allocation.suitability)
+        exArr.append(mqo_exArr)
+        exDic[ex.id] = i
+        if ex.tper_ids:
+            exArr[exDic[ex.id]].mod_tper(ex)
+    return exArr, exDic
+
+def adjExArr(exArr, exDic, assignment_ids):
+    for assignment in assignment_ids.sorted(key=lambda rec: rec.create_date):
+        ex = assignment.exercise_id
+        exArr[exDic[ex.id]].mod_Score(assignment)
+        if ex.bstex_ids:
+            for bstex in ex.bstex_ids:
+                if bstex.boost_exercise_id.id in exDic:
+                    exArr[exDic[bstex.boost_exercise_id.id]].mod_bst(bstex, assignment)
+        if ex.pre_ids:
+            for preex in ex.pre_ids:
+                if preex.exercise_id.id in exDic:
+                    exArr[exDic[preex.exercise_id.id]].mod_pre(preex, assignment)
+    return exArr
+
+def calcSuitabilities(exArr):
+    suitabilities = []
+    for s in exArr:
+        s.score = s.discount + s.bur + s.bst
+        suitabilities.append(s.score)
+    return suitabilities
+
 class Partner(models.Model):
     _inherit = 'res.partner'
 
@@ -92,43 +122,20 @@ class Partner(models.Model):
     # @api.depends('allocation_ids', 'assignment_ids')
     def _compute_next_exercise(self):
         for r in self:
-            # set no exercise by default in case no exercises are allocated
-            next_exercise_collection = []
-            r.next_exercise_id = next_exercise_collection 
             if r.allocation_ids:
                 # set to first allocated exercise by default in case no exercise assigned 
                 next_exercise_collection = r.allocation_ids[0].exercise_id
-                # set up exArr, which contains a list of all the allocated exercises and their allocation scores.
-                exArr = []
-                suitabilities = []
-                exDic = dict()
-                for i, allocation in enumerate(r.allocation_ids):
-                    ex = allocation.exercise_id
-                    mqo_exArr = Mqo_exArr(ex.id, allocation.suitability, allocation.suitability)
-                    exArr.append(mqo_exArr)
-                    exDic[ex.id] = i
-                    if ex.tper_ids:
-                        exArr[exDic[ex.id]].mod_tper(ex)
-                # now adjust score if there are assignments
-                if r.assignment_ids:
-                    for assignment in r.assignment_ids.sorted(key=lambda rec: rec.create_date):
-                        ex = assignment.exercise_id
-                        exArr[exDic[ex.id]].mod_Score(assignment)
-                        if ex.bstex_ids:
-                            for bstex in ex.bstex_ids:
-                                if bstex.boost_exercise_id.id in exDic:
-                                    exArr[exDic[bstex.boost_exercise_id.id]].mod_bst(bstex, assignment)
-                        if ex.pre_ids:
-                            for preex in ex.pre_ids:
-                                if preex.exercise_id.id in exDic:
-                                    exArr[exDic[preex.exercise_id.id]].mod_pre(preex, assignment)
-                for s in exArr:
-                    s.score = s.discount + s.bur + s.bst
-                    suitabilities.append(s.score)
+                # set up exArr
+                exArr, exDic = getExArr(r.allocation_ids)
+                # adjust score if there are assignments
+                if r.assignment_ids: exArr = adjExArr(exArr, exDic, r.assignment_ids)
+                suitabilities = calcSuitabilities(exArr)
                 exID = exArr[suitabilities.index(max(suitabilities))].exercise_id
                 print("Next calculated exercise for " + str(r.name) + " is " + str(r.allocation_ids[exDic[exID]].exercise_id.name))
-            # set r.next_exercise_id
-            r.next_exercise_id = r.allocation_ids[exDic[exID]].exercise_id
+                # set r.next_exercise_id
+                r.next_exercise_id = r.allocation_ids[exDic[exID]].exercise_id
+            else:
+                r.next_exercise_id = []
     
     
     @api.multi
