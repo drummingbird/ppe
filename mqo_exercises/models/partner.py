@@ -32,10 +32,9 @@ class Mqo_exArr():
         a = assignment.exercise_id
         d_sig = 1 - a.sig_m*sigmoid(t, a.sig_c, a.sig_r, a.sig_e, True)
         d_exp = max(1 - a.exp_m*(1 - expdec(t, a.exp_c, a.exp_r, a.exp_e)), 0)
-        self.discount = self.discount * d_sig * d_exp
+        self.discount = self.suitability * d_sig * d_exp
         
         # need to do oldest to newest for this
-        print("t=" + str(t) + "; a.bur_c=" + str(a.bur_c) + "; a.bur_e=" + str(a.bur_e) + "; a.bur_c2=" + str(a.bur_c2) + "; a.bur_e=" + str(a.bur_e)  + "; a.bur_r=" + str(a.bur_r))
         self.bur = 1 - a.bur_m*(sigmoid(t, a.bur_c, a.bur_r, a.bur_e, True) - sigmoid(t, a.bur_c2, a.bur_r, a.bur_e, True))
 
     def mod_bst(self, bstex, assignment):
@@ -85,7 +84,7 @@ class Partner(models.Model):
                             if bstex.boost_exercise_id.id in exDic:
                                 exArr[exDic[bstex.boost_exercise_id.id]].mod_bst(bstex, assignment)
                 for s in exArr:
-                    s.score = s.score - s.discount + s.bur + s.bst
+                    s.score = s.discount + s.bur + s.bst
                     suitabilities.append(s.score)
                 exID = exArr[suitabilities.index(max(suitabilities))].exercise_id
                 print("Next calculated exercise for " + str(r.name) + " is " + str(r.allocation_ids[exDic[exID]].exercise_id.name))
