@@ -35,8 +35,6 @@
 									<field name="bst_m"/>
 									<field name="dur"/>
 								</group>
-                            </page>
-                            <page string="Time periods">
 	                   			<field name="tper_ids">
 	                        		<tree string="Time periods">
 	                        			<field name="note"/>
@@ -45,8 +43,6 @@
 	                            		<field name="mag"/>
 	                        		</tree>
 	                    		</field>
-                            </page>
-							<page string="Boosted exercises">
                                	<field name="bstex_ids">
                                     <tree string="Boosted exercises">
                                         <field name="boost_exercise_id"/>
