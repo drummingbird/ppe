@@ -52,20 +52,19 @@ class Mqo_exArr():
         self.bst = self.bst + bstmag
 
 
-    def mod_tper(self, allocation):
+    def mod_tper(self, ex):
         # modify score based on datetime
-        ex = allocation.exercise_id
-        for per in ex.tper:
+        for per in ex.tper_ids:
             currenttime = datetime.datetime.now()
-            tper_start =  fields.Datetime.from_string(ex.tper.start_date)
-            tper_end =  fields.Datetime.from_string(ex.tper.end_date)
-            if ex.tper.annual:
+            tper_start =  fields.Datetime.from_string(per.start_date)
+            tper_end =  fields.Datetime.from_string(per.end_date)
+            if per.annual:
                 tper_start.replace(year=currenttime.year)
                 tper_end.replace(year=currenttime.year)
                 if (tper_end - tper_start) > 0:
                     tper_end.replace(year=currenttime.year+1)
             if currenttime >= tper_start and currenttime < tper_end: 
-                self.tper = self.tper + ex.tper.mag
+                self.tper = self.tper + per.mag
 
 
         
@@ -104,8 +103,9 @@ class Partner(models.Model):
                     mqo_exArr = Mqo_exArr(allocation.exercise_id.id, allocation.suitability, allocation.suitability)
                     exArr.append(mqo_exArr)
                     exDic[allocation.exercise_id.id] = i
-                    if allocation.exercise_id.tper:
+                    if allocation.exercise_id.tper_ids:
                         exArr[exDic[allocation.exercise_id.id]].mod_tper(allocation.exercise_id)
+                    # if allocation.exercise_id.pre:
                     # maybe build record of prerequisite exercises, and set initial pre values. Then if find a prerequisite ex, modify the pre values accordingly.
                 # now adjust score if there are assignments
                 if r.assignment_ids:
