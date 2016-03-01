@@ -49,8 +49,8 @@
 	                               	<field name="bstex_ids">
 	                                    <tree string="Boosted exercises">
 	                                        <field name="boost_exercise_id"/>
-	                                        <field name="mag"/>
-	                                        <field name="duration"/>
+	                                        <field name="sig_m"/>
+	                                        <field name="sig_c"/>
 	                                    </tree>
 	                                </field>
                                 </group>
@@ -189,8 +189,10 @@
                         <group>
                             <field name="exercise_id"/>
                             <field name="boost_exercise_id"/>
-                            <field name="mag"/>
-                            <field name="duration"/>
+                            <field name="sig_m"/>
+                            <field name="sig_c"/>
+                            <field name="sig_r"/>
+                            <field name="sig_e"/>
                         </group>
                     </sheet>
                 </form>
@@ -205,8 +207,8 @@
                 <tree string="Exercise Boosted Tree">
 	                <field name="exercise_id"/>
 	                <field name="boost_exercise_id"/>
-	                <field name="mag"/>
-	                <field name="duration"/>
+                    <field name="sig_m"/>
+                    <field name="sig_c"/>
                 </tree>
             </field>
         </record>
@@ -219,8 +221,8 @@
                 <search>
                     <field name="exercise_id"/>
                     <field name="boost_exercise_id"/>
-                    <field name="mag"/>
-                    <field name="duration"/>
+                    <field name="sig_m"/>
+                    <field name="sig_c"/>
                 </search>
             </field>
         </record>

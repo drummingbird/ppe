@@ -18,9 +18,10 @@ class ExBoosted(models.Model):
         ondelete='cascade', string="Exercise", required=True)
     boost_exercise_id = fields.Many2one('mqo.exercise',
         ondelete='cascade', string="Exercise", required=True)
-    mag = fields.Float(string="mag", default=0.0)
-    duration = fields.Float(string="duration", default=0.0)
-
+    sig_m = fields.Float(string="sig_m", default=0.0)
+    sig_c = fields.Float(string="sig_c", default=0.0)
+    sig_r = fields.Float(string="sig_r", default=1.0)
+    sig_e = fields.Float(string="sig_e", default=0.0)
 
 class Exercise(models.Model):
     _name = 'mqo.exercise'
