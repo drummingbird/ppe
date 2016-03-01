@@ -18,32 +18,36 @@
                                 Write instructions for this exercise.
                             </page>
                             <page string="Parameters">
-                            	<group>
-                                	<field name="sig_m"/>
-                                	<field name="sig_c"/>
-                                	<field name="sig_r"/>
-                                	<field name="sig_e"/>
-                                	<field name="exp_m"/>
-                                	<field name="exp_c"/>
-                                	<field name="exp_r"/>
-                                	<field name="exp_e"/>
-                                	<field name="bur_m"/>
-                                	<field name="bur_c"/>
-                                	<field name="bur_r"/>
-                                	<field name="bur_e"/>
-                                	<field name="bur_c2"/>
-                                	<field name="bst_m"/>
-                                	<field name="dur"/>
-                                </group>
-                               	<field name="tper">
-                                    <tree string="Time periods">
-                                    	<field name="note"/>
-                                        <field name="start_date"/>
-                                        <field name="end_date"/>
-                                        <field name="mag"/>
-                                    </tree>
-                                </field>
-                               	<field name="bstex">
+								<group>
+									<field name="sig_m"/>
+									<field name="sig_c"/>
+									<field name="sig_r"/>
+									<field name="sig_e"/>
+									<field name="exp_m"/>
+									<field name="exp_c"/>
+									<field name="exp_r"/>
+									<field name="exp_e"/>
+									<field name="bur_m"/>
+									<field name="bur_c"/>
+									<field name="bur_r"/>
+									<field name="bur_e"/>
+									<field name="bur_c2"/>
+									<field name="bst_m"/>
+									<field name="dur"/>
+								</group>
+                            </page>
+                            <page string="Time periods">
+	                   			<field name="tper_ids">
+	                        		<tree string="Time periods">
+	                        			<field name="note"/>
+	                            		<field name="start_date"/>
+	                            		<field name="end_date"/>
+	                            		<field name="mag"/>
+	                        		</tree>
+	                    		</field>
+                            </page>
+							<page string="Boosted exercises">
+                               	<field name="bstex_ids">
                                     <tree string="Boosted exercises">
                                         <field name="boost_exercise_id"/>
                                         <field name="start_date"/>
