@@ -35,6 +35,22 @@
                                 	<field name="bst_m"/>
                                 	<field name="dur"/>
                                 </group>
+                               	<field name="tper">
+                                    <tree string="Time periods">
+                                    	<field name="note"/>
+                                        <field name="start_date"/>
+                                        <field name="end_date"/>
+                                        <field name="mag"/>
+                                    </tree>
+                                </field>
+                               	<field name="bstex">
+                                    <tree string="Boosted exercises">
+                                        <field name="boost_exercise_id"/>
+                                        <field name="start_date"/>
+                                        <field name="mag"/>
+                                        <field name="duration"/>
+                                    </tree>
+                                </field>
                             </page>
                             <page string="Allocations">
                                 <field name="allocation_ids">
@@ -105,6 +121,7 @@
                 <form string="Exercise Time Period Form">
                     <sheet>
                         <group>
+                        	<field name="note"/>
                             <field name="exercise_id"/>
                             <field name="start_date"/>
                             <field name="end_date"/>
@@ -121,6 +138,7 @@
             <field name="model">mqo.extimeperiod</field>
             <field name="arch" type="xml">
                 <tree string="Exercise Time Period Tree">
+                	<field name="note"/>
 	                <field name="exercise_id"/>
 	                <field name="start_date"/>
 	                <field name="end_date"/>
@@ -135,6 +153,7 @@
             <field name="model">mqo.extimeperiod</field>
             <field name="arch" type="xml">
                 <search>
+                	<field name="note"/>
                     <field name="exercise_id"/>
                     <field name="start_date"/>
                     <field name="end_date"/>

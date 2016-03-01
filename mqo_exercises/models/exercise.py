@@ -4,11 +4,12 @@ from openerp import models, fields, api
 class ExTimePeriod(models.Model):
     _name = 'mqo.extimeperiod'
     
+    note = fields.Char(string="Note")
     exercise_id = fields.Many2one('mqo.exercise',
         ondelete='cascade', string="Exercise", required=True)
     start_date = fields.Datetime(string="Start date", required=True, default=lambda self: fields.Datetime.now())
     end_date = fields.Datetime(string="End date", required=True, default=lambda self: fields.Datetime.now())
-    mag = fields.Float(string="mag", default=0.0)
+    mag = fields.Float(string="mag", default=0.0, required=True)
 
 class ExBoosted(models.Model):
     _name = 'mqo.exboosted'
@@ -24,7 +25,7 @@ class ExBoosted(models.Model):
 class Exercise(models.Model):
     _name = 'mqo.exercise'
     
-    name = fields.Char(string="Title", required=True)
+    name = -fields.Char(string="Title", required=True)
     instructions = fields.Text(string="Instructions")
     allocation_ids = fields.One2many('mqo.allocation', 'exercise_id', string="Allocated Exercises")
     assignment_ids = fields.One2many('mqo.assignment', 'exercise_id', string="Assigned exercises")
