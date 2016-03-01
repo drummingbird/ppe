@@ -115,7 +115,7 @@
     
         <record model="ir.ui.view" id="extimeperiod_form_view">
             <field name="name">extimeperiod.form</field>
-            <field name="model">mqo.exTimePeriod</field>
+            <field name="model">mqo.extimeperiod</field>
             <field name="arch" type="xml">
                 <form string="Exercise Time Period Form">
                     <sheet>
@@ -133,7 +133,7 @@
         <!-- override the automatically generated list view for exercise -->
         <record model="ir.ui.view" id="extimeperiod_tree_view">
             <field name="name">extimeperiod.tree</field>
-            <field name="model">mqo.exTimePeriod</field>
+            <field name="model">mqo.extimeperiod</field>
             <field name="arch" type="xml">
                 <tree string="Exercise Time Period Tree">
 	                <field name="exercise_id"/>
@@ -147,7 +147,7 @@
     
         <record model="ir.ui.view" id="extimeperiod_search_view">
             <field name="name">extimeperiod.search</field>
-            <field name="model">mqo.exTimePeriod</field>
+            <field name="model">mqo.extimeperiod</field>
             <field name="arch" type="xml">
                 <search>
                     <field name="exercise_id"/>
@@ -164,7 +164,7 @@
         -->
         <record model="ir.actions.act_window" id="extimeperiod_list_action">
             <field name="name">Exercise Time Periods</field>
-            <field name="res_model">mqo.exTimePeriod</field>
+            <field name="res_model">mqo.extimeperiod</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
@@ -175,7 +175,7 @@
 
         <record model="ir.ui.view" id="exboosted_form_view">
             <field name="name">exboosted.form</field>
-            <field name="model">mqo.exBoosted</field>
+            <field name="model">mqo.exboosted</field>
             <field name="arch" type="xml">
                 <form string="Exercise Boosted Form">
                     <sheet>
@@ -193,7 +193,7 @@
         <!-- override the automatically generated list view for exercise -->
         <record model="ir.ui.view" id="extimeperiod_tree_view">
             <field name="name">exboosted.tree</field>
-            <field name="model">mqo.exBoosted</field>
+            <field name="model">mqo.exboosted</field>
             <field name="arch" type="xml">
                 <tree string="Exercise Boosted Tree">
 	                <field name="exercise_id"/>

@@ -2,7 +2,7 @@
 from openerp import models, fields, api
 
 class ExTimePeriod(models.Model):
-    _name = 'mqo.exTimePeriod'
+    _name = 'mqo.extimeperiod'
     
     exercise_id = fields.Many2one('mqo.exercise',
         ondelete='cascade', string="Exercise", required=True)
@@ -11,7 +11,7 @@ class ExTimePeriod(models.Model):
     mag = fields.Float(string="mag", default=0.0)
 
 class ExBoosted(models.Model):
-    _name = 'mqo.exBoosted'
+    _name = 'mqo.exboosted'
     
     exercise_id = fields.Many2one('mqo.exercise',
         ondelete='cascade', string="Exercise", required=True)
@@ -45,5 +45,5 @@ class Exercise(models.Model):
     bur_c2 = fields.Float(string="bur_c2", default=0.0)
     bst_m = fields.Float(string="bst_m", default=0.0)
     dur = fields.Float(string="dur", default=1.0)
-    tper = fields.One2many('mqo.exTimePeriod', 'exercise_id', string="Time periods")
-    bstEx = fields.One2many('mqo.exBoosted', 'exercise_id', string="Boosted exercises")
+    tper = fields.One2many('mqo.extimeperiod', 'exercise_id', string="Time periods")
+    bstEx = fields.One2many('mqo.exboosted', 'exercise_id', string="Boosted exercises")
