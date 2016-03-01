@@ -27,7 +27,29 @@
                                 	<field name="exp_c"/>
                                 	<field name="exp_r"/>
                                 	<field name="exp_e"/>
-                                </group>
+                                	<field name="bur_m"/>
+                                	<field name="bur_c"/>
+                                	<field name="bur_r"/>
+                                	<field name="bur_e"/>
+                                	<field name="bur_c2"/>
+                                	<field name="bst_m"/>
+                                	<field name="dur"/>
+                                	<field name="tper">
+	                                    <tree string="Time Periods">
+	                                        <field name="start_date"/>
+	                                        <field name="end_date"/>
+	                                        <field name="mag"/>
+	                                    </tree>
+	                                </field>
+                                	<field name="bstEx">
+	                                    <tree string="Boosted exercises">
+	                                        <field name="boost_exercise_id"/>
+	                                        <field name="start_date"/>
+	                                        <field name="mag"/>
+	                                        <field name="duration"/>
+	                                    </tree>
+	                                </field>
+                            	</group>
                             </page>
                             <page string="Allocations">
                                 <field name="allocation_ids">
@@ -75,7 +97,7 @@
             </field>
         </record>
     
-        <!-- window action -->
+         <!-- window action -->
         <!--
             The following tag is an action definition for a "window action",
             that is an action opening a view or a set of views
@@ -90,6 +112,129 @@
                 </p>
             </field>
         </record>
+    
+        <record model="ir.ui.view" id="extimeperiod_form_view">
+            <field name="name">extimeperiod.form</field>
+            <field name="model">mqo.exTimePeriod</field>
+            <field name="arch" type="xml">
+                <form string="Exercise Time Period Form">
+                    <sheet>
+                        <group>
+                            <field name="exercise_id"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="mag"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+        <!-- override the automatically generated list view for exercise -->
+        <record model="ir.ui.view" id="extimeperiod_tree_view">
+            <field name="name">extimeperiod.tree</field>
+            <field name="model">mqo.exTimePeriod</field>
+            <field name="arch" type="xml">
+                <tree string="Exercise Time Period Tree">
+	                <field name="exercise_id"/>
+	                <field name="start_date"/>
+	                <field name="end_date"/>
+	                <field name="mag"/>
+                </tree>
+            </field>
+        </record>
+
+    
+        <record model="ir.ui.view" id="extimeperiod_search_view">
+            <field name="name">extimeperiod.search</field>
+            <field name="model">mqo.exTimePeriod</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="exercise_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </search>
+            </field>
+        </record>
+    
+         <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="extimeperiod_list_action">
+            <field name="name">Exercise Time Periods</field>
+            <field name="res_model">mqo.exTimePeriod</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first exercise time period
+                </p>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="exboosted_form_view">
+            <field name="name">exboosted.form</field>
+            <field name="model">mqo.exBoosted</field>
+            <field name="arch" type="xml">
+                <form string="Exercise Boosted Form">
+                    <sheet>
+                        <group>
+                            <field name="exercise_id"/>
+                            <field name="boost_exercise_id"/>
+                            <field name="mag"/>
+                            <field name="period"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+        <!-- override the automatically generated list view for exercise -->
+        <record model="ir.ui.view" id="extimeperiod_tree_view">
+            <field name="name">exboosted.tree</field>
+            <field name="model">mqo.exBoosted</field>
+            <field name="arch" type="xml">
+                <tree string="Exercise Boosted Tree">
+	                <field name="exercise_id"/>
+	                <field name="boost_exercise_id"/>
+	                <field name="mag"/>
+	                <field name="period"/>
+                </tree>
+            </field>
+        </record>
+
+    
+        <record model="ir.ui.view" id="exboost_search_view">
+            <field name="name">exboost.search</field>
+            <field name="model">mqo.exBoost</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="exercise_id"/>
+                    <field name="boost_exercise_id"/>
+                    <field name="mag"/>
+                    <field name="period"/>
+                </search>
+            </field>
+        </record>
+    
+         <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="exboost_list_action">
+            <field name="name">Exercise Boosts</field>
+            <field name="res_model">mqo.exBoost</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first exercise boost
+                </p>
+            </field>
+        </record>
+
+
 
         <!-- top level menu: no parent -->
         <menuitem id="main_learn_menu" name="Learn"/>
@@ -102,6 +247,10 @@
              action exercise_list_action -->
         <menuitem id="exercises_menu" name="Exercises" parent="learn_menu"
                   action="exercise_list_action"/>
+        <menuitem id="extimeperiod_menu" name="Time Periods" parent="learn_menu"
+                  action="extimeperiod_list_action"/>
+        <menuitem id="exboost_menu" name="Boosts" parent="learn_menu"
+                  action="exboost_list_action"/>
         <!-- Full id location:
              action="mqo_exercises.course_list_action"
              It is not required when it is the same module -->
