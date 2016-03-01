@@ -10,6 +10,7 @@ class ExTimePeriod(models.Model):
     start_date = fields.Datetime(string="Start date", required=True, default=lambda self: fields.Datetime.now())
     end_date = fields.Datetime(string="End date", required=True, default=lambda self: fields.Datetime.now())
     mag = fields.Float(string="mag", default=0.0, required=True)
+    annual = fields.Boolean(string="Annual?", default=False)
 
 class ExBoosted(models.Model):
     _name = 'mqo.exboosted'

@@ -9,6 +9,12 @@ def sigmoid(t, c, r, e, down):
 def expdec(t, c, r, e):
     return 1 - math.pow(e, -(t+c)/r)
 
+def powinc(t, c, r, e):
+    if t > c:
+        return math.pow((t-c), e) / math.pow(r, e)
+    else:
+        return 0
+
 class Mqo_exArr():
     exercise_id = 0
     suitability = 0
@@ -22,7 +28,7 @@ class Mqo_exArr():
         self.bst = 0
         self.bur = 0
         self.tper = 0
-        # self.prereq = 0
+        self.pre = 0
  
     def mod_Score(self, assignment):
         # modify score based on an recent assignment
@@ -44,9 +50,32 @@ class Mqo_exArr():
         t = elapsed_timedelta.days
         bstmag = bstex.sig_m*sigmoid(t, bstex.sig_c, bstex.sig_r, bstex.sig_e, True)
         self.bst = self.bst + bstmag
+
+
+    def mod_tper(self, allocation):
+        # modify score based on datetime
+        ex = allocation.exercise_id
+        for per in ex.tper:
+            currenttime = datetime.datetime.now()
+            tper_start =  fields.Datetime.from_string(ex.tper.start_date)
+            tper_end =  fields.Datetime.from_string(ex.tper.end_date)
+            if ex.tper.annual:
+                tper_start.replace(year=currenttime.year)
+                tper_end.replace(year=currenttime.year)
+                if (tper_end - tper_start) > 0:
+                    tper_end.replace(year=currenttime.year+1)
+            if currenttime >= tper_start and currenttime < tper_end: 
+                self.tper = self.tper + ex.tper.mag
+
+
         
-    
-    # prerequisite exercise function here
+    def mod_pre(self, pre, assignment):
+        # modify score based on an recent assignment
+        elapsed_timedelta = datetime.datetime.now() - fields.Datetime.from_string(assignment.datetime_allocated)
+        # elapsed_timedelta_datum = datetime.datetime.now() # - some date
+        t = elapsed_timedelta.days
+        premag = pre.pow_m*powinc(t, pre.pow_c, pre.pow_r, pre.pow_e, True)
+        self.pre = self.pre + premag
 
 
 
@@ -75,14 +104,17 @@ class Partner(models.Model):
                     mqo_exArr = Mqo_exArr(allocation.exercise_id.id, allocation.suitability, allocation.suitability)
                     exArr.append(mqo_exArr)
                     exDic[allocation.exercise_id.id] = i
-                    # adjust tper scores here, which only depend on the current time..
+                    if allocation.exercise_id.tper:
+                        exArr[exDic[allocation.exercise_id.id]].mod_tper(allocation.exercise_id)
+                    # maybe build record of prerequisite exercises, and set initial pre values. Then if find a prerequisite ex, modify the pre values accordingly.
                 # now adjust score if there are assignments
                 if r.assignment_ids:
                     for assignment in r.assignment_ids.sorted(key=lambda rec: rec.create_date):
                         exArr[exDic[assignment.exercise_id.id]].mod_Score(assignment)
-                        for bstex in assignment.exercise_id.bstex_ids:
-                            if bstex.boost_exercise_id.id in exDic:
-                                exArr[exDic[bstex.boost_exercise_id.id]].mod_bst(bstex, assignment)
+                        if assignment.exercise_id.bstex_ids:
+                            for bstex in assignment.exercise_id.bstex_ids:
+                                if bstex.boost_exercise_id.id in exDic:
+                                    exArr[exDic[bstex.boost_exercise_id.id]].mod_bst(bstex, assignment)
                 for s in exArr:
                     s.score = s.discount + s.bur + s.bst
                     suitabilities.append(s.score)

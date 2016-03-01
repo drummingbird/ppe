@@ -129,6 +129,7 @@
                             <field name="start_date"/>
                             <field name="end_date"/>
                             <field name="mag"/>
+                            <field name="annual"/>
                         </group>
                     </sheet>
                 </form>
@@ -146,6 +147,7 @@
 	                <field name="start_date"/>
 	                <field name="end_date"/>
 	                <field name="mag"/>
+	                <field name="annual"/>
                 </tree>
             </field>
         </record>
@@ -160,6 +162,7 @@
                     <field name="exercise_id"/>
                     <field name="start_date"/>
                     <field name="end_date"/>
+                    <field name="annual"/>
                 </search>
             </field>
         </record>
