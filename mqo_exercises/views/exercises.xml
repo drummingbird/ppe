@@ -35,21 +35,25 @@
 									<field name="bst_m"/>
 									<field name="dur"/>
 								</group>
-	                   			<field name="tper_ids">
-	                        		<tree string="Time periods">
-	                        			<field name="note"/>
-	                            		<field name="start_date"/>
-	                            		<field name="end_date"/>
-	                            		<field name="mag"/>
-	                        		</tree>
-	                    		</field>
-                               	<field name="bstex_ids">
-                                    <tree string="Boosted exercises">
-                                        <field name="boost_exercise_id"/>
-                                        <field name="mag"/>
-                                        <field name="duration"/>
-                                    </tree>
-                                </field>
+								<group>
+		                   			<field name="tper_ids">
+		                        		<tree string="Time periods">
+		                        			<field name="note"/>
+		                            		<field name="start_date"/>
+		                            		<field name="end_date"/>
+		                            		<field name="mag"/>
+		                        		</tree>
+		                    		</field>
+	                    		</group>
+	                    		<group>
+	                               	<field name="bstex_ids">
+	                                    <tree string="Boosted exercises">
+	                                        <field name="boost_exercise_id"/>
+	                                        <field name="mag"/>
+	                                        <field name="duration"/>
+	                                    </tree>
+	                                </field>
+                                </group>
                             </page>
                             <page string="Allocations">
                                 <field name="allocation_ids">
