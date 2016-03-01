@@ -168,7 +168,7 @@
                             <field name="exercise_id"/>
                             <field name="boost_exercise_id"/>
                             <field name="mag"/>
-                            <field name="period"/>
+                            <field name="duration"/>
                         </group>
                     </sheet>
                 </form>
