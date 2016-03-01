@@ -21,7 +21,7 @@ class ExBoosted(models.Model):
     sig_m = fields.Float(string="sig_m", default=0.0)
     sig_c = fields.Float(string="sig_c", default=0.0)
     sig_r = fields.Float(string="sig_r", default=1.0)
-    sig_e = fields.Float(string="sig_e", default=0.0)
+    sig_e = fields.Float(string="sig_e", default=1.0)
 
 class Exercise(models.Model):
     _name = 'mqo.exercise'
@@ -35,15 +35,15 @@ class Exercise(models.Model):
     sig_m = fields.Float(string="sig_m", default=0.0)
     sig_c = fields.Float(string="sig_c", default=0.0)
     sig_r = fields.Float(string="sig_r", default=1.0)
-    sig_e = fields.Float(string="sig_e", default=0.0)
+    sig_e = fields.Float(string="sig_e", default=1.0)
     exp_m = fields.Float(string="exp_m", default=0.0)
     exp_c = fields.Float(string="exp_c", default=0.0)
     exp_r = fields.Float(string="exp_r", default=1.0)
-    exp_e = fields.Float(string="exp_e", default=0.0)
+    exp_e = fields.Float(string="exp_e", default=1.0)
     bur_m = fields.Float(string="bur_m", default=0.0)
     bur_c = fields.Float(string="bur_c", default=0.0)
     bur_r = fields.Float(string="bur_r", default=1.0)
-    bur_e = fields.Float(string="bur_e", default=0.0)
+    bur_e = fields.Float(string="bur_e", default=1.0)
     bur_c2 = fields.Float(string="bur_c2", default=0.0)
     bst_m = fields.Float(string="bst_m", default=0.0)
     dur = fields.Float(string="dur", default=1.0)
