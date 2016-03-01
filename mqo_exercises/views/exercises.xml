@@ -192,7 +192,7 @@
     
         <record model="ir.ui.view" id="exboost_search_view">
             <field name="name">exboost.search</field>
-            <field name="model">mqo.exBoost</field>
+            <field name="model">mqo.exboosted</field>
             <field name="arch" type="xml">
                 <search>
                     <field name="exercise_id"/>
@@ -210,7 +210,7 @@
         -->
         <record model="ir.actions.act_window" id="exboost_list_action">
             <field name="name">Exercise Boosts</field>
-            <field name="res_model">mqo.exBoost</field>
+            <field name="res_model">mqo.exboosted</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
