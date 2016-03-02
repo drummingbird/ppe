@@ -1,4 +1,17 @@
 <openerp>
     <data>
+	    <template id="index">
+            <t t-call="website.layout">
+                <t t-set="title">My learning</t>
+                <div class="oe_structure">
+                    <div class="container">
+				        <t t-foreach="exercises" t-as="exercise">
+				          <p><t t-esc="exercise.id"/> <t t-esc="exercise.name"/></p>
+				          <p><t t-esc="exercise.instructions"/></p>
+				        </t>
+				  	</div>
+				</div>
+			</t>    
+	    </template>
     </data>
 </openerp>
