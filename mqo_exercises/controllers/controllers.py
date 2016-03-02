@@ -7,8 +7,10 @@ class MyLearning(http.Controller):
     def index(self, **kw):
         # Partners = http.request.env['res.partner']
         partner = request.env['res.users'].browse(request.uid).partner_id
+        print(str(partner.name))
         if partner:
             currentex = partner.next_exercise_id
+            print(str(currentex.name))
             return request.render('mqo_exercises.index', {
                 'exercises': currentex
             })
