@@ -43,13 +43,6 @@ class Mqo_exArr():
         
         # need to do oldest to newest for this
         self.bur = a.bur_m*(sigmoid(t, a.bur_c, a.bur_r, a.bur_e, True) - sigmoid(t, a.bur_c2, a.bur_r, a.bur_e, True))
-        print("t = " + str(t))
-        print("a.bur_m = " + str(a.bur_m))
-        print("a.bur_c = " + str(a.bur_c))
-        print("a.bur_c2 = " + str(a.bur_c2))
-        print("a.bur_r = " + str(a.bur_r))
-        print("a.bur_e = " + str(a.bur_e))
-        print("self.bur = " + str(self.bur))
 
     def mod_bst(self, bstex, assignment):
         # modify score based on an recent assignment
