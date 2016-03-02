@@ -117,7 +117,7 @@ class Partner(models.Model):
     allocation_ids = fields.One2many('mqo.allocation', 'partner_id', string="Allocated Exercises")
     assignment_ids = fields.One2many('mqo.assignment', 'partner_id', string="Assigned Exercises")
     
-    next_exercise_id = fields.Many2one(comodel_name='mqo.exercise', store=True, readonly=True, compute='_compute_next_exercise', string="Next Exercise")
+    next_exercise_id = fields.Many2one(comodel_name='mqo.exercise', store=True, readonly=True, compute='_compute_next_exercise', string="Current exercise")
     
     # @api.depends('allocation_ids', 'assignment_ids')
     def _compute_next_exercise(self):
