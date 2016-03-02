@@ -54,6 +54,17 @@
 	                                    </tree>
 	                                </field>
                                 </group>
+	                    		<group>
+	                               	<field name="pre_ids">
+	                                    <tree string="Prerequisite exercise for">
+	                                        <field name="exercise_id"/>
+	                                        <field name="pow_m"/>
+	                                        <field name="pow_c"/>
+	                                        <field name="pow_r"/>
+	                                        <field name="pow_e"/>
+	                                    </tree>
+	                                </field>
+                                </group>
                             </page>
                             <page string="Allocations">
                                 <field name="allocation_ids">
@@ -203,7 +214,7 @@
         </record>
     
         <!-- override the automatically generated list view for exercise -->
-        <record model="ir.ui.view" id="extimeperiod_tree_view">
+        <record model="ir.ui.view" id="exboosted_tree_view">
             <field name="name">exboosted.tree</field>
             <field name="model">mqo.exboosted</field>
             <field name="arch" type="xml">
@@ -248,6 +259,76 @@
 
 
 
+        <record model="ir.ui.view" id="expre_form_view">
+            <field name="name">expre.form</field>
+            <field name="model">mqo.expre</field>
+            <field name="arch" type="xml">
+                <form string="Exercise Prerequisite Form">
+                    <sheet>
+                        <group>
+                            <field name="exercise_id"/>
+                            <field name="pre_exercise_id"/>
+                            <field name="pow_m"/>
+                            <field name="pow_c"/>
+                            <field name="pow_r"/>
+                            <field name="pow_e"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+        <!-- override the automatically generated list view for exercise -->
+        <record model="ir.ui.view" id="extpre_tree_view">
+            <field name="name">expre.tree</field>
+            <field name="model">mqo.expre</field>
+            <field name="arch" type="xml">
+                <tree string="Exercise Prerequisite Tree">
+	                <field name="exercise_id"/>
+	                <field name="pre_exercise_id"/>
+	                <field name="pow_m"/>
+	                <field name="pow_c"/>
+	                <field name="pow_r"/>
+	                <field name="pow_e"/>
+                </tree>
+            </field>
+        </record>
+
+    
+        <record model="ir.ui.view" id="expre_search_view">
+            <field name="name">expre.search</field>
+            <field name="model">mqo.expre</field>
+            <field name="arch" type="xml">
+                <search>
+	                <field name="exercise_id"/>
+	                <field name="pre_exercise_id"/>
+	                <field name="pow_m"/>
+	                <field name="pow_c"/>
+	                <field name="pow_r"/>
+	                <field name="pow_e"/>>
+                </search>
+            </field>
+        </record>
+    
+         <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="expre_list_action">
+            <field name="name">Exercise prerequsites</field>
+            <field name="res_model">mqo.expre</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first exercise boost
+                </p>
+            </field>
+        </record>
+
+
+
+
         <!-- top level menu: no parent -->
         <menuitem id="main_learn_menu" name="Learn"/>
         <!-- A first level in the left side menu is needed
@@ -263,6 +344,8 @@
                   action="extimeperiod_list_action"/>
         <menuitem id="exboost_menu" name="Boosts" parent="learn_menu"
                   action="exboost_list_action"/>
+        <menuitem id="expre_menu" name="Prerequisites" parent="learn_menu"
+                  action="expre_list_action"/>
         <!-- Full id location:
              action="mqo_exercises.course_list_action"
              It is not required when it is the same module -->
