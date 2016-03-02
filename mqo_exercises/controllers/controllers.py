@@ -12,7 +12,7 @@ class MyLearning(http.Controller):
         if partner:
             ResPartner = request.env['res.partner'].browse(partner.id)
             currentex = ResPartner.next_exercise_id
-            print(str(currentex.name))
+            print(str(currentex))
             return request.render('mqo_exercises.index', {
                 'exercises': currentex
             })
