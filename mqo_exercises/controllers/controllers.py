@@ -6,6 +6,6 @@ class MyLearning(http.Controller):
     @http.route('/mylearning/mylearning/', auth='public', website=True)
     def index(self, **kw):
         Exercises = http.request.env['mqo.exercise']
-        return http.request.render('mqo.exerciseindex', {
+        return http.request.render('mqo.index', {
             'exercises': Exercises.search([])
         })
