@@ -305,7 +305,7 @@
 	                <field name="pow_m"/>
 	                <field name="pow_c"/>
 	                <field name="pow_r"/>
-	                <field name="pow_e"/>>
+	                <field name="pow_e"/>
                 </search>
             </field>
         </record>
@@ -328,12 +328,72 @@
 
 
 
+        <record model="ir.ui.view" id="exsurveyqcoef_form_view">
+            <field name="name">exsurveyqcoef.form</field>
+            <field name="model">mqo.exsurveyqcoef</field>
+            <field name="arch" type="xml">
+                <form string="Exercise survey question coef form">
+                    <sheet>
+                        <group>
+                            <field name="exercise_id"/>
+                            <field name="survey_question"/>
+                            <field name="coef"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+        <!-- override the automatically generated list view for exercise -->
+        <record model="ir.ui.view" id="exsurveyqcoef_tree_view">
+            <field name="name">exsurveyqcoef.tree</field>
+            <field name="model">mqo.exsurveyqcoef</field>
+            <field name="arch" type="xml">
+                <tree string="Exercise survey question coef tree">
+	                <field name="exercise_id"/>
+	                <field name="survey_question"/>
+	                <field name="coef"/>
+                </tree>
+            </field>
+        </record>
+
+    
+        <record model="ir.ui.view" id="exsurveyqcoef_search_view">
+            <field name="name">exsurveyqcoef.search</field>
+            <field name="model">mqo.exsurveyqcoef</field>
+            <field name="arch" type="xml">
+                <search>
+	                <field name="exercise_id"/>
+	                <field name="survey_question"/>
+	                <field name="coef"/>
+            </field>
+        </record>
+    
+         <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="exsurveyqcoef_list_action">
+            <field name="name">Exercise survey question coef</field>
+            <field name="res_model">mqo.exsurveyqcoef</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first exercise survey question coef
+                </p>
+            </field>
+        </record>
+
+
 
         <!-- top level menu: no parent -->
         <menuitem id="main_learn_menu" name="Learn"/>
         <!-- A first level in the left side menu is needed
              before using action= attribute -->
         <menuitem id="learn_menu" name="Learn"
+                  parent="main_learn_menu"/>
+        <menuitem id="measure_menu" name="Measure"
                   parent="main_learn_menu"/>
         <!-- the following menuitem should appear *after*
              its parent exercises_menu and *after* its
@@ -346,6 +406,8 @@
                   action="exboost_list_action"/>
         <menuitem id="expre_menu" name="Prerequisites" parent="learn_menu"
                   action="expre_list_action"/>
+        <menuitem id="exsurveyqcoef_menu" name="Coefficients" parent="measure_menu"
+                  action="exsurveyqcoef_list_action"/>
         <!-- Full id location:
              action="mqo_exercises.course_list_action"
              It is not required when it is the same module -->

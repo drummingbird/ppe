@@ -64,3 +64,15 @@ class Exercise(models.Model):
     tper_ids = fields.One2many('mqo.extimeperiod', 'exercise_id', string="Time periods")
     bstex_ids = fields.One2many('mqo.exboosted', 'exercise_id', string="Boosted exercises")
     pre_ids = fields.One2many('mqo.expre', 'pre_exercise_id', string="Prerequisite for")
+    
+    surveyq_dat =  fields.One2many('mqo.exsurveyqdata', 'exercise_id', string="Survey question data")
+    
+class ExSurveyQCoef(models.Model):
+    _name = 'mqo.exsurveyqcoef'
+    
+    exercise_id = fields.Many2one('mqo.exercise',
+        ondelete='cascade', string="Exercise", required=True)
+    survey_question = fields.Many2one('survey.question',
+        ondelete='cascade', string="Exercise", required=True)
+    coef = fields.Float(string="Coefficient", default=0.0)
+
