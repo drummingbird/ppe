@@ -1,6 +1,6 @@
 <openerp>
     <data>
-	    <template id="mqo_index">
+	    <template id="index">
             <t t-call="website.layout">
                 <t t-set="title">My learning</t>
                 <div class="oe_structure">
