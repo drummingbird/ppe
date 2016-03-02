@@ -73,6 +73,6 @@ class ExSurveyQCoef(models.Model):
     exercise_id = fields.Many2one('mqo.exercise',
         ondelete='cascade', string="Exercise", required=True)
     survey_question = fields.Many2one('survey.question',
-        ondelete='cascade', string="Exercise", required=True)
+        ondelete='cascade', string="Survey question", required=True)
     coef = fields.Float(string="Coefficient", default=0.0)
 
