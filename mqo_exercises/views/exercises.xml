@@ -366,7 +366,8 @@
 	                <field name="exercise_id"/>
 	                <field name="survey_question"/>
 	                <field name="coef"/>
-            </field>
+                </search>
+         	</field>
         </record>
     
          <!-- window action -->
