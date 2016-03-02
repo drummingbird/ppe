@@ -65,6 +65,14 @@
 	                                    </tree>
 	                                </field>
                                 </group>
+	                    		<group>
+	                               	<field name="surveyq_dat">
+	                                    <tree string="Survey coefs">
+	                                        <field name="survey_question"/>
+	                                        <field name="coef"/>
+	                                    </tree>
+	                                </field>
+                                </group>
                             </page>
                             <page string="Allocations">
                                 <field name="allocation_ids">
