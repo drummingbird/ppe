@@ -43,6 +43,7 @@ class Mqo_exArr():
         
         # need to do oldest to newest for this
         self.bur = a.bur_m*(sigmoid(t, a.bur_c, a.bur_r, a.bur_e, True) - sigmoid(t, a.bur_c2, a.bur_r, a.bur_e, True))
+        print("self.bur = " + str(self.bur))
 
     def mod_bst(self, bstex, assignment):
         # modify score based on an recent assignment
@@ -107,7 +108,7 @@ def adjExArr(exArr, exDic, assignment_ids):
 def calcSuitabilities(exArr):
     suitabilities = []
     for s in exArr:
-        s.score = s.discount + s.bur + s.bst
+        s.score = s.discount + s.bur + s.bst + s.pre + s.tper
         suitabilities.append(s.score)
     return suitabilities
 
