@@ -65,7 +65,7 @@ class Exercise(models.Model):
     bstex_ids = fields.One2many('mqo.exboosted', 'exercise_id', string="Boosted exercises")
     pre_ids = fields.One2many('mqo.expre', 'pre_exercise_id', string="Prerequisite for")
     
-    surveyq_dat =  fields.One2many('mqo.exsurveyqdata', 'exercise_id', string="Survey question data")
+    surveyq_dat =  fields.One2many('mqo.exsurveyqcoef', 'exercise_id', string="Survey question data")
     
 class ExSurveyQCoef(models.Model):
     _name = 'mqo.exsurveyqcoef'
