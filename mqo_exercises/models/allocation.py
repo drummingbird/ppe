@@ -32,8 +32,10 @@ class Allocation(models.Model):
                         at_least_one_response = True
                         print('at least one response found')
                     if at_least_one_response:
-                        print('response.value=' + str(question_response.value_number))
+                        print('response=' + str(question_response))
+                        print('response.id=' + str(question_response.id))
+                        print('response.quizz_mark=' + str(question_response.quizz_mark))
                         print('exsurveyqcoef.coef=' + str(exsurveyqcoef.coef))
-                        suitability = suitability + float(question_response.value_number)*exsurveyqcoef.coef
+                        suitability = suitability + float(question_response.quizz_mark)*exsurveyqcoef.coef
         
         self.suitability = suitability
