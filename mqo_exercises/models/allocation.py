@@ -14,14 +14,14 @@ class Allocation(models.Model):
         suitability = 1
         at_least_one_resonse = False
         
-        if exercise_id.surveyq_dat:
+        if self.exercise_id.surveyq_dat:
             user_input_ids = []
             response_meta_recordset = self.env['survey.user_input'].search([('partner_id', '=', self.partner_id.id)])
             for record in response_meta_recordset:
                 user_input_ids.append(record.id)
             
             if user_input_ids:
-                for exsurveyqcoef in exercise_id.surveyq_dat:
+                for exsurveyqcoef in self.exercise_id.surveyq_dat:
                     question = exsurveyqcoef.survey_question
                     question_response = self.env['survey.user_input_line'].search([('question_id', '=', question.id),
                                                                                    ('user_input_id', 'in', user_input_ids)],
