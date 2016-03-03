@@ -8,6 +8,8 @@
 				        <t t-foreach="exercises" t-as="exercise">
 				          <p><t t-esc="exercise.id"/> <t t-esc="exercise.name"/></p>
 				          <p><t t-esc="exercise.instructions"/></p>
+				          <p><t t-esc="exercise.response_survey.id"/></p>
+				          <p><t t-esc="exercise.response_token"/></p>
 				        </t>
 				  	</div>
 				</div>
