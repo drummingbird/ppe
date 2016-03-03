@@ -31,7 +31,7 @@ class Allocation(models.Model):
                         suitability = 0
                         at_least_one_response = True
                         print('at least one response found')
-                    if at_least_one_resonse:
+                    if at_least_one_response:
                         print('response.value=' + str(question_response.value_number))
                         print('exsurveyqcoef.coef=' + str(exsurveyqcoef.coef))
                         suitability = suitability + float(question_response.value_number)*exsurveyqcoef.coef
