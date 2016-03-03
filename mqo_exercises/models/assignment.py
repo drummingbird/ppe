@@ -17,7 +17,7 @@ class Assignment(models.Model):
     
     response_survey = fields.Many2one('survey.survey', string="Response survey")
     responses = fields.Many2one('survey.user_input', string="Responses")
-    response_token = field.String(string="Token", default=lambda s, cr, uid, c: uuid.uuid4().__str__())
+    response_token = fields.String(string="Token", default=lambda s, cr, uid, c: uuid.uuid4().__str__())
     
     # can add entries (while doing the exercise) as survey responses too.
 
