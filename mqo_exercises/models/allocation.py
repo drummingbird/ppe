@@ -20,16 +20,20 @@ class Allocation(models.Model):
             for record in response_meta_recordset:
                 user_input_ids.append(record.id)
             
+            print('user_input_ids=' + str(user_input_ids))
             if user_input_ids:
                 for exsurveyqcoef in self.exercise_id.surveyq_dat:
                     question = exsurveyqcoef.survey_question
                     question_response = self.env['survey.user_input_line'].search([('question_id', '=', question.id),
                                                                                    ('user_input_id', 'in', user_input_ids)],
                                                                                    order='date_create desc', limit=1)
-                    if question_response: 
+                    if question_response and not at_least_one_response: 
                         suitability = 0
                         at_least_one_resonse = True
+                        print('at least one response found')
                     if at_least_one_resonse:
+                        print('response.value=' + str(question_response.value_number))
+                        print('exsurveyqcoef.coef=' + str(exsurveyqcoef.coef))
                         suitability = suitability + float(question_response.value_number)*exsurveyqcoef.coef
         
         self.suitability = suitability
