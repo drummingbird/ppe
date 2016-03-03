@@ -12,7 +12,7 @@ class Allocation(models.Model):
     @api.depends('partner_id', 'exercise_id')
     def _compute_suitability(self):
         suitability = 1
-        at_least_one_resonse = False
+        at_least_one_response = False
         
         if self.exercise_id.surveyq_dat:
             user_input_ids = []
@@ -29,7 +29,7 @@ class Allocation(models.Model):
                                                                                    order='date_create desc', limit=1)
                     if question_response and not at_least_one_response: 
                         suitability = 0
-                        at_least_one_resonse = True
+                        at_least_one_response = True
                         print('at least one response found')
                     if at_least_one_resonse:
                         print('response.value=' + str(question_response.value_number))
