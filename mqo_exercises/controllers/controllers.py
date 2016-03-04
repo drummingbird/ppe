@@ -81,5 +81,5 @@ class responseReroute(WebsiteSurvey):
                      '/exercise/fill/<model("survey.survey"):survey>/<string:token>',
                  '/survey/fill/<model("survey.survey"):survey>/<string:token>/<string:prev>'],
                 type='http', auth='public', website=True)
-        def fill_survey(self, **kw):
-            return super(responseReroute, self).fill_survey(**kw)
+        def fill_survey(self, survey, token, **kw):
+            return super(responseReroute, self).fill_survey(survey, token, **kw)
