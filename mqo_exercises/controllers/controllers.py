@@ -68,7 +68,7 @@ class ExerciseResponse(http.Controller):
             user_input_id = user_input_obj.create(cr, uid, vals, context=context)
             user_input = user_input_obj.browse(cr, uid, [user_input_id], context=context)[0]
             # record response in assignment
-            assignment.write(cr, uid, {'responses': user_input_id}, context=context) 
+            assignment.write({'responses': user_input_id}) 
         else:
             user_input = user_input_obj.browse(cr, SUPERUSER_ID, [user_input_id], context=context)[0]
 
