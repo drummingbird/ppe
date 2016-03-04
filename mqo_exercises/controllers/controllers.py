@@ -131,7 +131,11 @@ class responseReroute(WebsiteSurvey):
             else:
                 vals.update({'state': 'skip'})
             user_input_obj.write(cr, user_id, user_input_id, vals, context=context)
-            ret['redirect'] = '/exercise/fill/%s/%s' % (survey.id, post['token'])
+            
+            if survey.group == 'exercise':
+                ret['redirect'] = '/exercise/fill/%s/%s' % (survey.id, post['token'])
+            else:
+                ret['redirect'] = '/survey/fill/%s/%s' % (survey.id, post['token'])
             if go_back:
                 ret['redirect'] += '/prev'
         return json.dumps(ret)

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <template id="mqo_survey_form" inherit_id="survey.survey_form">
+            <xpath expr="//page[@string='Select Options']" position="inside">
+                <group>
+                    <field name="name"/>
+                </group>
+            </xpath>
+        </template>
+    </data>
+</openerp>
