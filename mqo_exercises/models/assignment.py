@@ -17,10 +17,14 @@ class Assignment(models.Model):
     
     response_survey = fields.Many2one('survey.survey', string="Response survey")
     responses = fields.Many2one('survey.user_input', string="Responses")
-    response_token = fields.Char(string="Token", default=lambda self: uuid.uuid4().__str__())
+    response_token = fields.Char(string="Token", default=lambda self: 'res' + uuid.uuid4().__str__())
     
     # can add entries (while doing the exercise) as survey responses too.
 
     # add function to set rating and difficulty based on responses.
     
     # Add function to set response_survey from exercise.default_exercise_survey
+    
+    _sql_constraints = [
+        ('unique_token', 'UNIQUE (response_token)', 'A token must be unique!')
+    ]
