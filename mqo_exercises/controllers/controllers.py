@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from openerp import http
 from openerp.http import request
+from openerp import SUPERUSER_ID
 
 class MyLearning(http.Controller):
     @http.route('/mylearning/mylearning/', type='http', auth='public', website=True)
