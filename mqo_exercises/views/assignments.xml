@@ -12,6 +12,10 @@
                             <field name="exercise_id"/>
                             <field name="rating"/>
                             <field name="datetime_allocated"/>
+                            <field name="response_survey"/>
+                            <field name="responses"/>
+                            <field name="response_token"/>
+                            <field name="id"/>
                         </group>
                     </sheet>
                 </form>

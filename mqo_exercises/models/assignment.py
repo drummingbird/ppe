@@ -22,3 +22,5 @@ class Assignment(models.Model):
     # can add entries (while doing the exercise) as survey responses too.
 
     # add function to set rating and difficulty based on responses.
+    
+    # Add function to set response_survey from exercise.default_exercise_survey

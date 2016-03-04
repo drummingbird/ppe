@@ -73,6 +73,9 @@
 	                                    </tree>
 	                                </field>
                                 </group>
+	                    		<group>
+	                               	<field name="default_response_survey"/>
+                                </group>
                             </page>
                             <page string="Allocations">
                                 <field name="allocation_ids">
