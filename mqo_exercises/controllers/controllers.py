@@ -2,7 +2,8 @@
 from openerp import http
 from openerp.http import request
 from openerp import SUPERUSER_ID
-from openerp import WebsiteSurvey
+
+from openerp.addons.survey.controllers.main import WebsiteSurvey
 
 class MyLearning(http.Controller):
     @http.route('/mylearning/mylearning/', type='http', auth='public', website=True)
