@@ -7,6 +7,8 @@ from openerp.addons.survey.controllers.main import WebsiteSurvey
 import json
 import logging
 
+_logger = logging.getLogger(__name__)
+
 class MyLearning(http.Controller):
     @http.route('/mylearning/mylearning/', type='http', auth='public', website=True)
     def index(self, **kw):
