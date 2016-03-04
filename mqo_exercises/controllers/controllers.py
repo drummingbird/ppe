@@ -72,4 +72,12 @@ class ExerciseResponse(http.Controller):
         else:
             user_input = user_input_obj.browse(cr, SUPERUSER_ID, [user_input_id], context=context)[0]
 
-        return request.redirect('/survey/fill/%s/%s' % (assignment.response_survey.id, user_input.token))
+        return request.redirect('/exercise/fill/%s/%s' % (assignment.response_survey.id, user_input.token))
+    
+class responseReroute(WebsiteSurvey):
+        @http.route(['/survey/fill/<model("survey.survey"):survey>/<string:token>',
+                     '/exercise/fill/<model("survey.survey"):survey>/<string:token>',
+                 '/survey/fill/<model("survey.survey"):survey>/<string:token>/<string:prev>'],
+                type='http', auth='public', website=True)
+        def fill_survey(self, survey, token, prev=None, **post):
+            return super(responseReroute, self).fill_survey(self, survey, token, prev, post)
