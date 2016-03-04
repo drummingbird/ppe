@@ -3,6 +3,8 @@ from openerp import http
 from openerp.http import request
 from openerp import SUPERUSER_ID
 
+from survey import WebsiteSurvey
+
 class MyLearning(http.Controller):
     @http.route('/mylearning/mylearning/', type='http', auth='public', website=True)
     def index(self, **kw):
