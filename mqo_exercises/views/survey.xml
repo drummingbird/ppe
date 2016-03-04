@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <template id="mqo_survey_form" inherit_id="survey_form">
-            <xpath expr="//page[@string='Select Options']" position="inside">
-                <group>
-                    <field name="name"/>
-                </group>
-            </xpath>
-        </template>
+        <record model="ir.ui.view" id="survey_form">
+            <field name="name">Form view for survey</field>
+            <field name="model">survey.survey</field>
+            <field name="inherit_id" ref="survey.survey_form"/>
+            <field name="arch" type="xml">
+	            <xpath expr="//page[@string='Select Options']" position="inside">
+	                <group>
+	                    <field name="name"/>
+	                </group>
+	            </xpath>
+	        </field>
+		</record>
     </data>
 </openerp>
+
