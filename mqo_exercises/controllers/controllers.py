@@ -63,7 +63,7 @@ class ExerciseResponse(http.Controller):
         try:
             user_input_id = user_input_obj.search(cr, SUPERUSER_ID, [('token', '=', assignment.response_token)], context=context)[0]
         except IndexError:  # No response currently exists for this assignment
-            vals = {'survey_id': assignment.survey, 'partner_id': assignment.partner_id, 'token': assignment.response_token, 'state': 'Not started yet'}
+            vals = {'survey_id': assignment.response_survey, 'partner_id': assignment.partner_id, 'token': assignment.response_token, 'state': 'Not started yet'}
             user_input_id = user_input_obj.create(cr, uid, vals, context=context)
             user_input = user_input_obj.browse(cr, uid, [user_input_id], context=context)[0]
         else:
