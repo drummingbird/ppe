@@ -59,6 +59,7 @@ class ExerciseResponse(http.Controller):
         if errpage:
             return errpage
 
+
         # see if response for this assignment already exists, and create one for this assignment if needed.
         try:
             user_input_id = user_input_obj.search(cr, SUPERUSER_ID, [('token', '=', assignment.response_token)], context=context)[0]
@@ -69,4 +70,4 @@ class ExerciseResponse(http.Controller):
         else:
             user_input = user_input_obj.browse(cr, SUPERUSER_ID, [user_input_id], context=context)[0]
 
-        return request.redirect('/survey/fill/%s/%s' % (survey.id, user_input.token))
+        return request.redirect('/survey/fill/%s/%s' % (user_input.survey_id, user_input.token))
