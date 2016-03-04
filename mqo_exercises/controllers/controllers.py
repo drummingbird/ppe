@@ -4,6 +4,7 @@ from openerp.http import request
 from openerp import SUPERUSER_ID
 
 from openerp.addons.survey.controllers.main import WebsiteSurvey
+import json
 
 class MyLearning(http.Controller):
     @http.route('/mylearning/mylearning/', type='http', auth='public', website=True)
@@ -77,9 +78,16 @@ class ExerciseResponse(http.Controller):
         return request.redirect('/exercise/fill/%s/%s' % (assignment.response_survey.id, user_input.token))
     
 class responseReroute(WebsiteSurvey):
-        @http.route(['/survey/fill/<model("survey.survey"):survey>/<string:token>',
-                     '/exercise/fill/<model("survey.survey"):survey>/<string:token>',
-                 '/survey/fill/<model("survey.survey"):survey>/<string:token>/<string:prev>'],
+        @http.route(['/exercise/fill/<model("survey.survey"):survey>/<string:token>'],
                 type='http', auth='public', website=True)
-        def fill_survey(self, *args, **kwargs):
+        def fill_exercise(self, *args, **kwargs):
             return super(responseReroute, self).fill_survey(*args, **kwargs)
+        
+        # AJAX submission of a page
+        @http.route(['/survey/submit/<model("survey.survey"):survey>'],
+                type='http', methods=['POST'], auth='public', website=True)
+        def submit(self, *args, **kwargs):
+            ret = json.loads(super(responseReroute, self).submit(*args, **kwargs))
+            if ret['redirect'][1:6] == 'survey':
+               ret['redirect'] == ret['redirect'][0] + 'exercise' + ret['redirect'][7:]
+            return json.dumps(ret)
