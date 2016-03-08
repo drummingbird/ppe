@@ -9,8 +9,18 @@
                     <sheet>
                         <group>
                             <field name="name"/>
-                            <field name="product_templates"/>
-                            <field name="exercises"/>
+                            <field name="product_templates">
+                               	<tree string="Product template">
+	                        		<field name="name"/>
+	                        	</tree>
+	                        </field>
+	                    </group>
+	                    <group>
+                            <field name="exercises">
+                               	<tree string="Exercises">
+	                        		<field name="name"/>
+	                        	</tree>
+	                        </field>
                         </group>
                     </sheet>
                 </form>
@@ -24,8 +34,6 @@
             <field name="arch" type="xml">
                 <tree string="bundle Tree">
                     <field name="name"/>
-                    <field name="product_templates"/>
-                    <field name="exercises"/>
                 </tree>
             </field>
         </record>
@@ -37,8 +45,6 @@
             <field name="arch" type="xml">
                 <search>
                     <field name="name"/>
-                    <field name="product_templates"/>
-                    <field name="exercises"/>
                 </search>
             </field>
         </record>
@@ -60,10 +66,6 @@
         </record>
     
 
-        <!-- top level menu: no parent -->
-        <menuitem id="main_learn_menu" name="Learn"/>
-        <!-- A first level in the left side menu is needed
-             before using action= attribute -->
         <menuitem id="sale_learn_menu" name="Sales"
                   parent="main_learn_menu"/>
         <!-- the following menuitem should appear *after*
