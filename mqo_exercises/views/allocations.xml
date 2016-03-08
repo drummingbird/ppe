@@ -11,6 +11,7 @@
                             <field name="partner_id"/>
                             <field name="exercise_id"/>
                             <field name="suitability"/>
+                            <field name="expiry_datetime"/>
                         </group>
                     </sheet>
                 </form>
@@ -26,6 +27,7 @@
                     <field name="partner_id"/>
                     <field name="exercise_id"/>
                     <field name="suitability"/>
+                    <field name="expiry_datetime"/>
                 </tree>
             </field>
         </record>
