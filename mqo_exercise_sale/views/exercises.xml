@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <record model="ir.ui.view" id=exercise_form_view>
+        <record model="ir.ui.view" id="exercise_form_view">
             <field name="name">Form view for exercise</field>
             <field name="model">mqo.exercise</field>
             <field name="inherit_id" ref="mqo_exercises.exercise_form_view"/>
@@ -19,4 +19,5 @@
 		</record>
     </data>
 </openerp>
+
 
