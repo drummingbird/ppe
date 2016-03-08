@@ -25,7 +25,7 @@
         # 'security/ir.model.access.csv',
         #'templates/templates.xml',
         'views/product.xml',
-        #'views/exercises.xml',
+        'views/exercises.xml',
         'views/bundle.xml',
         #'views/session_workflow.xml',
     ],
