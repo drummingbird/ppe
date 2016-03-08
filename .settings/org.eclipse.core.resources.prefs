@@ -1,4 +1,7 @@
 eclipse.preferences.version=1
+encoding//mqo_exercise_sale/__init__.py=utf-8
+encoding//mqo_exercise_sale/__openerp__.py=utf-8
+encoding//mqo_exercise_sale/models/__init__.py=utf-8
 encoding//mqo_exercises/__init__.py=utf-8
 encoding//mqo_exercises/__openerp__.py=utf-8
 encoding//mqo_exercises/controllers/__init__.py=utf-8
