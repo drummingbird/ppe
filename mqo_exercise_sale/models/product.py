@@ -5,5 +5,5 @@ class product(models.Model):
     _inherit = 'product.template'
     
     hasbundles = fields.Boolean(string="Is an MQO exercise product?")
-    bundles = fields.Many2many('mqo.bundle', relation='mqo.bundle_product_relation', string="Exercise bundle")
+    bundles = fields.Many2many('mqo.bundle', relation='mqo_bundle_product_relation', string="Exercise bundle")
 
