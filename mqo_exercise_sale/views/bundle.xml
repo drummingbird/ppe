@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="bundle_form_view">
+            <field name="name">bundle.form</field>
+            <field name="model">mqo.bundle</field>
+            <field name="arch" type="xml">
+                <form string="bundle Form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="product_templates"/>
+                            <field name="exercises"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+        <!-- override the automatically generated list view for bundle -->
+        <record model="ir.ui.view" id="bundle_tree_view">
+            <field name="name">bundle.tree</field>
+            <field name="model">mqo.bundle</field>
+            <field name="arch" type="xml">
+                <tree string="bundle Tree">
+                    <field name="name"/>
+                    <field name="product_templates"/>
+                    <field name="exercises"/>
+                </tree>
+            </field>
+        </record>
+
+    
+        <record model="ir.ui.view" id="bundle_search_view">
+            <field name="name">bundle.search</field>
+            <field name="model">mqo.bundle</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="product_templates"/>
+                    <field name="exercises"/>
+                </search>
+            </field>
+        </record>
+    
+         <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="bundle_list_action">
+            <field name="name">bundles</field>
+            <field name="res_model">mqo.bundle</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first bundle
+                </p>
+            </field>
+        </record>
+    
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_learn_menu" name="Learn"/>
+        <!-- A first level in the left side menu is needed
+             before using action= attribute -->
+        <menuitem id="sale_learn_menu" name="Sales"
+                  parent="main_learn_menu"/>
+        <!-- the following menuitem should appear *after*
+             its parent exercises_menu and *after* its
+             action exercise_list_action -->
+        <menuitem id="bundles_menu" name="Bundles" parent="sale_learn_menu"
+                  action="bundle_list_action"/>
+        <!-- Full id location:
+             action="mqo_exercises.course_list_action"
+             It is not required when it is the same module -->
+    </data>
+</openerp>
