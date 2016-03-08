@@ -11,7 +11,6 @@
 	                    <field name="bundles">
 	                        <tree string="Bundles">
 	                        	<field name="name"/>
-	                            <field name="product_templates"/>
 	                        </tree>
 	                    </field>
 	                </page>
