@@ -67,7 +67,7 @@
     
 
         <menuitem id="sale_learn_menu" name="Sales"
-                  parent="main_learn_menu"/>
+                  parent="mqo_exercises.main_learn_menu"/>
         <!-- the following menuitem should appear *after*
              its parent exercises_menu and *after* its
              action exercise_list_action -->
