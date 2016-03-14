@@ -44,7 +44,7 @@ class StrengthsResults(http.Controller):
         survey_id = survey_obj.search(cr, SUPERUSER_ID, [('title', '=', 'Strengths')], context=context)[0]
         survey = survey_obj.browse(cr, SUPERUSER_ID, [survey_id], context=context)[0]
         
-        print('survey_id' + str(survey_id))
+        print('survey_id ' + str(survey_id))
         # Controls if the survey can be displayed
         errpage = self._check_bad_cases(cr, uid, request, survey_obj, survey, user_input_obj, context=context)
         if errpage:
@@ -65,7 +65,7 @@ class StrengthsResults(http.Controller):
         dic_ids = dict()
         for page in survey.page_ids:
             for question in page.question_ids:
-                dat = ir_model_data.name_get(cr, uid, question.id, context=context)
+                dat = ir_model_data.name_get(cr, uid, [question.id], context=context)
                 dic_ids[question.id] = dat[0]
         
         print(dic_ids)
