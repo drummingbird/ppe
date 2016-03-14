@@ -60,7 +60,7 @@ class StrengthsResults(http.Controller):
             user_input = user_input_obj.browse(cr, SUPERUSER_ID, [user_input_id], context=context)[0]
 
         # Define dictionary to interpret results: question_id -- category
-        ir_model_data = self.pool.get('ir.model.data')
+        ir_model_data = request.registry['ir.model.data']
         
         dic_ids = dict()
         for page in survey.page_ids:
