@@ -68,12 +68,10 @@ class StrengthsResults(http.Controller):
             for question in page.question_ids:
                 question_ids.append(question.id) 
             ids = ir_model_data.search(cr, uid, [('model', '=', 'survey.question'), ('res_id', '=', question_ids)], context=context)
-            # print('ir_model_id' + str(ir_model_id) + " and question id " + str(question.id))
-            dat = ir_model_data.read(cr, uid, ids, ['name', 'res_id'])
-            print(dat)
-            dic_ids[dat['res_id']] = dat['name']
+            recordset = ir_model_data.read(cr, uid, ids, ['name', 'res_id'])
+            for record in recordset:
+                dic_ids[record['res_id']] = record['name']
         
-        return
         print(dic_ids)
         # Identify what category each question is in
         dic_cat = dic_ids
