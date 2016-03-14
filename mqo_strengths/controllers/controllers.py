@@ -94,7 +94,7 @@ class StrengthsResults(http.Controller):
         
         # analyze survey results, using dictionary of question ids and categories 
         for line in user_input_line:
-            cat = dic_cat[line.question_id]
+            cat = dic_cat[line.question_id.id]
             res[cat] = res[cat] + line.quizz_mark
         
         res_sorted = []  
