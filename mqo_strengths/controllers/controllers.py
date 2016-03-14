@@ -67,7 +67,7 @@ class StrengthsResults(http.Controller):
             question_ids = []
             for question in page.question_ids:
                 question_ids.append(question.id) 
-            ids = ir_model_data.search(cr, uid, [('model', '=', 'survey.question'), ('res_id', '=', question_ids)], context=context)
+            ids = ir_model_data.search(cr, uid, [('model', '=', 'survey.question'), ('res_id', 'in', question_ids)], context=context)
             recordset = ir_model_data.read(cr, uid, ids, ['name', 'res_id'])
             for record in recordset:
                 dic_ids[record['res_id']] = record['name']
