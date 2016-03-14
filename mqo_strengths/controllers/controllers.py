@@ -65,10 +65,10 @@ class StrengthsResults(http.Controller):
         dic_ids = dict()
         for page in survey.page_ids:
             for question in page.question_ids:
-                ir_model_id = ir_model_data.search(cr, uid, [('model', '=', 'survey.question'), ('res_id', '=', question.id)], context=context)
-                print('ir_model_id' + str(ir_model_id) + " and qestion id " + str(question.id))
-                dat = ir_model_data.browse(cr, uid, [ir_model_id], context=context)[0]
-                dic_ids[question.id] = dat.name
+                ids = ir_model_data.search(cr, uid, [('model', '=', 'survey.question'), ('res_id', '=', question.id)], context=context)
+                # print('ir_model_id' + str(ir_model_id) + " and question id " + str(question.id))
+                dat = ir_model_data.read(cr, uid, ids[0], ['name', 'res_id'])
+                dic_ids[question.id] = dat['name']
         
         print(dic_ids)
         # Identify what category each question is in
