@@ -9,6 +9,16 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+
+class StrengthItem():
+    name = ''
+    value = 0
+    
+    def __init__(self, name, value):
+        self.name = name
+        self.value = value
+ 
+
         
 class StrengthsResults(http.Controller):
     
@@ -100,8 +110,7 @@ class StrengthsResults(http.Controller):
         res_sorted = []  
         # Sort through strengths in order
         for key, value in sorted(res.iteritems(), key=lambda (k,v): (v,k),reverse=True):  
-            diction= {"value": value, "name": key}  
-            res_sorted.append(diction)
+            res_sorted.append(StrengthItem(name=key, value=value))
 
         vals = {'strengths': res_sorted}
         print(vals)
