@@ -24,7 +24,7 @@
     'data': [
         #'security/ir.model.access.csv',
         'templates/templates.xml',
-        'views/survey.xml',
+        # 'views/survey.xml',
         #'views/session_workflow.xml',
     ],
     # only loaded in demonstration mode

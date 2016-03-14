@@ -12,6 +12,7 @@ encoding//mqo_exercises/models/assignment.py=utf-8
 encoding//mqo_exercises/models/exercise.py=utf-8
 encoding//mqo_exercises/models/partner.py=utf-8
 encoding//mqo_strengths/__openerp__.py=utf-8
+encoding//mqo_strengths/controllers/__init__.py=utf-8
 encoding//mqo_strengths/controllers/controllers.py=utf-8
 encoding//mqo_strengths/models/__init__.py=utf-8
 encoding//openacademy/__init__.py=utf-8
