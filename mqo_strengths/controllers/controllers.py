@@ -44,6 +44,7 @@ class StrengthsResults(http.Controller):
         survey_id = survey_obj.search(cr, SUPERUSER_ID, [('title', '=', 'Strengths')], context=context)[0]
         survey = survey_obj.browse(cr, SUPERUSER_ID, [survey_id], context=context)[0]
         
+        print('survey_id' + str(survey_id))
         # Controls if the survey can be displayed
         errpage = self._check_bad_cases(cr, uid, request, survey_obj, survey, user_input_obj, context=context)
         if errpage:
@@ -67,19 +68,21 @@ class StrengthsResults(http.Controller):
                 dat = ir_model_data.name_get(cr, uid, ids, context=context)
                 dic_ids[question.id] = dat[0]
         
-        
+        print(dic_ids)
         # Identify what category each question is in
         dic_cat = dic_ids
         # strengths questions are named X_X_X_{strengthname}_X 
         for item, value in dic_cat.iteritems():
                 dic_cat[item] = value.split('_')[3]
         
+        print(dic_cat)
         # create result dictionary including each unique category
         categories = set(dic_cat.values())
         res = dict()
         for item in categories:
             res[item] = 0
         
+        print(res)
         # get responses
         user_input_line_obj = request.registry['survey.user_input_line']
         user_input_line_ids = user_input_line_obj.search(cr, SUPERUSER_ID, [('survey_id', '=', survey_id)], context=context)
@@ -97,6 +100,7 @@ class StrengthsResults(http.Controller):
             res_sorted.append(diction)
 
         vals = {'strengths': res_sorted}
+        print(vals)
         return request.website.render("mqo_strengths.results", vals)    
             
         
