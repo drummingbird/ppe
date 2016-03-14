@@ -1,0 +1,16 @@
+<openerp>
+    <data>
+	    <template id="index">
+            <t t-call="website.layout">
+                <t t-set="title">My learning</t>
+                <div class="oe_structure">
+                    <div class="container">
+				        <t t-foreach="strengths" t-as="strength">
+				          <p><t t-esc="strength.name"/> value: <t t-esc="strength.value"/></p>
+				        </t>
+				  	</div>
+				</div>
+			</t>    
+	    </template>
+    </data>
+</openerp>
