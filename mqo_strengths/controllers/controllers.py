@@ -99,7 +99,7 @@ class StrengthsResults(http.Controller):
         
         res_sorted = []  
         # Sort through strengths in order
-        for key, value in sorted(t.iteritems(), key=lambda (k,v): (v,k),reverse=True):  
+        for key, value in sorted(res.iteritems(), key=lambda (k,v): (v,k),reverse=True):  
             diction= {"value": value, "name": key}  
             res_sorted.append(diction)
 
