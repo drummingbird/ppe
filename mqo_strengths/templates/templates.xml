@@ -6,7 +6,7 @@
                 <div class="oe_structure">
                     <div class="container">
 				        <t t-foreach="strengths" t-as="strength">
-				          <p><t t-esc="strength[name]"/> value: <t t-esc="strength[value]"/></p>
+				          <p><t t-esc="strength['name']"/> value: <t t-esc="strength['value']"/></p>
 				        </t>
 				  	</div>
 				</div>
