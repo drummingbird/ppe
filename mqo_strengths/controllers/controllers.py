@@ -64,12 +64,16 @@ class StrengthsResults(http.Controller):
         
         dic_ids = dict()
         for page in survey.page_ids:
-            for question in page.question_ids:
-                ids = ir_model_data.search(cr, uid, [('model', '=', 'survey.question'), ('res_id', '=', question.id)], context=context)
-                # print('ir_model_id' + str(ir_model_id) + " and question id " + str(question.id))
-                dat = ir_model_data.read(cr, uid, ids[0], ['name', 'res_id'])
-                dic_ids[question.id] = dat['name']
+            question_ids = []
+            for question in question_ids:
+                question_ids.append(question.id) 
+            ids = ir_model_data.search(cr, uid, [('model', '=', 'survey.question'), ('res_id', '=', question_ids)], context=context)
+            # print('ir_model_id' + str(ir_model_id) + " and question id " + str(question.id))
+            dat = ir_model_data.read(cr, uid, ids, ['name', 'res_id'])
+            print(dat)
+            dic_ids[dat['res_id']] = dat['name']
         
+        return
         print(dic_ids)
         # Identify what category each question is in
         dic_cat = dic_ids
@@ -88,7 +92,7 @@ class StrengthsResults(http.Controller):
         # get responses
         user_input_line_obj = request.registry['survey.user_input_line']
         user_input_line_ids = user_input_line_obj.search(cr, SUPERUSER_ID, [('survey_id', '=', survey_id)], context=context)
-        user_input_line = user_input_line_obj.browse(cr, SUPERUSER_ID, [user_input_line_ids], context=context)
+        user_input_line = user_input_line_obj.browse(cr, SUPERUSER_ID, user_input_line_ids, context=context)
         
         # analyze survey results, using dictionary of question ids and categories 
         for line in user_input_line:
