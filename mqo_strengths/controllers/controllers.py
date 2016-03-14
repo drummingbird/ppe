@@ -65,7 +65,7 @@ class StrengthsResults(http.Controller):
         dic_ids = dict()
         for page in survey.page_ids:
             for question in page.question_ids:
-                dat = ir_model_data.name_get(cr, uid, ids, context=context)
+                dat = ir_model_data.name_get(cr, uid, question.id, context=context)
                 dic_ids[question.id] = dat[0]
         
         print(dic_ids)
