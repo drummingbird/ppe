@@ -2,10 +2,10 @@ from openerp import models, fields, api
 
 
 class Question_category(models.Model):
-    """ Category of question """
     _name = "survey.question.category"
     _description = "Category of question category ..."
-    name = fields.Char('Name', required=True)
+
+    name = fields.Char(string="Name", required=True)
   
 
 class Mqo_question(models.Model):
