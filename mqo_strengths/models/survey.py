@@ -3,8 +3,8 @@ from openerp import models, fields, api
 
 class Question_category(models.Model):
     """ Category of question """
-    _name = "survey.question_category"
-    _description = "Category of project's task, issue, ..."
+    _name = "survey.question.category"
+    _description = "Category of question category ..."
     name = fields.Char('Name', required=True)
   
 
