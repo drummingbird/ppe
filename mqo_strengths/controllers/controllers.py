@@ -69,21 +69,16 @@ class StrengthsResults(http.Controller):
         else:
             user_input = user_input_obj.browse(cr, SUPERUSER_ID, [user_input_id], context=context)[0]
 
-        dic_ids = dict()
+        # Identify what category each question is in
+        dic_cat = dict()
         for page in survey.page_ids:
             question_ids = []
             for question in page.question_ids:
                 question_ids.append(question.id) 
-                dic_ids[question.id] = question.categ_id.id
+                dic_cat[question.id] = question.categ_id.id
 
-        print(dic_ids)
-        # Identify what category each question is in
-        dic_cat = dic_ids
-        # strengths questions are named X_X_X_{strengthname}_X 
-        for item, value in dic_cat.iteritems():
-                dic_cat[item] = value.split('_')[3]
-        
         print(dic_cat)
+
         # create result dictionary including each unique category
         categories = set(dic_cat.values())
         res = dict()
