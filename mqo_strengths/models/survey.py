@@ -12,7 +12,7 @@ class Mqo_question(models.Model):
     _name = 'survey.question'
     _inherit = 'survey.question'
     
-    categ_id = fields.Many2one('survey.question_category', string="Category")
+    categ_id = fields.Many2one('survey.question.category', string="Category")
     
     
 
