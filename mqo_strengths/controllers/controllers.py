@@ -69,19 +69,13 @@ class StrengthsResults(http.Controller):
         else:
             user_input = user_input_obj.browse(cr, SUPERUSER_ID, [user_input_id], context=context)[0]
 
-        # Define dictionary to interpret results: question_id -- category
-        ir_model_data = request.registry['ir.model.data']
-        
         dic_ids = dict()
         for page in survey.page_ids:
             question_ids = []
             for question in page.question_ids:
                 question_ids.append(question.id) 
-        ids = ir_model_data.search(cr, uid, [('model', '=', 'survey.question'), ('res_id', 'in', question_ids)], context=context)
-        recordset = ir_model_data.read(cr, uid, ids, ['name', 'res_id'])
-        for record in recordset:
-            dic_ids[record['res_id']] = record['name']
-    
+                dic_ids[question.id] = question.categ_id.id
+
         print(dic_ids)
         # Identify what category each question is in
         dic_cat = dic_ids
