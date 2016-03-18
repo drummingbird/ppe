@@ -104,7 +104,7 @@ class StrengthsResults(http.Controller):
      
         strengths = strengths.sorted(key=lambda strength: strength.value, reverse=True)
         for i, strength in enumerate(strengths):
-            strength.seq_num = i
+            strength.seq_num = i + 1
         
         vals = {'strengths': strengths}
         return request.website.render("mqo_strengths.results", vals)    
