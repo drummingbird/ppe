@@ -54,7 +54,6 @@ class StrengthsResults(http.Controller):
         survey_id = survey_obj.search(cr, SUPERUSER_ID, [('title', '=', 'Strengths')], context=context)[0]
         survey = survey_obj.browse(cr, SUPERUSER_ID, [survey_id], context=context)[0]
         
-        print('survey_id ' + str(survey_id))
         # Controls if the survey can be displayed
         errpage = self._check_bad_cases(cr, uid, request, survey_obj, survey, user_input_obj, context=context)
         if errpage:
@@ -75,34 +74,36 @@ class StrengthsResults(http.Controller):
             question_ids = []
             for question in page.question_ids:
                 question_ids.append(question.id) 
-                dic_cat[question.id] = question.categ_id.id
-
-        print(dic_cat)
+                dic_cat[question.id] = question.categ_id.name
 
         # create result dictionary including each unique category
-        categories = set(dic_cat.values())
+        strength_names = set(dic_cat.values())
         res = dict()
-        for item in categories:
-            res[item] = 0
+        for item in strength_names:
+            res[item] = 0.0
         
-        print(res)
+        n = res
+        
         # get responses
-        user_input_line_obj = request.registry['survey.user_input_line']
-        user_input_line_ids = user_input_line_obj.search(cr, SUPERUSER_ID, [('survey_id', '=', survey_id)], context=context)
-        user_input_line = user_input_line_obj.browse(cr, SUPERUSER_ID, user_input_line_ids, context=context)
+        #user_input_line_obj = request.registry['survey.user_input_line']
+        #user_input_line_ids = user_input_line_obj.search(cr, SUPERUSER_ID, [('survey_id', '=', survey_id)], context=context)
+        #user_input_line = user_input_line_obj.browse(cr, SUPERUSER_ID, user_input_line_ids, context=context)
         
-        # analyze survey results, using dictionary of question ids and categories 
-        for line in user_input_line:
+        # analyze survey results, using dictionary of question ids and strength_names 
+        #for line in user_input_line:
+        for line in user_input.user_input_line_ids:
             cat = dic_cat[line.question_id.id]
-            res[cat] = res[cat] + line.quizz_mark
+            res[cat] = (res[cat]*(n[cat]) + line.quizz_mark) / (n[cat] + 1.0)  
+            n[cat] = n[cat] + 1.0
         
-        res_sorted = []  
-        # Sort through strengths in order
-        for key, value in sorted(res.iteritems(), key=lambda (k,v): (v,k),reverse=True):  
-            res_sorted.append(StrengthItem(name=key, value=value))
+        strengths_obj = request.registry['mqo.snippet.strengths']
+        strengths = strengths_obj.search()
+        for strength in strengths:
+            strength.value = res[strength.name]
+        
+        strengths = strengths.sorted(key=lambda strength: strength.value, reverse=True)
 
-        vals = {'strengths': res_sorted}
-        print(vals)
+        vals = {'strengths': strengths}
         return request.website.render("mqo_strengths.results", vals)    
             
         
