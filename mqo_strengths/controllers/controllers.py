@@ -99,8 +99,9 @@ class StrengthsResults(http.Controller):
         strengths_obj = request.registry['mqo.snippet.strengths']
         strength_ids = strengths_obj.search(cr, SUPERUSER_ID, [], context=context)
         strengths = strengths_obj.browse(cr, SUPERUSER_ID, strength_ids, context=context)
-        for strength in strengths:
+        for i, strength in enumerate(strengths):
             strength.value = res[strength.name]
+            strength.seq_num = i
         
         strengths = strengths.sorted(key=lambda strength: strength.value, reverse=True)
 

@@ -15,15 +15,11 @@
 
 	    <template id="strength_snippet">
 		    <div>
-		        <div class="oe_snippet_thumbnail">
-		            <img class="oe_snippet_thumbnail_img" src="/website/static/src/img/blocks/block_text_block.png"/>
-		            <span class="oe_snippet_thumbnail_title">Text Block</span>
-		        </div>
 		        <section class="oe_snippet_body mt16 mb16">
 		            <div class="container">
 		                <div class="row">
 		                    <div class="col-md-12 text-center mt16 mb32">
-		                        <h2><t t-esc="strength.title"/> (<t t-esc="strength.value"/>)</h2>
+		                        <h2>#<t t-esc="strength.seq_num"/>: <t t-esc="strength.title"/> (<t t-esc="strength.value"/>)</h2>
 		                    </div>
 		                    <div class="col-md-12 mb16 mt16">
 		                        <p><t t-esc="strength.text"/></p>
