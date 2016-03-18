@@ -6,7 +6,7 @@
                 <div class="oe_structure">
                     <div class="container">
 				        <t t-foreach="strengths" t-as="strength">
-				          <t t-call="strength_snippet"></t>
+				          <t t-call="mqo_strengths.strength_snippet"></t>
 				        </t>
 				  	</div>
 				</div>
