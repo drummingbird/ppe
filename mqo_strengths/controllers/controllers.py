@@ -101,7 +101,7 @@ class StrengthsResults(http.Controller):
         # strengths = strengths_obj.browse(cr, SUPERUSER_ID, strength_ids, context=context)
         strengths = strengths_obj.search_read(cr, SUPERUSER_ID, [], ['id', 'name', 'title', 'text'])
         for strength in strengths:
-            strength["value"] = res[strength.name]
+            strength["value"] = res[strength["name"]]
      
         strengths = strengths.sorted(key=lambda strength: strength["value"], reverse=True)
         for i, strength in enumerate(strengths):
