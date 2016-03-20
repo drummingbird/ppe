@@ -93,12 +93,8 @@ class StrengthsResults(http.Controller):
         #for line in user_input_line:
         for line in user_input.user_input_line_ids:
             cat = dic_cat[line.question_id.id]
-            testing = False
-            if cat == "Learning": testing = True
-            if testing: print('mark=' + str(line.quizz_mark) + ", res[cat] pre=" + str(res[cat]) + ", n[cat] pre=" + str(n[cat]))
             res[cat] = (res[cat]*(n[cat]) + line.quizz_mark) / (n[cat] + 1.0)
             n[cat] = n[cat] + 1.0
-            if testing: print('mark=' + str(line.quizz_mark) + ", res[cat] post=" + str(res[cat]) + ", n[cat] post=" + str(n[cat]))
         
         strengths_obj = request.registry['mqo.snippet.strengths']
         # strength_ids = strengths_obj.search(cr, SUPERUSER_ID, [], context=context)
