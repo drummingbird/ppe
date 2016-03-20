@@ -97,14 +97,15 @@ class StrengthsResults(http.Controller):
             n[cat] = n[cat] + 1.0
         
         strengths_obj = request.registry['mqo.snippet.strengths']
-        strength_ids = strengths_obj.search(cr, SUPERUSER_ID, [], context=context)
-        strengths = strengths_obj.browse(cr, SUPERUSER_ID, strength_ids, context=context)
+        # strength_ids = strengths_obj.search(cr, SUPERUSER_ID, [], context=context)
+        # strengths = strengths_obj.browse(cr, SUPERUSER_ID, strength_ids, context=context)
+        strength = strengths_obj.search_read(cr, SUPERUSER_ID, [], context=context, ['id', 'name', 'title', 'text'])
         for strength in strengths:
-            strength.value = res[strength.name]
+            strength["value"] = res[strength.name]
      
-        strengths = strengths.sorted(key=lambda strength: strength.value, reverse=True)
+        strengths = strengths.sorted(key=lambda strength: strength["value"], reverse=True)
         for i, strength in enumerate(strengths):
-            strength.seq_num = i + 1
+            strength["seq_num"] = i + 1
         
         vals = {'strengths': strengths}
         return request.website.render("mqo_strengths.results", vals)    
