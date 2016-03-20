@@ -99,7 +99,7 @@ class StrengthsResults(http.Controller):
         strengths_obj = request.registry['mqo.snippet.strengths']
         # strength_ids = strengths_obj.search(cr, SUPERUSER_ID, [], context=context)
         # strengths = strengths_obj.browse(cr, SUPERUSER_ID, strength_ids, context=context)
-        strength = strengths_obj.search_read(cr, SUPERUSER_ID, [], ['id', 'name', 'title', 'text'])
+        strengths = strengths_obj.search_read(cr, SUPERUSER_ID, [], ['id', 'name', 'title', 'text'])
         for strength in strengths:
             strength["value"] = res[strength.name]
      
