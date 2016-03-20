@@ -9,5 +9,4 @@ class Mqo_strength_snippet(models.Model):
     title = fields.Char(string="Title", required=True)
     subtitle = fields.Char(string="Subtitle")
     text = fields.Char(string="Text", required=True)
-    value = fields.Float(string="Optional value")
-    seq_num = fields.Integer(string="Optional sequence integer")
+    
