@@ -79,10 +79,10 @@ class StrengthsResults(http.Controller):
         # create result dictionary including each unique category
         strength_names = set(dic_cat.values())
         res = dict()
+        n = dict()
         for item in strength_names:
             res[item] = 0.0
-        
-        n = res
+            n[item] = 0.0
         
         # get responses
         #user_input_line_obj = request.registry['survey.user_input_line']
