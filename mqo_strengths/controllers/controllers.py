@@ -103,7 +103,7 @@ class StrengthsResults(http.Controller):
         for strength in strengths:
             strength["value"] = res[strength["name"]]
      
-        strengths = strengths.sorted(key=lambda strength: strength["value"], reverse=True)
+        strengths = sorted(strengths, key=lambda strength: strength["value"], reverse=True)
         for i, strength in enumerate(strengths):
             strength["seq_num"] = i + 1
         
