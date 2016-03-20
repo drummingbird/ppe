@@ -51,7 +51,7 @@ class StrengthsResults(http.Controller):
         survey_obj = request.registry['survey.survey']
         user_input_obj = request.registry['survey.user_input']
 
-        survey_id = survey_obj.search(cr, SUPERUSER_ID, [('title', '=', 'Strengths')], context=context)[0]
+        survey_id = survey_obj.search(cr, SUPERUSER_ID, [('title', '=', 'Discover your strengths')], context=context)[0]
         survey = survey_obj.browse(cr, SUPERUSER_ID, [survey_id], context=context)[0]
         
         # Controls if the survey can be displayed
