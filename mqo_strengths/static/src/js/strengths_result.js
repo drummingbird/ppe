@@ -27,15 +27,14 @@ $(document).ready(function () {
 			.y(function(d) { return d.value })
 			.margin({top: 30, right: 20, bottom: 50, left: 175})
 			.showValues(true)           //Show bar value next to each bar.
-			.tooltips(true)             //Show tooltips on hover.
-			.transitionDuration(500);
+			.tooltips(true);             //Show tooltips on hover.
 
 		chart.yAxis
 			.tickFormat(d3.format(',.2f'));
 
 		d3.select('#d3bar svg')
 			.datum(d3data)
-			.call(chart);
+			.transition().duration(500).call(chart);
 
 		nv.utils.windowResize(chart.update);
 
