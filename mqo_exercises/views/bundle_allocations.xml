@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <record model="ir.ui.view" id="bundle.allocation_form_view">
+        <record model="ir.ui.view" id="bundle_allocation_form_view">
             <field name="name">bundle.allocation.form</field>
             <field name="model">mqo.bundle.allocation</field>
             <field name="arch" type="xml">
