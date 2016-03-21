@@ -21,9 +21,6 @@ $(document).ready(function () {
 
 	var d3data = JSON.parse($('#d3bar').attr("d3data"));
 
-	console.debug("Drawing chart with d3data:");
-	console.debug(JSON.stringify(d3data));
-
 	nv.addGraph(function() {
 		var chart = nv.models.multiBarHorizontalChart()
 			.x(function(d) { return d.label })

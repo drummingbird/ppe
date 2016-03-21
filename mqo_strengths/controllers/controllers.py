@@ -109,7 +109,8 @@ class StrengthsResults(http.Controller):
             strength["seq_num"] = i + 1
             d3barvalues.append({'label': strength["title"], 'value': strength["value"]})
         
-        d3bardata = {'key': 'Your strengths', "color": "#d67777", 'values': d3barvalues}
+        d3bardata = []
+        d3bardata.append({'key': 'Your strengths', "color": "#d67777", 'values': d3barvalues})
         vals = {'strengths': strengths, "d3data": json.dumps(d3bardata)}
         return request.website.render("mqo_strengths.results", vals)    
             
