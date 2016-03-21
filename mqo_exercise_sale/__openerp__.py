@@ -26,7 +26,6 @@
         #'templates/templates.xml',
         'views/product.xml',
         'views/exercises.xml',
-        'views/bundle.xml',
         #'views/session_workflow.xml',
     ],
     # only loaded in demonstration mode

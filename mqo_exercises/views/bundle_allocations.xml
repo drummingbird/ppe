@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="bundle.allocation_form_view">
+            <field name="name">bundle.allocation.form</field>
+            <field name="model">mqo.bundle.allocation</field>
+            <field name="arch" type="xml">
+                <form string="Bundle Allocation Form">
+                    <sheet>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="bundle"/>
+                            <field name="expiry_datetime"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- override the automatically generated list view for allocation -->
+        <record model="ir.ui.view" id="bundle_allocation_tree_view">
+            <field name="name">bundle.allocation.tree</field>
+            <field name="model">mqo.bundle.allocation</field>
+            <field name="arch" type="xml">
+                <tree string="Bundle Allocation Tree">
+                    <field name="partner_id"/>
+                    <field name="bundle"/>
+                    <field name="expiry_datetime"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="bundle_allocation_search_view">
+            <field name="name">bundle.allocation.search</field>
+            <field name="model">mqo.bundle.allocation</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="partner_id"/>
+                    <field name="bundle"/>
+                </search>
+            </field>
+        </record>
+    
+        <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="bundle_allocation_list_action">
+            <field name="name">Bundle Allocations</field>
+            <field name="res_model">mqo.bundle.allocation</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first bundle allocation
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="bundle_allocations_menu" name="Bundle Allocations" parent="learn_menu"
+                  action="bundle_allocation_list_action"/>
+        <!-- Full id location:
+             action="mqo_exercises.allocation_list_action"
+             It is not required when it is the same module -->
+    </data>
+</openerp>
