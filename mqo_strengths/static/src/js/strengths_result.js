@@ -17,7 +17,7 @@
 
 $(document).ready(function () {
     'use strict';
-    console.debug("[survey] Strengths Result JS is loading...");
+    console.debug("[mqo_strengths] Strengths Result JS is loading...");
 
 	var d3data = JSON.parse($('#d3bar').attr("d3data"));
 
@@ -28,7 +28,7 @@ $(document).ready(function () {
 			.margin({top: 30, right: 20, bottom: 50, left: 175})
 			.showValues(true)           //Show bar value next to each bar.
 			.tooltips(true)             //Show tooltips on hover.
-			.transitionDuration(500)
+			.transitionDuration(500);
 
 		chart.yAxis
 			.tickFormat(d3.format(',.2f'));
@@ -42,5 +42,5 @@ $(document).ready(function () {
 		return chart;
 	});
 	
-    console.debug("[survey] Strengths Result JS loaded!");
+    console.debug("[mqo_strengths] Strengths Result JS loaded!");
 });
