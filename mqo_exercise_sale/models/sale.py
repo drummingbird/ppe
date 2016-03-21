@@ -1,7 +1,7 @@
 from openerp import models, fields, api
 import datetime
 
-class sale_order(model.Model):
+class sale_order(models.Model):
     _inherit = 'sale.order'
 
     @api.multi
