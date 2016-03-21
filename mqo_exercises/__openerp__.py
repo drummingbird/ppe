@@ -30,7 +30,7 @@
         'views/assignments.xml',
         'views/survey.xml',
         'views/bundle.xml',
-        'views/bundle_allocation.xml',
+        'views/bundle_allocations.xml',
         #'views/session_workflow.xml',
     ],
     # only loaded in demonstration mode
