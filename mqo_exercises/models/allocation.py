@@ -9,7 +9,6 @@ class Allocation(models.Model):
     exercise_id = fields.Many2one('mqo.exercise',
         ondelete='cascade', string="Exercise", required=True)
     suitability = fields.Float(string="Suitability rating", compute="_compute_suitability", store=True)
-    expiry_datetime = fields.Datetime(string="Expiry", default=lambda self: fields.Datetime.to_string(datetime.datetime.now() + datetime.timedelta(days=365)))
     
     @api.depends('partner_id', 'exercise_id')
     def _compute_suitability(self):

@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-import product, bundle, exercise
+import product, exercise, sale

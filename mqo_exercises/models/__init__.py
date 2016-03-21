@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-import exercise, allocation, assignment, partner, survey
+import exercise, allocation, assignment, partner, survey, bundle

@@ -116,6 +116,7 @@ class Partner(models.Model):
 
     allocation_ids = fields.One2many('mqo.allocation', 'partner_id', string="Allocated Exercises")
     assignment_ids = fields.One2many('mqo.assignment', 'partner_id', string="Assigned Exercises")
+    bundle_allocations = fields.One2many('mqo.bundle.allocation', 'partner_id', string="Allocated exercise bundles")
     
     next_exercise_id = fields.Many2one(comodel_name='mqo.exercise', store=True, readonly=True, compute='_compute_next_exercise', string="Current exercise")
     
@@ -145,4 +146,26 @@ class Partner(models.Model):
         assignment_obj = self.env['mqo.assignment']
         for r in self:
             assignment_id = assignment_obj.create({'partner_id': r.id, 'exercise_id': r.next_exercise_id.id, 'datetime_allocated': fields.Datetime.now()})
+        
+    
+    @api.multi
+    @api.depends('bundle_allocations')
+    def allocateExercises_from_Bundles(self):
+        # Create assignment id
+        allocation_obj = self.env['mqo.allocation']
+        # get list of currently allocated exercises:
+        allocationList = allocation_obj.search({'partner_id': partner.id})
+        exercise_id_list = []
+        for allocation in allocationList:
+            exercise_id_list.append(allocation.exercise_id.id)
+        
+        for bundle_allocation in self.bundle_allocations:
+            for exercise in bundle_allocation.bundle.exercises:
+                # see if allocation already exists, and update or create one if needed.
+                if exercise.id not in exercise_id_list:
+                    allocation_id = allocation_obj.create({'partner_id': partner.id, 'exercise_id': exercise.id})
+                exercise_id_list.remove(exercise.id)
+        
+        # remove allocations for any remaining exercise_id_list entries, since they aren't in any of the allocated bundles.
+        allocation_obj.search({'partner_id': partner.id, 'exercise_id': exercise_id_list}).unlink()
         

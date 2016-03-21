@@ -22,18 +22,22 @@ class sale_order_line(models.Model):
         has a quantity attribute that will be the number of
         years subscription linked to this line. """
 
-        allocation_obj = self.env['mqo.allocation']
+        # get list of all current bundle allocations for partner_id
+        bundle_allocation_obj = self.env['mqo.bundle.allocation']
+        bundle_allocations = bundle_allocation_obj.search({'partner_id': partner.id})
+        bundle_id_list = []
+        for bundle_allocation in bundle_allocations:
+            bundle_id_list.append(bundle_allocation.bundle.id)
         
         for line in [l for l in self if l.product_id.bundles]:
             for bundle in line.product_id.bundles:
-                for exercise in bundle.exercises:
-                    # see if allocation already exists, and update or create one if needed.
-                    try:
-                        allocation_id = allocation_obj.search({'partner_id': partner.id, 'exercise_id': exercise.id})[0]
-                    except IndexError:  # No response currently exists for this assignment
-                        expiry_datetime = fields.Datetime.to_string(datetime.datetime.now() + datetime.timedelta(days=365*line.quantity)) 
-                        allocation_id = allocation_obj.create({'partner_id': partner.id, 'exercise_id': exercise.id, 'expiry_datetime': expiry_datetime})
-                    else:
-                        expiry_datetime = fields.Datetime.to_string(fields.Datetime.from_string(allocation_id.expiry_datetime) + datetime.timedelta(days=365*line.quantity))
-                        allocation_id.write({'expiry_datetime': expiry_datetime})
+                # Allocate bundles, or boost their expiry date.
+                if bundle.id in bundle_id_list:
+                    index = bundle_id_list.index(bundle.id)
+                    oldExpiry = fields.Datetime.from_string(bundle_allocations[index].expiry_datetime)
+                    expiry_datetime = fields.Datetime.to_string(oldExpiry + datetime.timedelta(days=365*line.quantity))
+                    bundle_allocations[index].write({'expiry_datetime': expiry_datetime})
+                else:
+                    expiry_datetime = fields.Datetime.to_string(datetime.datetime.now() + datetime.timedelta(days=365*line.quantity))
+                    bundle_allocation_id = bundle_allocation_obj.create({'bundle': bundle.id, 'partner_id': partner.id, 'expiry_datetime': expiry_datetime})
         return True
