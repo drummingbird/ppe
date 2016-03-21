@@ -10,7 +10,7 @@
                 <t t-set="title">My learning</t>
                 <div class="oe_structure">
                     <div class="container">
-                    	<div name="d3bar" class="mt32 mb32" t-att-d3data="d3data">
+                    	<div id="d3bar" class="mt32 mb32" t-att-d3data="d3data">
                     		<svg style='height:500px'> </svg>
                     	</div>
 				        <t t-foreach="strengths" t-as="strength">
