@@ -29,7 +29,7 @@ $(document).ready(function () {
 			.showValues(true)
 			.tooltips(true)
 			.showControls(false)
-			.xDomain([1, 5]);
+			.yDomain([1, 2, 3, 4, 5]);
 
 		chart.yAxis
 			.tickFormat(d3.format(',.2f'));
