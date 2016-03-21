@@ -23,7 +23,7 @@
     # always loaded
     'data': [
         #'security/ir.model.access.csv',
-        'templates/templates.xml',
+        #'templates/templates.xml',
         'views/survey.xml',
         #'views/session_workflow.xml',
     ],
