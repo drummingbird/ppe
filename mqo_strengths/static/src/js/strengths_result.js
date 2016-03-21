@@ -19,7 +19,7 @@ $(document).ready(function () {
     'use strict';
     console.debug("[survey] Strengths Result JS is loading...");
 
-	var d3data = JSON.parse($('#d3graph').attr("d3data"));
+	var d3data = JSON.parse($('#d3bar').attr("d3data"));
 
 	nv.addGraph(function() {
 		var chart = nv.models.multiBarHorizontalChart()
