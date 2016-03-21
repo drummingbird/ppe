@@ -15,4 +15,10 @@ class Mqo_question(models.Model):
     categ_id = fields.Many2one('survey.question.category', string="Category")
     
     
+class Mqo_survey(models.Model):
+    _name = 'survey.survey'
+    _inherit = 'survey.survey'
+    
+    # should move survey stuff into separate module.
+    group = fields.Selection(string="Group", selection=[('survey', 'Survey'), ('exercise', 'Exercise')], default='survey')
 

@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-import snippet
+import models
