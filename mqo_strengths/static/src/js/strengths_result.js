@@ -29,7 +29,7 @@ $(document).ready(function () {
 			.showValues(true)
 			.tooltips(true)
 			.showControls(false)
-			.forceY([1, 5]);
+			.forceY([0, 5]);
 
 		chart.yAxis
 			.tickFormat(d3.format(',.2f'));
