@@ -40,8 +40,9 @@ class BundleAllocation(models.Model):
         allocation_obj = self.env['mqo.allocation']
         # get list of currently allocated exercises:
         for partner_id in partner_ids:
-            allocations = allocation_obj.search({'partner_id': [partner_id]})
-            bundle_allocations = self.search({'partner_id': [partner_id]})
+            [('parent_id', 'child_of', ids)]
+            allocations = allocation_obj.search([('partner_id', '=', partner_id)])
+            bundle_allocations = self.search([('partner_id', '=', partner_id)])
             exercise_id_list = []
             for allocation in allocations:
                 exercise_id_list.append(allocation.exercise_id.id)
@@ -59,7 +60,7 @@ class BundleAllocation(models.Model):
             # remove allocations for any remaining exercise_id_list entries, since they aren't in any of the allocated bundles.
             if len(exercise_id_list) > 0:
                 print('Removing exercises no longer in any bundles')
-                allocation_obj.search({'partner_id': [partner_id], 'exercise_id': exercise_id_list}).unlink()
+                allocation_obj.search([('partner_id', '=', partner_id), ('exercise_id', 'in', exercise_id_list)]).unlink()
         
 
     @api.model
