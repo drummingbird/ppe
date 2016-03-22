@@ -30,14 +30,14 @@ class BundleAllocation(models.Model):
 
 
     @api.model
-    def allocateExercises_from_Bundles(self, partners):
+    def allocateExercises_from_Bundles(self, partner_ids):
         # Create assignment id
 
         allocation_obj = self.env['mqo.allocation']
         # get list of currently allocated exercises:
-        for partner in partners:
-            allocations = allocation_obj.search({'partner_id': partner.id})
-            bundle_allocations = self.search({'partner_id': partner.id})
+        for partner_id in partner_ids:
+            allocations = allocation_obj.search({'partner_id': partner_id})
+            bundle_allocations = self.search({'partner_id': partner_id})
             exercise_id_list = []
             for allocation in allocations:
                 exercise_id_list.append(allocation.exercise_id.id)
@@ -47,7 +47,7 @@ class BundleAllocation(models.Model):
                 for exercise in bundle_allocation.bundle.exercises:
                     # see if allocation already exists, and update or create one if needed.
                     if exercise.id not in exercise_id_list:
-                        allocation_obj.create({'partner_id': partner.id, 'exercise_id': exercise.id})
+                        allocation_obj.create({'partner_id': partner_id, 'exercise_id': exercise.id})
                         print('Exercises were allocated')
                     exercise_id_list.remove(exercise.id)
             
@@ -55,7 +55,7 @@ class BundleAllocation(models.Model):
             # remove allocations for any remaining exercise_id_list entries, since they aren't in any of the allocated bundles.
             if len(exercise_id_list) > 0:
                 print('Removing exercises no longer in any bundles')
-                allocation_obj.search({'partner_id': partner.id, 'exercise_id': exercise_id_list}).unlink()
+                allocation_obj.search({'partner_id': partner_id, 'exercise_id': exercise_id_list}).unlink()
         
 
     @api.model
@@ -65,10 +65,10 @@ class BundleAllocation(models.Model):
         except ValueError:
             return res
         else:
-            partners = []
+            partner_id_list = []
             for bundle_allocation in res:
-                partners.append(bundle_allocation.partner_id)
-            partners = set(partners)
-            self.allocateExercises_from_Bundles(partners)
+                partner_id_list.append(bundle_allocation.partner_id.id)
+            partner_ids = set(partner_id_list)
+            self.allocateExercises_from_Bundles(partner_ids)
         return res
     
