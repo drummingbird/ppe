@@ -4,7 +4,7 @@ class Learner(models.Model):
     _name = 'mqo.learner'
     
     name = fields.Char(string="Name")
-    partner = fields.Many2one('res.partner', 'learner', string="Partner ID")
+    partner = fields.Many2one('res.partner', string="Partner ID")
     user_input_ids = fields.One2many('survey.user_input', 'learner', string="User input IDs")
     
     @api.one
