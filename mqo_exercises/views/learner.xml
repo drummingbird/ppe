@@ -19,7 +19,7 @@
 	                    </field>
 	                </page>
 	                <page string="Allocations">
-	                    <field name="allocation_ids">
+	                    <field name="allocations">
 	                        <tree string="Allocations">
 	                            <field name="exercise_id"/>
 	                            <field name="suitability"/>
@@ -27,11 +27,19 @@
 	                    </field>
 	                </page>
 	                <page string="Assignments">
-	                    <field name="assignment_ids">
+	                    <field name="assignments">
 	                        <tree string="Assignments">
 	                        	<field name="exercise_id"/>
 	                            <field name="rating"/>
 	                            <field name="datetime_allocated"/>
+	                        </tree>
+	                    </field>
+	                </page>
+	                <page string="Bundle allocations">
+	                    <field name="bundle_allocations">
+	                        <tree string="Bundle allocations">
+	                        	<field name="bundle"/>
+	                            <field name="expiry_datetime"/>
 	                        </tree>
 	                    </field>
 	                </page>

@@ -29,7 +29,7 @@
         'views/bundle.xml',
         'views/bundle_allocations.xml',
         'views/exercises.xml',
-        # 'views/learner.xml',
+        'views/learner.xml',
         #'views/session_workflow.xml',
     ],
     # only loaded in demonstration mode
