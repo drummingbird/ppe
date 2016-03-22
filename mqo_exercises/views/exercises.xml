@@ -80,7 +80,7 @@
                             <page string="Allocations">
                                 <field name="allocation_ids">
                                     <tree string="Allocations">
-                                        <field name="partner_id"/>
+                                        <field name="learner"/>
                                         <field name="suitability"/>
                                     </tree>
                                 </field>
@@ -88,7 +88,7 @@
                             <page string="Assignments">
                                 <field name="assignment_ids">
                                     <tree string="Assignments">
-                                    	<field name="partner_id"/>
+                                    	<field name="learner"/>
                                         <field name="rating"/>
                                     </tree>
                                 </field>

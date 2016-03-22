@@ -8,7 +8,7 @@
                 <form string="Assignment Form">
                     <sheet>
                         <group>
-                            <field name="partner_id"/>
+                            <field name="learner"/>
                             <field name="exercise_id"/>
                             <field name="rating"/>
                             <field name="datetime_allocated"/>
@@ -28,7 +28,7 @@
             <field name="model">mqo.assignment</field>
             <field name="arch" type="xml">
                 <tree string="Assignment Tree">
-                    <field name="partner_id"/>
+                    <field name="learner"/>
                     <field name="exercise_id"/>
                     <field name="rating"/>
                     <field name="datetime_allocated"/>
@@ -41,7 +41,7 @@
             <field name="model">mqo.assignment</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name="partner_id"/>
+                    <field name="learner"/>
                     <field name="exercise_id"/>
                 </search>
             </field>

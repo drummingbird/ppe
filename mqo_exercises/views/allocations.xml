@@ -8,7 +8,7 @@
                 <form string="Allocation Form">
                     <sheet>
                         <group>
-                            <field name="partner_id"/>
+                            <field name="learner"/>
                             <field name="exercise_id"/>
                             <field name="suitability"/>
                         </group>
@@ -23,7 +23,7 @@
             <field name="model">mqo.allocation</field>
             <field name="arch" type="xml">
                 <tree string="Allocation Tree">
-                    <field name="partner_id"/>
+                    <field name="learner"/>
                     <field name="exercise_id"/>
                     <field name="suitability"/>
                 </tree>
@@ -35,7 +35,7 @@
             <field name="model">mqo.allocation</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name="partner_id"/>
+                    <field name="learner"/>
                     <field name="exercise_id"/>
                 </search>
             </field>

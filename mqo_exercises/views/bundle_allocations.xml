@@ -8,7 +8,7 @@
                 <form string="Bundle Allocation Form">
                     <sheet>
                         <group>
-                            <field name="partner_id"/>
+                            <field name="learner"/>
                             <field name="bundle"/>
                             <field name="expiry_datetime"/>
                         </group>
@@ -23,7 +23,7 @@
             <field name="model">mqo.bundle.allocation</field>
             <field name="arch" type="xml">
                 <tree string="Bundle Allocation Tree">
-                    <field name="partner_id"/>
+                    <field name="learner"/>
                     <field name="bundle"/>
                     <field name="expiry_datetime"/>
                 </tree>
@@ -35,7 +35,7 @@
             <field name="model">mqo.bundle.allocation</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name="partner_id"/>
+                    <field name="learner"/>
                     <field name="bundle"/>
                 </search>
             </field>
