@@ -63,10 +63,17 @@
         </record>
     
 
+		<!-- top level menu: no parent -->
+        <menuitem id="main_learn_menu" name="Learn"/>
+        <!-- A first level in the left side menu is needed
+             before using action= attribute -->
+        <menuitem id="learn_menu" name="Learn"
+                  parent="mqo_learner.main_learn_menu"/>
+        
         <menuitem id="configuration_menu" name="Configuration"
-                  parent="main_learn_menu"/>
+                  parent="mqo_learner.main_learn_menu"/>
         <menuitem id="contact_menu" name="Learners"
-                  parent="configuration_menu"
+                  parent="mqo_learner.configuration_menu"
                   action="leaner_list_action"/>
     </data>
 </openerp>

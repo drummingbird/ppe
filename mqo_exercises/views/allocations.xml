@@ -57,7 +57,7 @@
             </field>
         </record>
 
-        <menuitem id="allocations_menu" name="Allocations" parent="learn_menu"
+        <menuitem id="allocations_menu" name="Allocations" parent="mqo_learner.learn_menu"
                   action="allocation_list_action"/>
         <!-- Full id location:
              action="mqo_exercises.allocation_list_action"

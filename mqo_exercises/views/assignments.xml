@@ -63,7 +63,7 @@
             </field>
         </record>
 
-        <menuitem id="assignments_menu" name="Assignments" parent="learn_menu"
+        <menuitem id="assignments_menu" name="Assignments" parent="mqo_learner.learn_menu"
                   action="assignment_list_action"/>
         <!-- Full id location:
              action="mqo_exercises.assignment_list_action"

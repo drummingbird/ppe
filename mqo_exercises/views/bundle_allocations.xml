@@ -57,7 +57,7 @@
             </field>
         </record>
 
-        <menuitem id="bundle_allocations_menu" name="Bundle Allocations" parent="sale_learn_menu"
+        <menuitem id="bundle_allocations_menu" name="Bundle Allocations" parent="mqo_exercises.sale_learn_menu"
                   action="bundle_allocation_list_action"/>
         <!-- Full id location:
              action="mqo_exercises.allocation_list_action"

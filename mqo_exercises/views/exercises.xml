@@ -399,26 +399,20 @@
 
 
 
-        <!-- top level menu: no parent -->
-        <menuitem id="main_learn_menu" name="Learn"/>
-        <!-- A first level in the left side menu is needed
-             before using action= attribute -->
-        <menuitem id="learn_menu" name="Learn"
-                  parent="main_learn_menu"/>
         <menuitem id="measure_menu" name="Measure"
-                  parent="main_learn_menu"/>
+                  parent="mqo_learner.main_learn_menu"/>
         <!-- the following menuitem should appear *after*
              its parent exercises_menu and *after* its
              action exercise_list_action -->
-        <menuitem id="exercises_menu" name="Exercises" parent="learn_menu"
+        <menuitem id="exercises_menu" name="Exercises" parent="mqo_learner.learn_menu"
                   action="exercise_list_action"/>
-        <menuitem id="extimeperiod_menu" name="Time Periods" parent="learn_menu"
+        <menuitem id="extimeperiod_menu" name="Time Periods" parent="mqo_learner.learn_menu"
                   action="extimeperiod_list_action"/>
-        <menuitem id="exboost_menu" name="Boosts" parent="learn_menu"
+        <menuitem id="exboost_menu" name="Boosts" parent="mqo_learner.learn_menu"
                   action="exboost_list_action"/>
-        <menuitem id="expre_menu" name="Prerequisites" parent="learn_menu"
+        <menuitem id="expre_menu" name="Prerequisites" parent="mqo_learner.learn_menu"
                   action="expre_list_action"/>
-        <menuitem id="exsurveyqcoef_menu" name="Coefficients" parent="measure_menu"
+        <menuitem id="exsurveyqcoef_menu" name="Coefficients" parent="mqo_exercises.measure_menu"
                   action="exsurveyqcoef_list_action"/>
         <!-- Full id location:
              action="mqo_exercises.course_list_action"
