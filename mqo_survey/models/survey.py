@@ -22,3 +22,9 @@ class Mqo_survey(models.Model):
     # should move survey stuff into separate module.
     group = fields.Selection(string="Group", selection=[('survey', 'Survey'), ('exercise', 'Exercise')], default='survey')
 
+
+class Mqo_user_input(models.Model):
+    _inherit = 'survey.user_input'
+
+    learner = fields.Many2one('mqo.learner', 'user_input_ids', string="Learner ID")
+    

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="learner_form_view">
+            <field name="name">learner.form</field>
+            <field name="model">mqo.learner</field>
+            <field name="arch" type="xml">
+                <form string="learner Form">
+                    <sheet>
+                    	<notebook colspan="4">
+                    		<page name='basic' string="Basic information">
+		                        <group>
+		                            <field name="name"/>
+		                            <field name="partner">
+		                               	<tree string="Partner ID">
+			                        		<field name="name"/>
+			                        	</tree>
+			                        </field>
+			                    </group>
+		                    </page>
+	                    </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+        <!-- override the automatically generated list view for learner -->
+        <record model="ir.ui.view" id="learner_tree_view">
+            <field name="name">learner.tree</field>
+            <field name="model">mqo.learner</field>
+            <field name="arch" type="xml">
+                <tree string="learner Tree">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+    
+        <record model="ir.ui.view" id="learner_search_view">
+            <field name="name">learner.search</field>
+            <field name="model">mqo.learner</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+    
+         <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="learner_list_action">
+            <field name="name">Learners</field>
+            <field name="res_model">mqo.learner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first learner
+                </p>
+            </field>
+        </record>
+    
+
+        <menuitem id="configuration_menu" name="Configuration"
+                  parent="main_learn_menu"/>
+        <menuitem id="contact_menu" name="Learners"
+                  parent="configuration_menu"
+                  action="leaner_list_action"/>
+    </data>
+</openerp>

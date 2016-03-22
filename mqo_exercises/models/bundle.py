@@ -13,35 +13,35 @@ class BundleAllocation(models.Model):
     _name = 'mqo.bundle.allocation'
     
     bundle = fields.Many2one('mqo.bundle', string="Exercise bundle")
-    partner_id = fields.Many2one('res.partner', string="Partner", required=True)
+    learner = fields.Many2one('mqo.learner', string="Learner", required=True)
     expiry_datetime = fields.Datetime(string="Expiry", default=lambda self: fields.Datetime.to_string(datetime.datetime.now() + datetime.timedelta(days=365)))
     
     @api.multi
     def _check_expiry(self):
         # Automatically raise warning when approaching expiry, and delete expired bundle allocations.
         warning_list_ids = []
-        partner_id_list = []
+        learner_list = []
         for r in self:
             current_datetime = datetime.datetime.now() 
             if current_datetime > r.expiry_datetime:
-                partner_id_list.append(r.partner_id.id)
+                learner_list.append(r.learner.id)
                 r.unlink()
             elif current_datetime > r.expiry_datetime - datetime.timedelta(days=21):
                 warning_list_ids.append(r.id)
         
-        partner_ids = set(partner_id_list)
-        self.allocateExercises_from_Bundles(partner_ids)
+        learners = set(learner_list)
+        self.allocateExercises_from_Bundles(learners)
         return warning_list_ids
 
     @api.model
-    def allocateExercises_from_Bundles(self, partner_ids):
+    def allocateExercises_from_Bundles(self, learners):
         # Create assignment id
 
         allocation_obj = self.env['mqo.allocation']
         # get list of currently allocated exercises:
-        for partner_id in partner_ids:
-            allocations = allocation_obj.search([('partner_id', '=', partner_id)])
-            bundle_allocations = self.search([('partner_id', '=', partner_id)])
+        for learner in learners:
+            allocations = allocation_obj.search([('learner', '=', learner)])
+            bundle_allocations = self.search([('learner', '=', learner)])
             exercise_id_list = []
             for allocation in allocations:
                 exercise_id_list.append(allocation.exercise_id.id)
@@ -51,7 +51,7 @@ class BundleAllocation(models.Model):
                 for exercise in bundle_allocation.bundle.exercises:
                     # see if allocation already exists, and update or create one if needed.
                     if exercise.id not in exercise_id_list:
-                        res = allocation_obj.create({'partner_id': partner_id, 'exercise_id': exercise.id})
+                        res = allocation_obj.create({'learner': learner, 'exercise_id': exercise.id})
                         print('Exercises were allocated')
                     else:
                         exercise_id_list.remove(exercise.id)
@@ -60,7 +60,7 @@ class BundleAllocation(models.Model):
             # remove allocations for any remaining exercise_id_list entries, since they aren't in any of the allocated bundles.
             if len(exercise_id_list) > 0:
                 print('Removing exercises no longer in any bundles')
-                res = allocation_obj.search([('partner_id', '=', partner_id), ('exercise_id', 'in', exercise_id_list)]).unlink()
+                res = allocation_obj.search([('learner', '=', learner), ('exercise_id', 'in', exercise_id_list)]).unlink()
         
 
     @api.model
@@ -70,10 +70,10 @@ class BundleAllocation(models.Model):
         except ValueError:
             return res
         else:
-            partner_id_list = []
+            learner_list = []
             for bundle_allocation in res:
-                partner_id_list.append(bundle_allocation.partner_id.id)
-            partner_ids = set(partner_id_list)
-            self.allocateExercises_from_Bundles(partner_ids)
+                learner_list.append(bundle_allocation.learner.id)
+            learners = set(learner_list)
+            self.allocateExercises_from_Bundles(learners)
         return res
     

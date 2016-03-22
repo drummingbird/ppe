@@ -12,11 +12,10 @@ _logger = logging.getLogger(__name__)
 class MyLearning(http.Controller):
     @http.route('/mylearning/mylearning/', type='http', auth='public', website=True)
     def index(self, **kw):
-        # Partners = http.request.env['res.partner']
         partner = request.env['res.users'].browse(request.uid).partner_id
         if partner:
-            ResPartner = request.env['res.partner'].browse(partner.id)
-            currentex = ResPartner.next_exercise_id
+            learner = partner.learner
+            currentex = learner.next_exercise_id
             return request.render('mqo_exercises.index', {
                 'exercises': currentex
             })
@@ -70,7 +69,7 @@ class ExerciseResponse(http.Controller):
         try:
             user_input_id = user_input_obj.search(cr, SUPERUSER_ID, [('token', '=', assignment.response_token)], context=context)[0]
         except IndexError:  # No response currently exists for this assignment
-            vals = {'survey_id': assignment.response_survey.id, 'partner_id': assignment.partner_id.id, 'token': assignment.response_token, 'state': 'skip'}
+            vals = {'survey_id': assignment.response_survey.id, 'learner': assignment.learner.id, 'token': assignment.response_token, 'state': 'skip'}
             user_input_id = user_input_obj.create(cr, uid, vals, context=context)
             user_input = user_input_obj.browse(cr, uid, [user_input_id], context=context)[0]
             # record response in assignment

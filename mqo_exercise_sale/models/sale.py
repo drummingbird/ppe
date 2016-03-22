@@ -22,10 +22,20 @@ class sale_order_line(models.Model):
         has a quantity attribute that will be the number of
         years subscription linked to this line. """
 
+        learner = partner.learner
+
+        # Make new learner if needed.
+        if not learner:
+            print('Creating new learner for partner')
+            learner_obj = self.env['mqo.learner']
+            vals = {'partner': partner.id, 'name': partner.name}
+            learner_id = learner_obj.create(vals)
+            learner = learner_obj.browse([learner_id])
+
         print('Allocating bundles')
-        # get list of all current bundle allocations for partner_id
+        # get list of all current bundle allocations for learner
         bundle_allocation_obj = self.env['mqo.bundle.allocation']
-        bundle_allocations = bundle_allocation_obj.search([('partner_id', '=', partner.id)])
+        bundle_allocations = bundle_allocation_obj.search([('learner', '=', learner.id)])
         bundle_id_list = []
         for bundle_allocation in bundle_allocations:
             bundle_id_list.append(bundle_allocation.bundle.id)
@@ -41,6 +51,6 @@ class sale_order_line(models.Model):
                     print('Allocated new bundle')
                 else:
                     expiry_datetime = fields.Datetime.to_string(datetime.datetime.now() + datetime.timedelta(days=365*line.product_uom_qty))
-                    bundle_allocation_id = bundle_allocation_obj.create({'bundle': bundle.id, 'partner_id': partner.id, 'expiry_datetime': expiry_datetime})
+                    bundle_allocation_id = bundle_allocation_obj.create({'bundle': bundle.id, 'learner': learner.id, 'expiry_datetime': expiry_datetime})
                     print('Increased bundle expiry date')
         return True
