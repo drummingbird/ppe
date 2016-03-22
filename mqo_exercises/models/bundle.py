@@ -53,7 +53,8 @@ class BundleAllocation(models.Model):
                     if exercise.id not in exercise_id_list:
                         allocation_obj.create({'partner_id': partner_id, 'exercise_id': exercise.id})
                         print('Exercises were allocated')
-                    exercise_id_list.remove(exercise.id)
+                    else:
+                        exercise_id_list.remove(exercise.id)
             
             
             # remove allocations for any remaining exercise_id_list entries, since they aren't in any of the allocated bundles.
