@@ -72,17 +72,3 @@ class BundleAllocation(models.Model):
             self.allocateExercises_from_Bundles(partners)
         return res
     
-    @api.model
-    def unlink(self):
-        partners = []
-        for bundle_allocation in self:
-            partners.append(bundle_allocation.partner_id)
-        partners = set(partners)
-
-        try:
-            res = super(BundleAllocation, self).unlink()
-        except ValueError:
-            return res
-        else:
-            self.allocateExercises_from_Bundles(partners)
-        return res
