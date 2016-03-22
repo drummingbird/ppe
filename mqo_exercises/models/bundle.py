@@ -40,7 +40,6 @@ class BundleAllocation(models.Model):
         allocation_obj = self.env['mqo.allocation']
         # get list of currently allocated exercises:
         for partner_id in partner_ids:
-            [('parent_id', 'child_of', ids)]
             allocations = allocation_obj.search([('partner_id', '=', partner_id)])
             bundle_allocations = self.search([('partner_id', '=', partner_id)])
             exercise_id_list = []
