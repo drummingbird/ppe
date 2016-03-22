@@ -85,4 +85,4 @@ class BundleAllocation(models.Model):
             return res
         else:
             self.allocateExercises_from_Bundles(partners)
-        return rec
+        return res
