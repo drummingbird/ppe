@@ -5,13 +5,12 @@ class sale_order(models.Model):
     _inherit = 'sale.order'
 
     @api.multi
-    def action_wait(self):
-        print("Action_confirm has been triggered.")
-        res = super(sale_order, self).action_wait()
+    def action_allocate_bundles(self):
+        print("Allocate bundles action has been triggered.")
         for order in self:
             hasbundles, so_id = any(product.bundles for product in order.order_line.product_id), order.id
             order.order_line._allocate_bundles(order.partner_id, confirm=True)
-        return res
+        return True
 
 
 class sale_order_line(models.Model):
