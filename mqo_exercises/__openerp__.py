@@ -24,12 +24,12 @@
     'data': [
         'security/ir.model.access.csv',
         'templates/templates.xml',
-        'views/exercises.xml',
         'views/learner.xml',
         'views/allocations.xml',
         'views/assignments.xml',
         'views/bundle.xml',
         'views/bundle_allocations.xml',
+        'views/exercises.xml',
         #'views/session_workflow.xml',
     ],
     # only loaded in demonstration mode
