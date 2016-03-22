@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-import exercise, allocation, assignment, leaner, bundle
+import exercise, allocation, assignment, learner, bundle
