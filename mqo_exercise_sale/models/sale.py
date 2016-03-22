@@ -25,7 +25,7 @@ class sale_order_line(models.Model):
         print('Allocating bundles')
         # get list of all current bundle allocations for partner_id
         bundle_allocation_obj = self.env['mqo.bundle.allocation']
-        bundle_allocations = bundle_allocation_obj.search({'partner_id': partner.id})
+        bundle_allocations = bundle_allocation_obj.search([('partner_id', '=', partner.id)])
         bundle_id_list = []
         for bundle_allocation in bundle_allocations:
             bundle_id_list.append(bundle_allocation.bundle.id)
