@@ -51,7 +51,7 @@ class BundleAllocation(models.Model):
                 for exercise in bundle_allocation.bundle.exercises:
                     # see if allocation already exists, and update or create one if needed.
                     if exercise.id not in exercise_id_list:
-                        allocation_obj.create({'partner_id': partner_id, 'exercise_id': exercise.id})
+                        res = allocation_obj.create({'partner_id': partner_id, 'exercise_id': exercise.id})
                         print('Exercises were allocated')
                     else:
                         exercise_id_list.remove(exercise.id)
@@ -60,7 +60,7 @@ class BundleAllocation(models.Model):
             # remove allocations for any remaining exercise_id_list entries, since they aren't in any of the allocated bundles.
             if len(exercise_id_list) > 0:
                 print('Removing exercises no longer in any bundles')
-                allocation_obj.search([('partner_id', '=', partner_id), ('exercise_id', 'in', exercise_id_list)]).unlink()
+                res = allocation_obj.search([('partner_id', '=', partner_id), ('exercise_id', 'in', exercise_id_list)]).unlink()
         
 
     @api.model
