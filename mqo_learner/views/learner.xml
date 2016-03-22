@@ -74,6 +74,6 @@
                   parent="mqo_learner.main_learn_menu"/>
         <menuitem id="contact_menu" name="Learners"
                   parent="mqo_learner.configuration_menu"
-                  action="leaner_list_action"/>
+                  action="learner_list_action"/>
     </data>
 </openerp>
