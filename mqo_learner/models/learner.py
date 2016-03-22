@@ -5,7 +5,6 @@ class Learner(models.Model):
     
     name = fields.Char(string="Name")
     partner = fields.Many2one('res.partner', string="Partner ID")
-    user_input_ids = fields.One2many('survey.user_input', 'learner', string="User input IDs")
     
     @api.one
     @api.constrains('partner')

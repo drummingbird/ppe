@@ -26,5 +26,5 @@ class Mqo_survey(models.Model):
 class Mqo_user_input(models.Model):
     _inherit = 'survey.user_input'
 
-    learner = fields.Many2one('mqo.learner', 'user_input_ids', string="Learner ID")
+    learner = fields.Many2one('mqo.learner', string="Learner ID")
     
