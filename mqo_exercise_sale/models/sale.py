@@ -36,11 +36,11 @@ class sale_order_line(models.Model):
                 if bundle.id in bundle_id_list:
                     index = bundle_id_list.index(bundle.id)
                     oldExpiry = fields.Datetime.from_string(bundle_allocations[index].expiry_datetime)
-                    expiry_datetime = fields.Datetime.to_string(oldExpiry + datetime.timedelta(days=365*line.quantity))
+                    expiry_datetime = fields.Datetime.to_string(oldExpiry + datetime.timedelta(days=365*line.product_uom_qty))
                     bundle_allocations[index].write({'expiry_datetime': expiry_datetime})
                     print('Allocated new bundle')
                 else:
-                    expiry_datetime = fields.Datetime.to_string(datetime.datetime.now() + datetime.timedelta(days=365*line.quantity))
+                    expiry_datetime = fields.Datetime.to_string(datetime.datetime.now() + datetime.timedelta(days=365*line.product_uom_qty))
                     bundle_allocation_id = bundle_allocation_obj.create({'bundle': bundle.id, 'partner_id': partner.id, 'expiry_datetime': expiry_datetime})
                     print('Increased bundle expiry date')
         return True
