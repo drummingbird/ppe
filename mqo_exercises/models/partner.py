@@ -148,29 +148,3 @@ class Partner(models.Model):
             assignment_id = assignment_obj.create({'partner_id': r.id, 'exercise_id': r.next_exercise_id.id, 'datetime_allocated': fields.Datetime.now()})
         
     
-    @api.multi
-    @api.depends('bundle_allocations')
-    def allocateExercises_from_Bundles(self):
-        # Create assignment id
-        allocation_obj = self.env['mqo.allocation']
-        # get list of currently allocated exercises:
-        allocationList = allocation_obj.search({'partner_id': partner.id})
-        exercise_id_list = []
-        for allocation in allocationList:
-            exercise_id_list.append(allocation.exercise_id.id)
-        
-        print('Checking whether new exercises need to be allocated from bundles')
-        for bundle_allocation in self.bundle_allocations:
-            for exercise in bundle_allocation.bundle.exercises:
-                # see if allocation already exists, and update or create one if needed.
-                if exercise.id not in exercise_id_list:
-                    allocation_id = allocation_obj.create({'partner_id': partner.id, 'exercise_id': exercise.id})
-                    print('Exercises were allocated')
-                exercise_id_list.remove(exercise.id)
-        
-        
-        # remove allocations for any remaining exercise_id_list entries, since they aren't in any of the allocated bundles.
-        if len(exercise_id_list) > 0:
-            print('Removing exercises no longer in any bundles')
-            allocation_obj.search({'partner_id': partner.id, 'exercise_id': exercise_id_list}).unlink()
-        

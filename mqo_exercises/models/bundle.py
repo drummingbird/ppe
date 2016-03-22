@@ -1,7 +1,7 @@
 from openerp import models, fields, api
 import datetime
 
-class bundle(models.Model):
+class Bundle(models.Model):
     _name = 'mqo.bundle'
     
     name = fields.Char(string="Name")
@@ -9,7 +9,7 @@ class bundle(models.Model):
     exercises = fields.Many2many('mqo.exercise', relation='mqo_bundle_exericse_relation', string="Exercises")
 
 
-class bundle_allocation(models.Model):
+class BundleAllocation(models.Model):
     _name = 'mqo.bundle.allocation'
     
     bundle = fields.Many2one('mqo.bundle', string="Exercise bundle")
@@ -27,3 +27,62 @@ class bundle_allocation(models.Model):
             elif current_datetime > r.expiry_datetime - datetime.timedelta(days=21):
                 warning_list_ids.append(r.id)
         return warning_list_ids
+
+
+    @api.model
+    def allocateExercises_from_Bundles(self, partners):
+        # Create assignment id
+
+        allocation_obj = self.env['mqo.allocation']
+        # get list of currently allocated exercises:
+        for partner in partners:
+            allocations = allocation_obj.search({'partner_id': partner.id})
+            bundle_allocations = self.search({'partner_id': partner.id})
+            exercise_id_list = []
+            for allocation in allocations:
+                exercise_id_list.append(allocation.exercise_id.id)
+            
+            print('Checking whether new exercises need to be allocated from bundles')
+            for bundle_allocation in bundle_allocations:
+                for exercise in bundle_allocation.bundle.exercises:
+                    # see if allocation already exists, and update or create one if needed.
+                    if exercise.id not in exercise_id_list:
+                        allocation_obj.create({'partner_id': partner.id, 'exercise_id': exercise.id})
+                        print('Exercises were allocated')
+                    exercise_id_list.remove(exercise.id)
+            
+            
+            # remove allocations for any remaining exercise_id_list entries, since they aren't in any of the allocated bundles.
+            if len(exercise_id_list) > 0:
+                print('Removing exercises no longer in any bundles')
+                allocation_obj.search({'partner_id': partner.id, 'exercise_id': exercise_id_list}).unlink()
+        
+
+    @api.model
+    def create(self, vals):
+        try:
+            res = super(BundleAllocation, self).create(vals)
+        except ValueError:
+            return res
+        else:
+            partners = []
+            for bundle_allocation in res:
+                partners.append(bundle_allocation.partner_id)
+            partners = set(partners)
+            self.allocateExercises_from_Bundles(partners)
+        return res
+    
+    @api.model
+    def unlink(self):
+        partners = []
+        for bundle_allocation in self:
+            partners.append(bundle_allocation.partner_id)
+        partners = set(partners)
+
+        try:
+            res = super(BundleAllocation, self).unlink()
+        except ValueError:
+            return res
+        else:
+            self.allocateExercises_from_Bundles(partners)
+        return rec
