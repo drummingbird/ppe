@@ -16,8 +16,16 @@ class MyLearning(http.Controller):
         if partner:
             learner = partner.learner
             currentex = learner.next_exercise_id
+            assignments = learner.assignments
+            response_ids = []
+            for assignment in assignments:
+                if assignment.response:
+                    response_ids.append(assignment.response.id)
+            responses = request.env['survey.user_input'].browse(response_ids)
             return request.render('mqo_exercises.index', {
-                'exercises': currentex
+                'exercises': currentex,
+                'assignments': assignments,
+                'responses': responses
             })
         else:
             return request.render('mqo_exercises.index', {'exercises': []})

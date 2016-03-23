@@ -23,6 +23,7 @@ class Assignment(models.Model):
     responses = fields.Many2one('survey.user_input', string="Responses")
     response_token = fields.Char(string="Token", default=lambda self: 'res' + uuid.uuid4().__str__())
     
+        
     # can add entries (while doing the exercise) as survey responses too.
 
     # add function to set rating and difficulty based on responses.
