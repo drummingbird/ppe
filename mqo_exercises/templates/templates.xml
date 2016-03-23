@@ -1,17 +1,51 @@
 <openerp>
-    <data>
-	    <template id="index">
-            <t t-call="website.layout">
-                <t t-set="title">My learning</t>
-                <div class="oe_structure">
-                    <div class="container">
-				        <t t-foreach="exercises" t-as="exercise">
-				          <p><t t-esc="exercise.id"/> <t t-esc="exercise.name"/></p>
-				          <p><t t-esc="exercise.instructions"/></p>
-				        </t>
-				  	</div>
-				</div>
-			</t>    
-	    </template>
-    </data>
+  <data>
+    <template id="assets_frontend_exercise" inherit_id="website.assets_frontend" name="Exercise assets">
+        <xpath expr="." position="inside">
+        	<link rel='stylesheet' href='/mqo_exercises/static/src/css/portlet.css'/>
+        </xpath>
+    </template>
+    
+	<template id="index">
+      <t t-call="website.layout">
+        <t t-set="title">My learning</t>
+        <div class="oe_structure">
+          <div class="container">
+            <t t-foreach="exercises" t-as="exercise">
+              <div class="row">
+              	<div class="col-md-6 mb32 mt32">
+				  <div class="portlet">
+					<div class="portlet-title">
+						<div class="caption">
+							<i class="glyphicon glyphicon-calendar"></i>
+							<span class="caption-subject text-uppercase"> Exercise</span>
+							<span class="caption-helper">143 likes this week...</span>
+						</div>
+						<div class="actions">
+							<a href="javascript:;" class="btn">
+								<i class="glyphicon glyphicon-pencil"></i>
+								Edit 
+							</a>
+							<a href="javascript:;" class="btn">
+								<i class="glyphicon glyphicon-paperclip"></i>
+								Add
+							</a>
+							<a href="javascript:;" class="btn btn-circle">
+								<i class="glyphicon glyphicon-resize-full"></i>
+							</a>
+						</div>
+					</div>
+					<div class="portlet-body">
+						<h4><t t-esc="exercise.name"/></h4>
+						<p><t t-esc="exercise.instructions"/></p>
+				    </div>
+				  </div>
+    	 	    </div>
+  			  </div>
+		    </t>
+	  	  </div>
+	    </div>
+	  </t>    
+	</template>
+  </data>
 </openerp>
