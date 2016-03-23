@@ -37,9 +37,9 @@ class Mqo_exArr():
         # elapsed_timedelta_datum = datetime.datetime.now() # - some date
         t = elapsed_timedelta.days
         a = assignment.exercise_id
-        d_sig = 1 - a.sig_m*sigmoid(t, a.sig_c, a.sig_r, a.sig_e, True)
-        d_exp = max(1 - a.exp_m*(1 - expdec(t, a.exp_c, a.exp_r, a.exp_e)), 0)
-        self.discount = self.discount * d_sig * d_exp
+        d_sig = -a.sig_m*sigmoid(t, a.sig_c, a.sig_r, a.sig_e, True)
+        d_exp = -a.exp_m*(expdec(t, a.exp_c, a.exp_r, a.exp_e))
+        self.discount = self.discount + d_sig + d_exp
         
         # need to do oldest to newest for this
         self.bur = a.bur_m*(sigmoid(t, a.bur_c, a.bur_r, a.bur_e, True) - sigmoid(t, a.bur_c2, a.bur_r, a.bur_e, True))
