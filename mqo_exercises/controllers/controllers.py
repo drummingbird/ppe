@@ -19,8 +19,8 @@ class MyLearning(http.Controller):
             assignments = learner.assignments
             response_ids = []
             for assignment in assignments:
-                if assignment.response:
-                    response_ids.append(assignment.response.id)
+                if assignment.responses:
+                    response_ids.append(assignment.responses[0].id)
             responses = request.env['survey.user_input'].browse(response_ids)
             return request.render('mqo_exercises.index', {
                 'exercises': currentex,
