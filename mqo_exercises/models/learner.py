@@ -145,6 +145,6 @@ class Learner(models.Model):
         self._compute_next_exercise()
         assignment_obj = self.env['mqo.assignment']
         for r in self:
-            assignment_id = assignment_obj.create({'learner': r.id, 'exercise_id': r.next_exercise_id.id, 'datetime_allocated': fields.Datetime.now()})
+            assignment_id = assignment_obj.create({'learner': r.id, 'exercise_id': r.next_exercise_id.id, 'response_survey': r.next_exercise_id.default_response_survey, 'datetime_allocated': fields.Datetime.now()})
         
     
