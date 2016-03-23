@@ -13,12 +13,12 @@
           <div class="container">
             <t t-foreach="exercises" t-as="exercise">
               <div class="row">
-              	<div class="col-md-6 mb32 mt32">
+              	<div class="col-md-6 col-md-offset-3 mb32 mt32">
 				  <div class="portlet">
 					<div class="portlet-title">
 						<div class="caption">
 							<i class="glyphicon glyphicon-calendar"></i>
-							<span class="caption-subject text-uppercase"> Exercise</span>
+							<span class="caption-subject text-uppercase"> Your exercise</span>
 							<span class="caption-helper">143 likes this week...</span>
 						</div>
 						<div class="actions">
@@ -27,11 +27,12 @@
 								Edit 
 							</a>
 							<a href="javascript:;" class="btn">
-								<i class="glyphicon glyphicon-paperclip"></i>
-								Add
+								<i class="glyphicon glyphicon-thumbs-up"></i>
+								Like
 							</a>
-							<a href="javascript:;" class="btn btn-circle">
-								<i class="glyphicon glyphicon-resize-full"></i>
+							<a href="javascript:;" class="btn">
+								<i class="glyphicon glyphicon-step-forward"></i>
+								Skip
 							</a>
 						</div>
 					</div>
