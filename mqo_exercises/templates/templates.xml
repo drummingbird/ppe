@@ -11,7 +11,7 @@
         <t t-set="title">My learning</t>
         <div class="oe_structure">
           <div class="container">
-            <t t-foreach="exercises" t-as="exercise">
+            <t t-foreach="assignments[0]" t-as="assignment">
               <div class="row">
               	<div class="col-md-6 col-md-offset-3 mb32 mt32">
 				  <div class="portlet">
@@ -37,8 +37,8 @@
 						</div>
 					</div>
 					<div class="portlet-body">
-						<h4><t t-esc="exercise.name"/></h4>
-						<p><t t-esc="exercise.instructions"/></p>
+						<h4><t t-esc="assignment.exercise_id.name"/></h4>
+						<p><t t-esc="assignment.exercise_id.instructions"/></p>
 						<div class="mt16 text-center">
 							<a t-att-href="'/exercise/response/%s/%s' % (slug(assignment), assignment.token)" class="btn btn-primary btn-lg mb32"><span class="fa fa-long-arrow-right"/> <span class="hidden-xs">Log how it went</span><span class="visible-xs-inline">Log how it went</span></a>
 						</div>
