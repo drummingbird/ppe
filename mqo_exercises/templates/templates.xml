@@ -40,7 +40,7 @@
 						<h4><t t-esc="assignment.exercise_id.name"/></h4>
 						<p><t t-esc="assignment.exercise_id.instructions"/></p>
 						<div class="mt16 text-center">
-							<a t-att-href="'/exercise/response/%s/%s' % (slug(assignment), assignment.token)" class="btn btn-primary btn-lg mb32"><span class="fa fa-long-arrow-right"/> <span class="hidden-xs">Log how it went</span><span class="visible-xs-inline">Log how it went</span></a>
+							<a t-att-href="'/exercise/response/%s/%s' % (slug(assignment), assignment.response_token)" class="btn btn-primary btn-lg mb32"><span class="fa fa-long-arrow-right"/> <span class="hidden-xs">Log how it went</span><span class="visible-xs-inline">Log how it went</span></a>
 						</div>
 				    </div>
 				  </div>
