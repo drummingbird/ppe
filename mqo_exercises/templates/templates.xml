@@ -67,13 +67,13 @@
 		    <ul class="timeline">
 		      <t t-foreach="assignments" t-as="assignment">
 		        <t t-if="assignment.responses">
-			    	<t t-if="$as_odd">
+			    	<t t-if="assignment_odd">
 				        <li>
 				          <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
 						  <t t-call="mqo_exercises.exercise_timeline_response"></t>
 				        </li>
 			        </t>
-			        <t t-if="$as_even">
+			        <t t-if="assignment_even">
 				        <li class="timeline-inverted">
 				          <div class="timeline-badge success"><i class="glyphicon glyphicon-thumbs-up"></i></div>
 						  <t t-call="mqo_exercises.exercise_timeline_response"></t>
