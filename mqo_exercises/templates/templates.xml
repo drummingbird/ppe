@@ -19,7 +19,7 @@
     	 	    </div>
   			  </div>
 		    </t>
-		    <t t-call="mqo_exercises.exercise_timeline">
+		    <t t-call="mqo_exercises.exercise_timeline"></t>
 	  	  </div>
 	    </div>
 	  </t>    
