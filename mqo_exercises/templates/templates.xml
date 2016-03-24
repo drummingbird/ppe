@@ -15,7 +15,7 @@
             <t t-foreach="assignments[0]" t-as="assignment">
               <div class="row">
               	<div class="col-md-6 col-md-offset-3 mb32 mt32">
-				  <t t-call="mqo_exercise.exercise_portlet"></t>
+				  <t t-call="mqo_exercises.exercise_portlet"></t>
     	 	    </div>
   			  </div>
 		    </t>
