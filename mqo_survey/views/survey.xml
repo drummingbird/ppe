@@ -13,6 +13,18 @@
 	            </xpath>
 	        </field>
 		</record>
+        <record model="ir.ui.view" id="survey_question_form">
+            <field name="name">Form view for survey question</field>
+            <field name="model">survey.question</field>
+            <field name="inherit_id" ref="survey.question_form"/>
+            <field name="arch" type="xml">
+	            <xpath expr="//page[@string='Options']" position="inside">
+	                <group string="MQO">
+	                    <field name="categ_id"/>
+	                    <field name="review_text"/>
+	                </group>
+	            </xpath>
+	        </field>
+		</record>
     </data>
 </openerp>
-

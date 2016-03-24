@@ -13,7 +13,7 @@ class Mqo_question(models.Model):
     _inherit = 'survey.question'
     
     categ_id = fields.Many2one('survey.question.category', string="Category")
-    
+    review_text = fields.Char(string="Review text")
     
 class Mqo_survey(models.Model):
     _name = 'survey.survey'
