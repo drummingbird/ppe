@@ -62,34 +62,54 @@
 	<template id="exercise_timeline">
 		<div class="container">
 		    <div class="page-header">
-		        <h1 id="timeline">Your timeline</h1>
+		        <h1 id="timeline">Your exercise timeline</h1>
 		    </div>
 		    <ul class="timeline">
-		        <li>
-		          <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
-		          <div class="timeline-panel">
-		            <div class="timeline-heading">
-		              <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-		              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
-		            </div>
-		            <div class="timeline-body">
-		              <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-		            </div>
-		          </div>
-		        </li>
-		        <li class="timeline-inverted">
-		          <div class="timeline-badge success"><i class="glyphicon glyphicon-thumbs-up"></i></div>
-		          <div class="timeline-panel">
-		            <div class="timeline-heading">
-		              <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-		            </div>
-		            <div class="timeline-body">
-		              <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-		            </div>
-		          </div>
-		        </li>
+		      <t t-foreach="assignments" t-as="assignment">
+		        <t t-if="assignment.responses">
+			    	<t t-if="$as_odd">
+				        <li>
+				          <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
+						  <t t-call="mqo_exercises.exercise_timeline_response"></t>
+				        </li>
+			        </t>
+			        <t t-if="$as_even">
+				        <li class="timeline-inverted">
+				          <div class="timeline-badge success"><i class="glyphicon glyphicon-thumbs-up"></i></div>
+						  <t t-call="mqo_exercises.exercise_timeline_response"></t>
+				        </li>
+			        </t>
+		        </t>
+		      </t>
 		    </ul>
 		</div>
 	</template>
+	
+	
+	<template id="exercise_timeline_response">
+        <div class="timeline-panel">
+          <div class="timeline-heading">
+            <h4 class="timeline-title"><t t-esc="assignment.exercise_id.name"/></h4>
+            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <t t-esc="assignment.datetime_allocated"/></small></p>
+          </div>
+          <div class="timeline-body">
+			<t t-foreach="assignment.responses[0].user_input_line_ids" t-as="line">
+				<t t-call="mqo_exercises.show_exercise_response_data"></t>
+			</t>
+          </div>
+        </div>
+	</template>
+			         
+	
+	<template id="show_exercise_response_data">
+  		<t t-if="(line.categ_id.name=='ex_rating') and (line.quizz_mark)">
+    			<p>Rated: <t t-esc="line.quizz_mark"/></p>
+    	</t>
+  		<t t-if="(line.categ_id.name=='ex_emotions') and (line.free_text)">
+    			<p><small class="text-muted">After doing it:</small></p>
+    			<p><t t-esc="line.free_text"/></p>
+    	</t>
+	</template>
+	
   </data>
 </openerp>
