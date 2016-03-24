@@ -108,7 +108,7 @@
     	</t>
   		<t t-if="(categ_name=='ex_effects') and (line.value_free_text)">
     		<p><small class="text-muted"><t t-esc="line.question_id.review_text"/></small></p>
-    		<p><t t-esc="line.free_text"/></p>
+    		<p><t t-esc="line.value_free_text"/></p>
     	</t>
 	</template>
 	
