@@ -104,11 +104,11 @@
 	<template id="show_exercise_response_data">
 		<t t-set="categ_name" t-value="line.question_id.categ_id.name"/>
   		<t t-if="(categ_name=='ex_rating') and (line.quizz_mark)">
-    			<p><t t-esc="line.question_id.review_text"/> <t t-esc="line.quizz_mark"/></p>
+    		<p><t t-esc="line.question_id.review_text"/> <t t-esc="line.quizz_mark"/></p>
     	</t>
-  		<t t-if="(categ_name=='ex_effects') and (line.free_text)">
-    			<p><small class="text-muted"><t t-esc="line.question_id.review_text"/></small></p>
-    			<p><t t-esc="line.free_text"/></p>
+  		<t t-if="(categ_name=='ex_effects') and (line.value_free_text)">
+    		<p><small class="text-muted"><t t-esc="line.question_id.review_text"/></small></p>
+    		<p><t t-esc="line.free_text"/></p>
     	</t>
 	</template>
 	
