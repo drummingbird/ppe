@@ -1,0 +1,2 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_mqo_learner,mqo.learner,model_mqo_learner,,1,0,0,0
