@@ -102,10 +102,10 @@
 			         
 	
 	<template id="show_exercise_response_data">
-  		<t t-if="(line.categ_id.name=='ex_rating') and (line.quizz_mark)">
+  		<t t-if="(line.question_id.categ_id.name=='ex_rating') and (line.quizz_mark)">
     			<p>Rated: <t t-esc="line.quizz_mark"/></p>
     	</t>
-  		<t t-if="(line.categ_id.name=='ex_emotions') and (line.free_text)">
+  		<t t-if="(line.question_id.categ_id.name=='ex_emotions') and (line.free_text)">
     			<p><small class="text-muted">After doing it:</small></p>
     			<p><t t-esc="line.free_text"/></p>
     	</t>
