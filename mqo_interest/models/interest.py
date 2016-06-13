@@ -1,0 +1,28 @@
+from openerp import fields, models, api
+
+class Interest(models.Model):
+    _name = 'mqo.interest'
+
+    name = fields.Char(string="Contact name")
+    contact_org = fields.Char(string="Contact organisation")
+    contact_email = fields.Char(string="Contact email")
+    contact_phone = fields.Char(string="Contact phone")
+    
+    program = fields.Many2one('mqo.program', ondelete='cascade', string="Program", required=True)
+  
+
+    
+    timeframe =  fields.Selection([('three', 'Within 3 months'),
+                               ('six', 'Within 6 months'),
+                               ('twelve', 'Within 12 months')],
+                               string='Timeframe', readonly=True)
+    
+    private_course = fields.Boolean(string="Private course")
+    
+    location = fields.Selection([('auckland', 'Auckland'),
+                               ('wellington', 'Wellington'),
+                               ('christchurch', 'Christchurch')],
+                               string='Location', readonly=True)
+    
+    message = fields.Char(string="Message / Comments")
+    extra_info = fields.Char(string="Extra info")

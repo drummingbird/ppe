@@ -1,0 +1,2 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_mqo_interest,mqo.interest,model_mqo_interest,,0,1,1,0
