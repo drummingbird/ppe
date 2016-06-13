@@ -62,10 +62,10 @@
         <menuitem id="main_program_menu" name="Programs"/>
         <!-- A first level in the left side menu is needed
              before using action= attribute -->
-        <menuitem id="program_menu" name="Programs"
+        <menuitem id="programs_menu" name="Programs"
                   parent="mqo_program.main_program_menu"/>
-        <menuitem id="contact_menu" name="View programs"
-                  parent="mqo_program.main_program_menu"
+        <menuitem id="list_programs" name="View programs"
+                  parent="mqo_program.programs_menu"
                   action="program_list_action"/>
     </data>
 </openerp>

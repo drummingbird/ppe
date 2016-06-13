@@ -18,12 +18,13 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'mqo_program'],
+    'depends': ['base', 'mqo_program', 'website'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'views/interest.xml',
+        'templates/templates.xml',
         #'views/session_workflow.xml',
     ],
     # only loaded in demonstration mode

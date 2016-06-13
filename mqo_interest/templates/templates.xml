@@ -16,6 +16,12 @@
 	                        </div>
 	                    </div>
 				        <form action="/program/registerinterest" method="post" class="form-horizontal mt32" enctype="multipart/form-data">
+				            <div t-attf-class="form-group">
+				                <label class="col-md-3 col-sm-4 control-label" for="program_title">Program</label>
+				                <div class="col-md-7 col-sm-8">
+				                    <h3 name="program_title"><t t-esc="program_name or ''"/></h3>
+				                </div>
+				            </div>
 				            <div t-attf-class="form-group #{error and 'name' in error and 'has-error' or ''}">
 				                <label class="col-md-3 col-sm-4 control-label" for="name">Your Name</label>
 				                <div class="col-md-7 col-sm-8">
@@ -34,21 +40,20 @@
 				                    <input type="email" class="form-control" name="contact_email" required="True" t-attf-value="#{contact_email or ''}"/>
 				                </div>
 				            </div>
-				            <div name="email_from_container" t-attf-class="form-group #{error and 'contact_org' in error and 'has-error' or ''}">
+				            <div t-attf-class="form-group #{error and 'contact_org' in error and 'has-error' or ''}">
 				                <label class="col-md-3 col-sm-4 control-label" for="contact_org">Organisation</label>
 				                <div class="col-md-7 col-sm-8">
-				                    <input type="text" class="form-control" name="contact_org" required="True" t-attf-value="#{contact_org or ''}"/>
+				                    <input type="text" class="form-control" name="contact_org" t-attf-value="#{contact_org or ''}"/>
 				                </div>
-				            </div>
-				            <div>
-								<p>Program: <t t-esc="program.name"/></p>
 				            </div>
 							<div t-attf-class="form-group #{error and 'message' in error and 'has-error' or ''}">
 				                <label class="col-md-3 col-sm-4 control-label" for="message">Message</label>
 				                <div class="col-md-7 col-sm-8">
-				                    <textarea  class="form-control" name="message" style="min-height: 120px" required="True"><t t-esc="message or ''"/></textarea>
+				                    <textarea  class="form-control" name="message" style="min-height: 120px"><t t-esc="message or ''"/></textarea>
 				                </div>
 				            </div>
+				            <input type="hidden" name="program" t-att-value="program"/>
+				            <input type="hidden" name="program_name" t-att-value="program_name"/>
 				            <t t-foreach="kwargs" t-as="kwarg">
 				                <input type="hidden" t-att-name="kwarg[0]" t-att-value="kwarg[1]"/>
 				            </t>
@@ -69,28 +74,28 @@
 	
 	
 	
-<template id="interest_thanks" name="Thank you for interest">
-    <t t-call="website.layout">
-      <div id="wrap">
-        <div class="oe_structure"/>
-        <div class="container">
-            <h1>Thanks!</h1>
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="alert alert-success">
-                        Your message has been sent successfully.
-                        <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <t t-call="website.company_description"/>
-                </div>
-            </div>
-        </div>
-        <div class="oe_structure"/>
-      </div>
-    </t>
-</template>
+	<template id="interest_thanks" name="Thank you for interest">
+	    <t t-call="website.layout">
+	      <div id="wrap">
+	        <div class="oe_structure"/>
+	        <div class="container">
+	            <h1>Thanks!</h1>
+	            <div class="row">
+	                <div class="col-md-8">
+	                    <div class="alert alert-success">
+	                        Your message has been sent successfully.
+	                        <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
+	                    </div>
+	                </div>
+	                <div class="col-md-4">
+	                    <t t-call="website.company_description"/>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="oe_structure"/>
+	      </div>
+	    </t>
+	</template>
 	
   </data>
 </openerp>
