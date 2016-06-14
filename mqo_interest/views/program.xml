@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- Add interest fields to existing view -->
+        <record model="ir.ui.view" id="interest_program_form_view">
+            <field name="name">interest.program</field>
+            <field name="model">mqo.program</field>
+            <field name="inherit_id" ref="mqo_program.program_form_view"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+	                <page string="Interest">
+	                	<group>
+	                		<field name="n_interested"/>
+		                    <field name="interest">
+		                        <tree string="Registered interest">
+		                            <field name="name"/>
+		                            <field name="contact_org"/>
+		                            <field name="contact_email"/>
+		                        </tree>
+		                    </field>
+	                    </group>
+	                </page>
+                </notebook>
+            </field>
+        </record>
+    
+        <!-- Add n_interested field to existing view -->
+        <record model="ir.ui.view" id="interest_program_tree_view">
+            <field name="name">interest.program</field>
+            <field name="model">mqo.program</field>
+            <field name="inherit_id" ref="mqo_program.program_tree_view"/>
+            <field name="arch" type="xml">
+                <tree position="inside">
+	            	<field name="n_interested"/>
+                </tree>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

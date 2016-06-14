@@ -10,7 +10,8 @@ class Interest(models.Model):
     
     program = fields.Many2one('mqo.program', ondelete='cascade', string="Program", required=True)
   
-
+    
+    date_registered = fields.Date(string="Date")
     
     timeframe =  fields.Selection([('three', 'Within 3 months'),
                                ('six', 'Within 6 months'),
@@ -24,5 +25,5 @@ class Interest(models.Model):
                                ('christchurch', 'Christchurch')],
                                string='Location', readonly=True)
     
-    message = fields.Char(string="Message / Comments")
-    extra_info = fields.Char(string="Extra info")
+    message = fields.Text(string="Message / Comments")
+    extra_info = fields.Text(string="Extra info")

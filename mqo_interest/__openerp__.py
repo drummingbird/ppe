@@ -24,6 +24,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/interest.xml',
+        'views/program.xml',
         'templates/templates.xml',
         #'views/session_workflow.xml',
     ],

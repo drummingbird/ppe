@@ -83,12 +83,9 @@
 	            <div class="row">
 	                <div class="col-md-8">
 	                    <div class="alert alert-success">
-	                        Your message has been sent successfully.
+	                        You're interest in this program has been successfully registered.
 	                        <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
 	                    </div>
-	                </div>
-	                <div class="col-md-4">
-	                    <t t-call="website.company_description"/>
 	                </div>
 	            </div>
 	        </div>

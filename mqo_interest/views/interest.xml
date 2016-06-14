@@ -5,7 +5,7 @@
             <field name="name">interest.form</field>
             <field name="model">mqo.interest</field>
             <field name="arch" type="xml">
-                <form string="learner Form">
+                <form string="Interest Form">
                     <sheet>
                     	<notebook colspan="4">
                     		<page name='basic' string="Basic information">
