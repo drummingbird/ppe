@@ -9,7 +9,7 @@ from openerp.http import request
 from openerp.tools.translate import _
 
 class RegisterInterest(http.Controller):
-    @http.route('/program/interest/<model("mqo.program"):selectedprogram>', type='http', auth='public', website=True)
+    @http.route('/interest/<model("mqo.program"):selectedprogram>', type='http', auth='public', website=True)
     def registerInterestForm(self, selectedprogram, **kwargs):
         values = {}
         
@@ -32,7 +32,7 @@ class RegisterInterest(http.Controller):
     def get_interest_response(self, values, kwargs):
         return request.website.render(kwargs.get("view_callback", "mqo_interest.interest_thanks"), values)
 
-    @http.route(['/program/registerinterest'], type='http', auth="public", website=True)
+    @http.route(['/interest/register'], type='http', auth="public", website=True)
     def registerInterest(self, **kwargs):
         def dict_to_str(title, dictvar):
             ret = "\n\n%s" % title
