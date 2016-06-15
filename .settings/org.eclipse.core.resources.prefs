@@ -30,3 +30,5 @@ encoding//mqo_strengths/models/__init__.py=utf-8
 encoding//mqo_survey/__init__.py=utf-8
 encoding//mqo_survey/__openerp__.py=utf-8
 encoding//mqo_survey/models/__init__.py=utf-8
+encoding//mqo_website/__init__.py=utf-8
+encoding//mqo_website/__openerp__.py=utf-8
