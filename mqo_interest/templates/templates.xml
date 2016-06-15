@@ -19,7 +19,7 @@
 				            <div t-attf-class="form-group">
 				                <label class="col-md-3 col-sm-4 control-label" for="program_title">Program</label>
 				                <div class="col-md-7 col-sm-8">
-				                    <h3 name="program_title"><t t-esc="program_name or ''"/></h3>
+				                    <strong><span name="program_title"><t t-esc="program_name or ''"/></span></strong>
 				                </div>
 				            </div>
 				            <div t-attf-class="form-group #{error and 'name' in error and 'has-error' or ''}">
@@ -46,10 +46,48 @@
 				                    <input type="text" class="form-control" name="contact_org" t-attf-value="#{contact_org or ''}"/>
 				                </div>
 				            </div>
+				            <div t-attf-class="form-group #{error and 'timeframe' in error and 'has-error' or ''}">
+				                <label class="col-md-3 col-sm-4 control-label" for="timeframe">Time-frame</label>
+				                <span>How soon would you like the program to run?</span> 
+				                <div class="col-md-7 col-sm-8">
+					                <div class="radio">
+					                    <label><input type="radio" name="timeframe" value="1">Within 3 months</input></label>
+					                </div>
+					                <div class="radio">
+					                    <label><input type="radio" name="timeframe" value="2">Within 6 months</input></label>
+					                </div>
+					                <div class="radio">
+					                    <label><input type="radio" name="timeframe" value="3" checked="true">Within 12 months</input></label>
+					                </div>
+				                </div>
+				            </div>
+				            <div t-attf-class="form-group #{error and 'private_course' in error and 'has-error' or ''}">
+				                <label class="col-md-3 col-sm-4 control-label" for="private_course">Private course</label>
+				                <div class="col-md-7 col-sm-8">
+					                <div class="checkbox">
+					                    <label><input type="checkbox" name="private_course" t-attf-value="#{private_course or ''}"/>I'm interested in running this program privately in my organisation.</label>
+					                </div>
+				                </div>
+				            </div>
 							<div t-attf-class="form-group #{error and 'message' in error and 'has-error' or ''}">
 				                <label class="col-md-3 col-sm-4 control-label" for="message">Message</label>
 				                <div class="col-md-7 col-sm-8">
 				                    <textarea  class="form-control" name="message" style="min-height: 120px"><t t-esc="message or ''"/></textarea>
+				                </div>
+				            </div>
+				            <div t-attf-class="form-group #{error and 'location' in error and 'has-error' or ''}">
+				                <label class="col-md-3 col-sm-4 control-label" for="timeframe">Location</label>
+				                <span>What's the nearest city you'd like the program to be run in?</span>
+				                <div class="col-md-7 col-sm-8">
+					                <div class="radio">
+					                    <label><input type="radio" name="location" value="auckland">Auckland</input></label>
+					                </div>
+					                <div class="radio">
+					                    <label><input type="radio" name="location" value="wellington">Wellington</input></label>
+					                </div>
+					                <div class="radio">
+					                    <label><input type="radio" name="location" value="christchurch" checked="true">Christchurch</input></label>
+					                </div>
 				                </div>
 				            </div>
 				            <input type="hidden" name="program" t-att-value="program"/>

@@ -11,11 +11,11 @@ class Interest(models.Model):
     program = fields.Many2one('mqo.program', ondelete='cascade', string="Program", required=True)
   
     
-    date_registered = fields.Date(string="Date")
+    date_registered = fields.Date(string="Date", default=fields.Date.context_today)
     
-    timeframe =  fields.Selection([('three', 'Within 3 months'),
-                               ('six', 'Within 6 months'),
-                               ('twelve', 'Within 12 months')],
+    timeframe =  fields.Selection([('1', 'Within 3 months'),
+                               ('2', 'Within 6 months'),
+                               ('3', 'Within 12 months')],
                                string='Timeframe', readonly=True)
     
     private_course = fields.Boolean(string="Private course")
