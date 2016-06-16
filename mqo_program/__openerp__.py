@@ -24,6 +24,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/program.xml',
+        'views/benefit.xml',
         'templates/program.xml',
     ],
     # only loaded in demonstration mode
