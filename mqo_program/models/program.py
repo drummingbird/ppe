@@ -34,7 +34,6 @@ class Program(models.Model):
 
     
     name = fields.Char(string="Name")
-    
     description = fields.Text(string="Description")
     
     session_detail = fields.Char(string="Session details")
@@ -42,6 +41,8 @@ class Program(models.Model):
 
     individual = fields.Boolean(string="For individuals?")
     organisational = fields.Boolean(string="For organisations?")
+    html = fields.Html(string="Html")
     brochure = fields.Binary(compute=_get_binary_filesystem, inverse=_set_binary_filesystem, string='Brochure', store=False)
 
     benefits = fields.One2many('mqo.benefit_program_link', 'program', string="Benefits")
+   
