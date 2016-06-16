@@ -1,0 +1,102 @@
+<openerp>
+  <data>
+	<template id="list" name="List of programs">
+      <t t-call="website.layout">
+        <t t-set="title"><t t-esc="listname or 'Programs'"/> | Mindquip</t>
+        <div id="wrap">
+	        <div class="oe_structure"/>
+	        <div>
+	          <t t-if="listname=='individuals'">
+			      <section>
+			        <div class="container">
+			          <div class="row">
+			            <div class="col-md-12 mt32 mb32">
+			              <h1 class="text-center">Programs for individuals</h1>
+			              <h3 class="text-muted text-center">These are programs run for individuals.</h3>
+			            </div>
+			          </div>
+			        </div>
+			      </section>
+		      </t>
+	          <t t-if="listname=='organisations'">
+			      <section>
+			        <div class="container">
+			          <div class="row">
+			            <div class="col-md-12 mt32 mb32">
+			              <h1 class="text-center">Programs for organisations</h1>
+			              <h3 class="text-muted text-center">These are programs run for organisations.</h3>
+			            </div>
+			          </div>
+			        </div>
+			      </section>
+		      </t>
+	          <t t-if="listname=='all'">
+			      <section>
+			        <div class="container">
+			          <div class="row">
+			            <div class="col-md-12 mt32 mb32">
+			              <h1 class="text-center">Programs for individuals</h1>
+			              <h3 class="text-muted text-center">These are programs run for individuals.</h3>
+			            </div>
+			          </div>
+			        </div>
+			      </section>
+		      </t>
+		      <t t-if="programs">
+			      <section>
+			        <div class="container">
+				        <t t-foreach="programs" t-as="program">
+							<div class="row mqo-featured">
+								<div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8">
+						    		<div class="row">
+					                    <div class="col-xs-3 col-sm-4 col-md-4 pull-left">
+					                        <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+					                    </div>
+					                    <div class=" col-xs-9 col-sm-8 col-md-8">
+					                      	<div>
+				                                <div class="mb16">
+					                                <!-- Split button -->
+							                        <div class="btn-group pull-right mb16">
+							                            <button type="button" class="btn btn-primary">
+							                                Read more</button>
+							                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+							                                <span class="caret"></span><span class="sr-only">Read more</span>
+							                            </button>
+							                            <ul class="dropdown-menu" role="menu">
+							                                <li><a href="#">Brochure PDF</a></li>
+							                                <li class="divider"></li>
+							                                <li><a href="#">Testimonials</a></li>
+							                            </ul>
+							                    	</div>
+					                                <div>
+					                                	<h3><t t-esc="program.name"/></h3>
+					                                </div>
+							                    </div>
+							                    <div>
+								                    <p><t t-esc="program.description"/></p>
+							                        <p><span class="glyphicon glyphicon-time"></span> 5 sessions, 90 minutes each</p>
+							                        <p><span class="glyphicon glyphicon-calendar"></span> 5 weeks, 1 session per week</p>
+							                        <p><span class="glyphicon glyphicon-gift"></span> Key benefit areas:</p>
+							                        <p><span class="label label-success">Area 1</span>
+					                                	<span class="label label-success">Area 2</span>
+					                                	<span class="label label-success">Area 3</span>
+					                                </p>
+				                                </div>
+			                                </div>
+					                    </div>
+									</div>
+								</div>
+						    </div>
+						</t>
+			        </div>
+			      </section>
+		      </t>
+	        </div>
+	        <div class="oe_structure"/>
+        </div>
+	  </t>    
+	</template>
+	
+	
+  </data>
+</openerp>

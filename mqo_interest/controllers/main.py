@@ -8,7 +8,7 @@ from openerp import http, SUPERUSER_ID
 from openerp.http import request
 from openerp.tools.translate import _
 
-class RegisterInterest(http.Controller):
+class Interest(http.Controller):
     @http.route('/interest/<model("mqo.program"):selectedprogram>', type='http', auth='public', website=True)
     def registerInterestForm(self, selectedprogram, **kwargs):
         values = {}
@@ -33,7 +33,7 @@ class RegisterInterest(http.Controller):
         return request.website.render(kwargs.get("view_callback", "mqo_interest.interest_thanks"), values)
 
     @http.route(['/interest/register'], type='http', auth="public", website=True)
-    def registerInterest(self, **kwargs):
+    def InterestRegister(self, **kwargs):
         def dict_to_str(title, dictvar):
             ret = "\n\n%s" % title
             for field in dictvar:
