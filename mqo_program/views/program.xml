@@ -13,8 +13,10 @@
 		                            <field name="name"/>
 		                            <field name="description"/>
 		                            <field name="brochure" widget="binary"/>
+		                            <field name="image" widget="binary"/>
 		                            <field name="session_detail"/>
 		                            <field name="timeframe_detail"/>
+		                            <field name="pagelink"/>
 		                            <field name="benefits">
 		                            	<tree string="Benefits">
 		                            		<field name="benefit"/>
