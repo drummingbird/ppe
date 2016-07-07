@@ -117,13 +117,20 @@
 	      <div id="wrap">
 	        <div class="oe_structure"/>
 	        <div class="container">
-	            <h1>Thanks!</h1>
 	            <div class="row">
-	                <div class="col-md-8">
-	                    <div class="alert alert-success">
-	                        You're interest in this program has been successfully registered.
+	                <div class="col-md-8 col-md-offset-2">
+	                	<div>
+	                		<h1>Thanks!</h1>
+	                	</div>
+	                    <div class="alert alert-success mt16">
+	                        Your interest in the <t t-esc="program_name"/> program has been successfully registered.
 	                        <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
 	                    </div>
+	                </div>
+	            </div>
+				<div class="row mt32 mb32">
+	                <div class="col-md-8 col-md-offset-2">
+	                    <h3>We'll email you when we next plan to run the <t t-esc="program_name"/> program.</h3>
 	                </div>
 	            </div>
 	        </div>
@@ -131,6 +138,29 @@
 	      </div>
 	    </t>
 	</template>
+	
+    <template id="program_show_interest" inherit_id="mqo_program.list" name="Show programs">
+    	<xpath expr="//div[@name='program_list_action_buttons']" position="inside">
+            <div class="row mt16">
+               	<div class="btn-group btn-block">
+                   	<a class="btn btn-primary btn-block" t-attf-href="/interest/{{slug(program)}}">Register interest</a>
+           		</div>
+          	</div>
+			<t t-if="program.n_needed">
+       			<t t-set="n_needed_more" t-value="program.n_needed - program.n_interested"/>
+                <div class="row mt16">
+                    <div class="btn-group btn-block">
+	                    <t t-if="n_needed_more &lt; 1">
+	                         <p class="text-center"><strong>Running soon!</strong></p>
+	                    </t>
+	                    <t t-if="n_needed_more &gt; 0">
+	                         <p class="text-center"><strong><t t-esc="'%.0f'%n_needed_more"/> more<br/>needed to run</strong></p>
+	                    </t>
+                 	</div>
+               	</div>
+            </t>
+        </xpath>
+    </template>
 	
   </data>
 </openerp>

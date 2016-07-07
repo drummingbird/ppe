@@ -11,6 +11,7 @@
 	                <page string="Interest">
 	                	<group>
 	                		<field name="n_interested"/>
+	                		<field name="n_needed"/>
 		                    <field name="interest">
 		                        <tree string="Registered interest">
 		                            <field name="name"/>

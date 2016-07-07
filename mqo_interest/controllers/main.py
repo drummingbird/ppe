@@ -50,6 +50,8 @@ class Interest(http.Controller):
         for field_name, field_value in kwargs.items():
             if field_name in request.registry['mqo.interest']._fields and field_name not in _BLACKLIST:
                 values[field_name] = field_value
+            elif field_name in ['program_name'] and field_name not in _BLACKLIST:
+                values[field_name] = field_value
             elif field_name not in _TECHNICAL:  # allow to add some free fields or blacklisted field like ID
                 post_extra_info.append("%s: %s" % (field_name, field_value))
        

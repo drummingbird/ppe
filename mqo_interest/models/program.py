@@ -7,6 +7,8 @@ class Program_Interest(models.Model):
     
     n_interested = fields.Float(string="Number interested", compute='_n_interested')
     
+    n_needed = fields.Float(string="Number needed")
+      
     @api.depends('interest')
     def _n_interested(self):
         for r in self:
@@ -14,3 +16,4 @@ class Program_Interest(models.Model):
                 r.n_interested = 0.0
             else:
                 r.n_interested = len(r.interest)
+

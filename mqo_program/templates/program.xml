@@ -55,7 +55,7 @@
 					                    <div class=" col-xs-9 col-sm-8 col-md-8">
 					                      	<div>
     			                                <div class="mb16">
-							                        <div class="pull-right">
+							                        <div name="program_list_action_buttons" class="pull-right">
 								                        <div class="row">
 								                        	<!-- Split button -->
 									                        <div class="btn-group btn-block">
@@ -69,12 +69,6 @@
 									                                <!-- <li class="divider"></li>
 									                                <li><a href="#">Testimonials</a></li> -->
 									                            </ul>
-									                    	</div>
-								                    	</div>
-								                        <div class="row mt16">
-									                        <div class="btn-group btn-block">
-									                            <a class="btn btn-primary btn-block" t-attf-href="/interest/{{slug(program)}}">
-									                                Register interest</a>
 									                    	</div>
 								                    	</div>
 							                    	</div>
