@@ -11,7 +11,7 @@ class Program(models.Model):
     
         for record in self:
             res[record.id] = False
-            name = '/program/' + record.name.lower() + '/brochure.pdf'
+            name = '/program/' + record.name.lower().replace(" ", "") + '/brochure.pdf'
             attachment_ids = attachment_obj.search([('res_model','=',self._name),('res_id','=',record.id), ('name', '=', name)])
             if attachment_ids:
                 record.brochure = attachment_ids[0].datas
@@ -22,7 +22,7 @@ class Program(models.Model):
         attachment_obj = self.env['ir.attachment']
         
         for record in self:
-            name = '/program/' + record.name.lower() + '/brochure.pdf'
+            name = '/program/' + record.name.lower().replace(" ", "") + '/brochure.pdf'
             attachment_ids = attachment_obj.search([('res_model','=',self._name),('res_id','=',record.id), ('name', '=', name)])
             if record.brochure:
                 if attachment_ids:
@@ -42,7 +42,7 @@ class Program(models.Model):
     
         for record in self:
             res[record.id] = False
-            name = '/program/' + record.name.lower() + '/image.jpg'
+            name = '/program/' + record.name.lower().replace(" ", "") + '/image.jpg'
             attachment_ids = attachment_obj.search([('res_model','=',self._name),('res_id','=',record.id), ('name', '=', name)])
             if attachment_ids:
                 record.image = attachment_ids[0].datas
@@ -53,7 +53,7 @@ class Program(models.Model):
         attachment_obj = self.env['ir.attachment']
         
         for record in self:
-            name = '/program/' + record.name.lower() + '/image.jpg'
+            name = '/program/' + record.name.lower().replace(" ", "") + '/image.jpg'
             attachment_ids = attachment_obj.search([('res_model','=',self._name),('res_id','=',record.id), ('name', '=', name)])
             if record.image:
                 if attachment_ids:

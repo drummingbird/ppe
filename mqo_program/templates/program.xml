@@ -35,8 +35,8 @@
 			        <div class="container">
 			          <div class="row">
 			            <div class="col-md-12 mt32 mb32">
-			              <h1 class="text-center">Programs for individuals</h1>
-			              <h3 class="text-muted text-center">These are programs run for individuals.</h3>
+			              <h1 class="text-center">All Mindquip programs</h1>
+			              <h3 class="text-muted text-center">Some programs suit individuals, and others suit organisations.</h3>
 			            </div>
 			          </div>
 			        </div>
@@ -50,7 +50,7 @@
 								<div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8">
 						    		<div class="row">
 					                    <div class="col-xs-3 col-sm-4 col-md-4 pull-left">
-					                        <a t-attf-href="/program/{{(program.name.lower())}}/brochure.pdf"><img t-attf-src="/program/{{(program.name.lower())}}/image.jpg" alt="" class="img-rounded img-responsive" /></a>
+					                        <a t-attf-href="/program/{{(program.name.lower().replace(' ', ''))}}/brochure.pdf"><img t-attf-src="/program/{{(program.name.lower().replace(' ', ''))}}/image.jpg" alt="" class="img-rounded img-responsive" /></a>
 					                    </div>
 					                    <div class=" col-xs-9 col-sm-8 col-md-8">
 					                      	<div>
@@ -65,7 +65,7 @@
 									                                <span class="caret"></span><span class="sr-only">Other</span>
 									                            </button>
 									                            <ul class="dropdown-menu" role="menu">
-									                                <li><a t-attf-href="/program/{{(program.name.lower())}}/brochure.pdf">Brochure PDF</a></li>
+									                                <li><a t-attf-href="/program/{{(program.name.lower().replace(' ', ''))}}/brochure.pdf">Brochure PDF</a></li>
 									                                <!-- <li class="divider"></li>
 									                                <li><a href="#">Testimonials</a></li> -->
 									                            </ul>
