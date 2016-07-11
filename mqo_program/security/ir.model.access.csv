@@ -1,5 +1,0 @@
-id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
-access_mqo_program,mqo.program.manager,model_mqo_program,mqo_program_manager,1,1,1,1
-access_mqo_program,mqo.program.all,model_mqo_program,,1,0,0,0
-access_mqo_benefit,mqo.benefit,model_mqo_benefit,,1,0,0,0
-access_mqo_benefit_program_link,mqo.benefit_program_link,model_mqo_benefit_program_link,,1,0,0,0

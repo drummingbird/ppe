@@ -1,7 +1,0 @@
-<openerp>
-    <data noupdate="1">
-        <record id="mqo_program_manager" model="res.groups">
-            <field name="name">MQO Program / Manager</field>
-        </record>
-    </data>
-</openerp>
