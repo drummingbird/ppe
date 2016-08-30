@@ -116,7 +116,6 @@ class Learner(models.Model):
 
     allocations = fields.One2many('mqo.allocation', 'learner', string="Allocated Exercises")
     assignments = fields.One2many('mqo.assignment', 'learner', string="Assigned Exercises")
-    bundle_allocations = fields.One2many('mqo.bundle.allocation', 'learner', string="Allocated exercise bundles")
     
     next_exercise_id = fields.Many2one(comodel_name='mqo.exercise', store=True, readonly=True, compute='_compute_next_exercise', string="Current exercise")
     
@@ -145,6 +144,6 @@ class Learner(models.Model):
         self._compute_next_exercise()
         assignment_obj = self.env['mqo.assignment']
         for r in self:
-            assignment_id = assignment_obj.create({'learner': r.id, 'exercise_id': r.next_exercise_id.id, 'response_survey': r.next_exercise_id.default_response_survey.id, 'datetime_allocated': fields.Datetime.now()})
+            assignment_id = assignment_obj.create({'learner': r.id, 'exercise_id': r.next_exercise_id.id, 'datetime_allocated': fields.Datetime.now()})
         
     

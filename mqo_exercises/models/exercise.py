@@ -67,14 +67,11 @@ class Exercise(models.Model):
     
     surveyq_dat =  fields.One2many('mqo.exsurveyqcoef', 'exercise_id', string="Survey question data")
     
-    default_response_survey = fields.Many2one('survey.survey', string="Default response survey")
-    
 class ExSurveyQCoef(models.Model):
     _name = 'mqo.exsurveyqcoef'
     
     exercise_id = fields.Many2one('mqo.exercise',
         ondelete='cascade', string="Exercise", required=True)
-    survey_question = fields.Many2one('survey.question',
-        ondelete='cascade', string="Survey question", required=True)
+    survey_question = fields.Char(string="Survey question", required=True)
     coef = fields.Float(string="Coefficient", default=0.0)
 

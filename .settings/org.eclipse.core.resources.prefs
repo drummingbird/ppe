@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
+encoding//mqo_bundle/__openerp__.py=utf-8
+encoding//mqo_bundle/models/__init__.py=utf-8
 encoding//mqo_exercise_sale/__init__.py=utf-8
 encoding//mqo_exercise_sale/__openerp__.py=utf-8
 encoding//mqo_exercise_sale/models/__init__.py=utf-8
@@ -14,6 +16,3 @@ encoding//mqo_exercises/models/learner.py=utf-8
 encoding//mqo_learner/__init__.py=utf-8
 encoding//mqo_learner/__openerp__.py=utf-8
 encoding//mqo_learner/models/__init__.py=utf-8
-encoding//mqo_survey/__init__.py=utf-8
-encoding//mqo_survey/__openerp__.py=utf-8
-encoding//mqo_survey/models/__init__.py=utf-8

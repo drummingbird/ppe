@@ -5,8 +5,7 @@ class Bundle(models.Model):
     _name = 'mqo.bundle'
     
     name = fields.Char(string="Name")
-    product_templates = fields.Many2many('product.template', relation='mqo_bundle_product_relation', string="Product templates")
-    exercises = fields.Many2many('mqo.exercise', relation='mqo_bundle_exericse_relation', string="Exercises")
+    exercises = fields.Many2many('mqo.exercise', 'mqo_bundle_exericse_relation', 'bundle_id', 'exercise_id', string="Exercises")
 
 
 class BundleAllocation(models.Model):

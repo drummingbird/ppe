@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-import learner, partner
+import learner, res_users

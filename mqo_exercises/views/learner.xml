@@ -35,14 +35,6 @@
 	                        </tree>
 	                    </field>
 	                </page>
-	                <page string="Bundle allocations">
-	                    <field name="bundle_allocations">
-	                        <tree string="Bundle allocations">
-	                        	<field name="bundle"/>
-	                            <field name="expiry_datetime"/>
-	                        </tree>
-	                    </field>
-	                </page>
                 </notebook>
             </field>
         </record>

@@ -18,7 +18,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'website', 'mqo_learner', 'mqo_survey'],
+    'depends': ['base', 'website', 'mqo_learner'],
 
     # always loaded
     'data': [
@@ -26,8 +26,6 @@
         'templates/templates.xml',
         'views/allocations.xml',
         'views/assignments.xml',
-        'views/bundle.xml',
-        'views/bundle_allocations.xml',
         'views/exercises.xml',
         'views/learner.xml',
         #'views/session_workflow.xml',

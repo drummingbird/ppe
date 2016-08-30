@@ -11,8 +11,8 @@
                     		<page name='basic' string="Basic information">
 		                        <group>
 		                            <field name="name"/>
-		                            <field name="partner">
-		                               	<tree string="Partner ID">
+		                            <field name="user">
+		                               	<tree string="User ID">
 			                        		<field name="name"/>
 			                        	</tree>
 			                        </field>

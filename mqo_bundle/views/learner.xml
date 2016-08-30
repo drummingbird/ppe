@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <openerp>
+    <data>
+        <!-- Add instructor field to existing view -->
+        <record model="ir.ui.view" id="learner_exercises_form_view">
+            <field name="name">learner.exercises</field>
+            <field name="model">mqo.learner</field>
+            <field name="inherit_id" ref="mqo_learner.learner_form_view"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+	                <page string="Bundle allocations">
+	                    <field name="bundle_allocations">
+	                        <tree string="Bundle allocations">
+	                        	<field name="bundle"/>
+	                            <field name="expiry_datetime"/>
+	                        </tree>
+	                    </field>
+	                </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</openerp>

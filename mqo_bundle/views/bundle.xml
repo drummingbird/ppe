@@ -7,13 +7,8 @@
             <field name="arch" type="xml">
                 <form string="bundle Form">
                     <sheet>
-                        <group>
+                        <group name="basic_info">
                             <field name="name"/>
-                            <field name="product_templates">
-                               	<tree string="Product template">
-	                        		<field name="name"/>
-	                        	</tree>
-	                        </field>
 	                    </group>
 	                    <group>
                             <field name="exercises">

@@ -18,14 +18,14 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'mqo_exercises', 'sale'],
+    'depends': ['base', 'mqo_exercises', 'mqo_bundle', 'sale'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
         #'templates/templates.xml',
         'views/product.xml',
-        'views/exercises.xml',
+        'views/bundles.xml',
         #'views/session_workflow.xml',
     ],
     # only loaded in demonstration mode

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "MQO Survey",
+    'name': "MQO Exercise Sale",
 
-    'summary': """MQO survey module""",
+    'summary': """Manage exercise sales""",
 
     'description': """
-        MQO module for extending survey functionality:
+        MQO module for managing exercise sales:
     """,
 
     'author': "Your Company",
@@ -18,13 +18,16 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'survey', 'mqo_learner'],
+    'depends': ['base', 'mqo_exercises'],
 
     # always loaded
     'data': [
-        #'security/ir.model.access.csv',
+        # 'security/ir.model.access.csv',
         #'templates/templates.xml',
-        'views/survey.xml',
+        'views/bundle.xml',
+        'views/bundle_allocations.xml',
+        'views/exercise.xml'
+        'views/learner.xml'
         #'views/session_workflow.xml',
     ],
     # only loaded in demonstration mode
