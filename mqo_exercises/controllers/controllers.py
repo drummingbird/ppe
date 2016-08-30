@@ -12,12 +12,13 @@ _logger = logging.getLogger(__name__)
 class MyLearning(http.Controller):
     @http.route('/mylearning/mylearning/', type='http', auth='public', website=True)
     def index(self, **kw):
-        user = request.env['res.users'].browse(request.uid).user_id
-        if user:
-            learner = user.learner
+        cr, uid, context = request.cr, request.uid, request.context
+        user = request.registry['res.users'].browse(cr, uid, uid, context=context)
+        learner = user.learner
+        if learner:
             currentex = learner.next_exercise_id
             assignments = learner.assignments
-            response_ids = []
+            responses = False
             return request.render('mqo_exercises.index', {
                 'exercises': currentex,
                 'assignments': assignments,
@@ -36,7 +37,7 @@ class ExerciseResponse(http.Controller):
         cr, uid, context = request.cr, request.uid, request.context
         ret = {}
         
-        if post[rating]:
-            assignment.write({'rating', post[rating]})
+        if post['rating']:
+            assignment.write({'rating': post['rating']})
             ret['reply'] = 'This worked!'
         return json.dumps(ret)

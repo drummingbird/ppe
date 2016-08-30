@@ -87,21 +87,23 @@
 		        <h1 id="timeline">Your exercise timeline</h1>
 		    </div>
 		    <ul class="timeline">
-		      <t t-foreach="assignments" t-as="assignment">
-		        <t t-if="assignment.responses">
-			    	<t t-if="assignment_odd">
-				        <li>
-				          <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
-						  <t t-call="mqo_exercises.exercise_timeline_response"></t>
-				        </li>
+		      <t t-if="responses">
+			      <t t-foreach="assignments" t-as="assignment">
+			        <t t-if="assignment.responses">
+				    	<t t-if="assignment_odd">
+					        <li>
+					          <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
+							  <t t-call="mqo_exercises.exercise_timeline_response"></t>
+					        </li>
+				        </t>
+				        <t t-if="assignment_even">
+					        <li class="timeline-inverted">
+					          <div class="timeline-badge success"><i class="glyphicon glyphicon-thumbs-up"></i></div>
+							  <t t-call="mqo_exercises.exercise_timeline_response"></t>
+					        </li>
+				        </t>
 			        </t>
-			        <t t-if="assignment_even">
-				        <li class="timeline-inverted">
-				          <div class="timeline-badge success"><i class="glyphicon glyphicon-thumbs-up"></i></div>
-						  <t t-call="mqo_exercises.exercise_timeline_response"></t>
-				        </li>
-			        </t>
-		        </t>
+			      </t>
 		      </t>
 		    </ul>
 		</div>
