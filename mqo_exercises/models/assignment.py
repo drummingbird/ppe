@@ -18,3 +18,4 @@ class Assignment(models.Model):
     rating = fields.Float(string="Rating")
     difficulty = fields.Float(string="Difficulty")
     datetime_allocated = fields.Datetime(string="Date Time Stamp", required=True, default=lambda self: fields.Datetime.now())
+    _order = "datetime_allocated desc"

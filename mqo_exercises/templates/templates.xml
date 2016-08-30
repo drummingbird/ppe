@@ -50,12 +50,12 @@
 			</div>
 		</div>
 		<div class="portlet-body">
-			<h4><t t-esc="assignment.exercise_id.name"/></h4>
-			<p><t t-esc="assignment.exercise_id.instructions"/></p>
+			<h4 id="exercise_name"><t t-esc="assignment.exercise_id.name"/></h4>
+			<p id="exercise_instructions"><t t-esc="assignment.exercise_id.instructions"/></p>
 			<div>
-				<form role="form" method="post" class="js_responseform" t-att-name="rating" t-att-action="'/assignment/action/%s' % (slug(assignment))" t-att-data-submit="'/assignment/rating/%s' % (slug(assignment))">
-            		<input type="hidden" name="assignment_id" t-att-value="assignment.id" />
-            		<input type="hidden" name="exercise_id" t-att-value="assignment.exercise_id.id" />
+				<form role="form" method="post" class="js_responseform" t-att-name="rating" action="/assignment/action" data-submit="/assignment/rating">
+            		<input type="hidden" name="assignment_id" id="assignment_id_input" t-att-value="assignment.id" />
+            		<input type="hidden" name="exercise_id" id="exercise_id_input" t-att-value="assignment.exercise_id.id" />
             		<input type="textbox" name="rating" t-att-value="0"/>
             		<button type="submit" class="btn btn-default" name="button_submit">Rate it</button>
             	</form>

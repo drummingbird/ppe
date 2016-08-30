@@ -30,14 +30,31 @@ class MyLearning(http.Controller):
         
 class ExerciseResponse(http.Controller):
     # AJAX submission of a page
-    @http.route(['/assignment/rating/<model("mqo.assignment"):assignment>'],
+    @http.route(['/assignment/rating'],
                 type='http', methods=['POST'], auth='public', website=True)
-    def submit(self, assignment, **post):
+    def submit(self, **post):
         _logger.debug('Incoming data: %s', post)
-        cr, uid, context = request.cr, request.uid, request.context
         ret = {}
         
-        if post['rating']:
-            assignment.write({'rating': post['rating']})
-            ret['reply'] = 'This worked!'
-        return json.dumps(ret)
+        if post['assignment_id']:
+            cr, uid, context = request.cr, request.uid, request.context
+            assignment = request.env['mqo.assignment'].browse(int(post['assignment_id']))[0]
+            if assignment:
+                print('assignment should follow: ')
+                print(assignment.learner.name)
+                learner = request.env['mqo.learner'].browse(assignment.learner.id)
+                
+                if post['rating']:
+                    assignment.write({'rating': post['rating']})
+                    learner.assignEx()
+                    newAssignment = learner.assignments[0]
+                    newExercise = newAssignment.exercise_id 
+                    ret['reply'] = {
+                                       'assignment_id': newAssignment.id,
+                                       'exercise_id': newExercise.id,
+                                       'exercise_name': newExercise.name,
+                                       'exercise_instructions': newExercise.instructions
+                                       }
+                    # ret['redirect'] = '/mylearning/mylearning/'
+                return json.dumps(ret)
+

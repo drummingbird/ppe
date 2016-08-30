@@ -17,11 +17,9 @@
  * This file is intended to add interactivity to assignment forms.
  */
 
-$(document).ready(function () {
-    'use strict';
+ 'use strict';
 
-    console.debug("[mqo_exercise] Custom JS for assignments is loading...");
-
+ function setForms(){
     var the_form = $('.js_responseform');
     var submit_controller = the_form.attr("data-submit");
 
@@ -39,7 +37,12 @@ $(document).ready(function () {
                 return false;
             }
             else if (_.has(response, 'reply')){      // form is ok and we got a response
-                $("#ex_response").html(response.reply);
+            	var res = response.reply;
+				$('#exercise_name').html(res['exercise_name']);
+            	$('#exercise_instructions').html(res['exercise_instructions']);
+            	$('#assignment_id_input').val(res['assignment_id']);
+            	$('#exercise_id_input').val(res['exercise_id']);
+                // $("#ex_response").html(response.reply);
                 return true;
             }
             else if (_.has(response, 'redirect')){      // form is ok
@@ -55,7 +58,14 @@ $(document).ready(function () {
         error: function(jqXHR, textStatus, errorThrown){ // failure of AJAX request
             $('#AJAXErrorModal').modal('show');
         }
-    });
+    });  
+ }
+
+$(document).ready(function () {
+
+    console.debug("[mqo_exercise] Custom JS for assignments is loading...");
+
+	setForms();
 
     console.debug("[mqo_exercise] Custom JS for assignments loaded!");
 });
